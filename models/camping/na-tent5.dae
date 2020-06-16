@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <created>2015-04-30T13:19:53Z</created>
+    <modified>2015-04-30T13:19:53Z</modified>
+    <unit meter="1.0" name="meter" />
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Image_cube_3_5" name="Image_cube_3_5" depth="1">
+      <init_from>tent1.jpg</init_from>
+    </image>
+    <image id="Image_cube_5_7" name="Image_cube_5_7" depth="1">
+      <init_from>tent1b.jpg</init_from>
+    </image>
+    <image id="Image_cube_6_8" name="Image_cube_6_8" depth="1">
+      <init_from>tent2.jpg</init_from>
+    </image>
+    <image id="Image_plane_10_3" name="Image_plane_10_3" depth="1">
+      <init_from>tent1.jpg</init_from>
+    </image>
+    <image id="Image_plane_11_2" name="Image_plane_11_2" depth="1">
+      <init_from>tent1.jpg</init_from>
+    </image>
+    <image id="Image_plane_12_0" name="Image_plane_12_0" depth="1">
+      <init_from>tent1.jpg</init_from>
+    </image>
+    <image id="Image_plane_13_1" name="Image_plane_13_1" depth="1">
+      <init_from>tent1.jpg</init_from>
+    </image>
+    <image id="Image__1_12" name="Image__1_12" depth="1">
+      <init_from>tent1c.jpg</init_from>
+    </image>
+    <image id="Image__2_11" name="Image__2_11" depth="1">
+      <init_from>tent1c.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_cube_3_5">
+      <instance_effect url="#Effect_cube_3_5"/>
+    </material>
+    <material id="Material_cube_5_7">
+      <instance_effect url="#Effect_cube_5_7"/>
+    </material>
+    <material id="Material_cube_6_8">
+      <instance_effect url="#Effect_cube_6_8"/>
+    </material>
+    <material id="Material_plane_10_3">
+      <instance_effect url="#Effect_plane_10_3"/>
+    </material>
+    <material id="Material_plane_11_2">
+      <instance_effect url="#Effect_plane_11_2"/>
+    </material>
+    <material id="Material_plane_12_0">
+      <instance_effect url="#Effect_plane_12_0"/>
+    </material>
+    <material id="Material_plane_13_1">
+      <instance_effect url="#Effect_plane_13_1"/>
+    </material>
+    <material id="Material__1_12">
+      <instance_effect url="#Effect__1_12"/>
+    </material>
+    <material id="Material__2_11">
+      <instance_effect url="#Effect__2_11"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Effect_cube_3_5">
+      <profile_COMMON>
+        <newparam sid="cube_3_5-surface">
+          <surface type="2D">
+            <init_from>Image_cube_3_5</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cube_3_5-sampler">
+          <sampler2D>
+            <source>cube_3_5-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cube_3_5-sampler" texcoord="cube_3_5-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cube_5_7">
+      <profile_COMMON>
+        <newparam sid="cube_5_7-surface">
+          <surface type="2D">
+            <init_from>Image_cube_5_7</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cube_5_7-sampler">
+          <sampler2D>
+            <source>cube_5_7-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cube_5_7-sampler" texcoord="cube_5_7-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cube_6_8">
+      <profile_COMMON>
+        <newparam sid="cube_6_8-surface">
+          <surface type="2D">
+            <init_from>Image_cube_6_8</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cube_6_8-sampler">
+          <sampler2D>
+            <source>cube_6_8-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cube_6_8-sampler" texcoord="cube_6_8-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_plane_10_3">
+      <profile_COMMON>
+        <newparam sid="plane_10_3-surface">
+          <surface type="2D">
+            <init_from>Image_plane_10_3</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="plane_10_3-sampler">
+          <sampler2D>
+            <source>plane_10_3-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="plane_10_3-sampler" texcoord="plane_10_3-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_plane_11_2">
+      <profile_COMMON>
+        <newparam sid="plane_11_2-surface">
+          <surface type="2D">
+            <init_from>Image_plane_11_2</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="plane_11_2-sampler">
+          <sampler2D>
+            <source>plane_11_2-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="plane_11_2-sampler" texcoord="plane_11_2-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_plane_12_0">
+      <profile_COMMON>
+        <newparam sid="plane_12_0-surface">
+          <surface type="2D">
+            <init_from>Image_plane_12_0</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="plane_12_0-sampler">
+          <sampler2D>
+            <source>plane_12_0-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="plane_12_0-sampler" texcoord="plane_12_0-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_plane_13_1">
+      <profile_COMMON>
+        <newparam sid="plane_13_1-surface">
+          <surface type="2D">
+            <init_from>Image_plane_13_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="plane_13_1-sampler">
+          <sampler2D>
+            <source>plane_13_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="plane_13_1-sampler" texcoord="plane_13_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect__1_12">
+      <profile_COMMON>
+        <newparam sid="_1_12-surface">
+          <surface type="2D">
+            <init_from>Image__1_12</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="_1_12-sampler">
+          <sampler2D>
+            <source>_1_12-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="_1_12-sampler" texcoord="_1_12-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect__2_11">
+      <profile_COMMON>
+        <newparam sid="_2_11-surface">
+          <surface type="2D">
+            <init_from>Image__2_11</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="_2_11-sampler">
+          <sampler2D>
+            <source>_2_11-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="_2_11-sampler" texcoord="_2_11-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="cube_3_5" name="cube_3_5">
+      <mesh>
+        <source id="cube_3_5-positions">
+          <float_array id="cube_3_5-positions-array" count="30">-0.005 0.14 -0.3 -0.005 0.14 0.3 -0.205 0.07 0.3 0.195 0.07 0.3 0.195 0.07 -0.3 0.325 -0.07 -0.3 0.325 -0.07 0.3 -0.205 0.07 -0.3 -0.325 -0.07 0.3 -0.325 -0.07 -0.3</float_array>
+          <technique_common>
+            <accessor source="#cube_3_5-positions-array" count="10" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cube_3_5-uvs">
+          <float_array id="cube_3_5-uvs-array" count="16">0 0 0 0.4214 0 0.4391 0 1.0 1.0 0 1.0 0.4214 1.0 0.4391 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cube_3_5-uvs-array" count="8" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cube_3_5-vertices">
+          <input semantic="POSITION" source="#cube_3_5-positions"/>
+        </vertices>
+        <triangles count="8" material="Material_cube_3_5">
+          <input offset="0" semantic="VERTEX" source="#cube_3_5-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cube_3_5-uvs"/>
+          <p>0 7  7 6  2 2  2 2  1 3  0 7  5 4  4 5  3 1  3 1  6 0  5 4  1 3  3 1  4 5  4 5  0 7  1 3  8 0  2 2  7 6  7 6  9 4  8 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cube_5_7" name="cube_5_7">
+      <mesh>
+        <source id="cube_5_7-positions">
+          <float_array id="cube_5_7-positions-array" count="33">-0.205 0.06 0.28 -0.305 -0.14 -0.28 -0.005 -0.14 -0.28 -0.005 0.12 -0.28 -0.205 0.06 -0.28 0.295 -0.14 -0.28 0.295 -0.14 0.28 0.195 0.06 0.28 -0.005 0.12 0.28 -0.305 -0.14 0.28 0.195 0.06 -0.28</float_array>
+          <technique_common>
+            <accessor source="#cube_5_7-positions-array" count="11" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cube_5_7-uvs">
+          <float_array id="cube_5_7-uvs-array" count="20">0 0 0 0.4214 0 0.4391 0 1.0 0.5 0 0.5 0.9977 1.0 0 1.0 0.4214 1.0 0.4391 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cube_5_7-uvs-array" count="10" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cube_5_7-vertices">
+          <input semantic="POSITION" source="#cube_5_7-positions"/>
+        </vertices>
+        <triangles count="12" material="Material_cube_5_7">
+          <input offset="0" semantic="VERTEX" source="#cube_5_7-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cube_5_7-uvs"/>
+          <p>3 9  4 8  0 2  0 2  8 3  3 9  2 4  1 6  4 9  4 9  3 5  2 4  5 6  10 7  7 1  7 1  6 0  5 6  8 3  7 1  10 7  10 7  3 9  8 3  9 0  0 2  4 8  4 8  1 6  9 0  3 5  10 3  5 0  5 0  2 4  3 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cube_6_8" name="cube_6_8">
+      <mesh>
+        <source id="cube_6_8-positions">
+          <float_array id="cube_6_8-positions-array" count="18">-0.305 -0.14 -0.28 -0.005 -0.14 0.28 -0.305 -0.14 0.28 0.295 -0.14 0.28 -0.005 -0.14 -0.28 0.295 -0.14 -0.28</float_array>
+          <technique_common>
+            <accessor source="#cube_6_8-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cube_6_8-uvs">
+          <float_array id="cube_6_8-uvs-array" count="12">0 0 0 1.0 0.5 0 0.5 1.0 1.0 0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cube_6_8-uvs-array" count="6" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cube_6_8-vertices">
+          <input semantic="POSITION" source="#cube_6_8-positions"/>
+        </vertices>
+        <triangles count="4" material="Material_cube_6_8">
+          <input offset="0" semantic="VERTEX" source="#cube_6_8-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cube_6_8-uvs"/>
+          <p>4 3  0 5  2 4  2 4  1 2  4 3  1 2  3 0  5 1  5 1  4 3  1 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="plane_10_3" name="plane_10_3">
+      <mesh>
+        <source id="plane_10_3-positions">
+          <float_array id="plane_10_3-positions-array" count="9">0.325 -0.07 0.3 0.395 -0.14 0.3 0.385 -0.14 0.3</float_array>
+          <technique_common>
+            <accessor source="#plane_10_3-positions-array" count="3" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_10_3-uvs">
+          <float_array id="plane_10_3-uvs-array" count="6">0 0 0 1.0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#plane_10_3-uvs-array" count="3" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_10_3-vertices">
+          <input semantic="POSITION" source="#plane_10_3-positions"/>
+        </vertices>
+        <triangles count="1" material="Material_plane_10_3">
+          <input offset="0" semantic="VERTEX" source="#plane_10_3-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#plane_10_3-uvs"/>
+          <p>2 2  1 1  0 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="plane_11_2" name="plane_11_2">
+      <mesh>
+        <source id="plane_11_2-positions">
+          <float_array id="plane_11_2-positions-array" count="12">-0.395 -0.14 0.3 -0.325 -0.07 0.3 -0.315 -0.07 0.3 -0.385 -0.14 0.3</float_array>
+          <technique_common>
+            <accessor source="#plane_11_2-positions-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_11_2-uvs">
+          <float_array id="plane_11_2-uvs-array" count="8">0 0 0 1.0 1.0 0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#plane_11_2-uvs-array" count="4" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_11_2-vertices">
+          <input semantic="POSITION" source="#plane_11_2-positions"/>
+        </vertices>
+        <triangles count="2" material="Material_plane_11_2">
+          <input offset="0" semantic="VERTEX" source="#plane_11_2-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#plane_11_2-uvs"/>
+          <p>2 2  1 0  0 1  0 1  3 3  2 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="plane_12_0" name="plane_12_0">
+      <mesh>
+        <source id="plane_12_0-positions">
+          <float_array id="plane_12_0-positions-array" count="9">0.325 -0.07 -0.3 0.395 -0.14 -0.3 0.385 -0.14 -0.3</float_array>
+          <technique_common>
+            <accessor source="#plane_12_0-positions-array" count="3" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_12_0-uvs">
+          <float_array id="plane_12_0-uvs-array" count="6">0 0 0 1.0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#plane_12_0-uvs-array" count="3" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_12_0-vertices">
+          <input semantic="POSITION" source="#plane_12_0-positions"/>
+        </vertices>
+        <triangles count="1" material="Material_plane_12_0">
+          <input offset="0" semantic="VERTEX" source="#plane_12_0-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#plane_12_0-uvs"/>
+          <p>2 2  1 1  0 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="plane_13_1" name="plane_13_1">
+      <mesh>
+        <source id="plane_13_1-positions">
+          <float_array id="plane_13_1-positions-array" count="12">-0.395 -0.14 -0.3 -0.325 -0.07 -0.3 -0.315 -0.07 -0.3 -0.385 -0.14 -0.3</float_array>
+          <technique_common>
+            <accessor source="#plane_13_1-positions-array" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_13_1-uvs">
+          <float_array id="plane_13_1-uvs-array" count="8">0 0 0 1.0 1.0 0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#plane_13_1-uvs-array" count="4" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_13_1-vertices">
+          <input semantic="POSITION" source="#plane_13_1-positions"/>
+        </vertices>
+        <triangles count="2" material="Material_plane_13_1">
+          <input offset="0" semantic="VERTEX" source="#plane_13_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#plane_13_1-uvs"/>
+          <p>2 2  1 0  0 1  0 1  3 3  2 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_1_12" name="_1_12">
+      <mesh>
+        <source id="_1_12-positions">
+          <float_array id="_1_12-positions-array" count="27">-0.305 -0.14 0.28 -0.165 -0.03 0.28 -0.215 -0.03 0.28 -0.155 -0.14 0.28 -0.135 -0.14 0.28 -0.005 0.12 0.28 -0.255 -0.04 0.28 -0.205 0.06 0.28 -0.105 0.09 0.28</float_array>
+          <technique_common>
+            <accessor source="#_1_12-positions-array" count="9" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_1_12-uvs">
+          <float_array id="_1_12-uvs-array" count="18">0 0 0.1667 0.3815 0.3333 0.763 0.5 0 0.5833 0.4408 0.6667 0.8815 1.0 0 1.0 0.5 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#_1_12-uvs-array" count="9" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_1_12-vertices">
+          <input semantic="POSITION" source="#_1_12-positions"/>
+        </vertices>
+        <triangles count="16" material="Material__1_12">
+          <input offset="0" semantic="VERTEX" source="#_1_12-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#_1_12-uvs"/>
+          <p>2 4  6 1  0 0  0 0  3 3  2 4  2 4  1 7  4 6  4 6  3 3  2 4  3 3  4 6  1 7  1 7  2 4  3 3  2 4  8 5  5 8  5 8  1 7  2 4  1 7  5 8  8 5  8 5  2 4  1 7  2 4  6 1  7 2  7 2  8 5  2 4  3 3  0 0  6 1  6 1  2 4  3 3  8 5  7 2  6 1  6 1  2 4  8 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_2_11" name="_2_11">
+      <mesh>
+        <source id="_2_11-positions">
+          <float_array id="_2_11-positions-array" count="27">-0.005 0.12 0.28 0.095 0.09 0.28 0.195 0.06 0.28 0.295 -0.14 0.28 0.145 -0.14 0.28 0.245 -0.04 0.28 0.135 -0.14 0.28 0.205 -0.03 0.28 0.155 -0.02 0.28</float_array>
+          <technique_common>
+            <accessor source="#_2_11-positions-array" count="9" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_2_11-uvs">
+          <float_array id="_2_11-uvs-array" count="18">0 0 0 0.5 0 1.0 0.3333 0.8815 0.4167 0.4408 0.5 0 0.6667 0.763 0.8333 0.3815 1.0 0</float_array>
+          <technique_common>
+            <accessor source="#_2_11-uvs-array" count="9" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_2_11-vertices">
+          <input semantic="POSITION" source="#_2_11-positions"/>
+        </vertices>
+        <triangles count="16" material="Material__2_11">
+          <input offset="0" semantic="VERTEX" source="#_2_11-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#_2_11-uvs"/>
+          <p>7 4  8 1  0 2  0 2  1 3  7 4  7 4  5 7  2 6  2 6  1 3  7 4  1 3  2 6  5 7  5 7  7 4  1 3  7 4  4 5  3 8  3 8  5 7  7 4  5 7  3 8  4 5  4 5  7 4  5 7  7 4  8 1  6 0  6 0  4 5  7 4  1 3  0 2  8 1  8 1  7 4  1 3  4 5  6 0  8 1  8 1  7 4  4 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="DefaultScene">
+      <node id="S_cube_3_5">
+        <instance_geometry url="#cube_3_5">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cube_3_5" target="#Material_cube_3_5">
+                <bind_vertex_input semantic="cube_3_5-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cube_5_7">
+        <instance_geometry url="#cube_5_7">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cube_5_7" target="#Material_cube_5_7">
+                <bind_vertex_input semantic="cube_5_7-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cube_6_8">
+        <instance_geometry url="#cube_6_8">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cube_6_8" target="#Material_cube_6_8">
+                <bind_vertex_input semantic="cube_6_8-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_plane_10_3">
+        <instance_geometry url="#plane_10_3">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_plane_10_3" target="#Material_plane_10_3">
+                <bind_vertex_input semantic="plane_10_3-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_plane_11_2">
+        <instance_geometry url="#plane_11_2">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_plane_11_2" target="#Material_plane_11_2">
+                <bind_vertex_input semantic="plane_11_2-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_plane_12_0">
+        <instance_geometry url="#plane_12_0">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_plane_12_0" target="#Material_plane_12_0">
+                <bind_vertex_input semantic="plane_12_0-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_plane_13_1">
+        <instance_geometry url="#plane_13_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_plane_13_1" target="#Material_plane_13_1">
+                <bind_vertex_input semantic="plane_13_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S__1_12">
+        <instance_geometry url="#_1_12">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__1_12" target="#Material__1_12">
+                <bind_vertex_input semantic="_1_12-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S__2_11">
+        <instance_geometry url="#_2_11">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__2_11" target="#Material__2_11">
+                <bind_vertex_input semantic="_2_11-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#DefaultScene"/>
+  </scene>
+</COLLADA>

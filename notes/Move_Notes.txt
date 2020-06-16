@@ -1,0 +1,79 @@
+radians = degrees * (pi/180)
+degrees = radians * (180/pi)
+
+
+http://www.ng-newsletter.com/posts/directives.html
+
+
+
+edit buttons:
+Undo
+Delete
+Duplicate
+-----
+Move Back		83(S) or 40(A DN) or 98(NP 8)
+Move Forward		87(W) or 38(A Up) or 104(NP 8)
+Turn Left		65(A) or 37(A Lf) or 100(NP 4)	
+Turn Right		68(D) or 39(A Rt) or 102(NO 6)
+Move Left		81(Q) or 103(NP 7)	
+Move Right		69(E) or 105(NP 9)
+Move Up			107(NP +)
+Move Down		109(NP -)
+-----
+Tilt + X Axis 	(/)
+Tilt - X Axis 	(*)
+Turn Left	(9 or pgup)
+Turn Right	(3 or pgdn)
+Roll + Z Axis	(end)
+Roll - Z Axis	(home)
+
+0 or insert		96 or 45	duplicate and move forward 1 step
+9 or pgup		105 or 33	rotate (along up/down) z+ left
+3 or pgdn		99 or 34	rotate (along up/down) z- right
+home			36	rotate (along forward/back) right
+end			35	rotate (along forward/back) left
+/			111	rotate (along left/right axis) top towards me
+*			106	rotate (along left/right axis) top away from me
+
+4 or left arrow		100 or 37	move left
+6 or right arrow	102 or 39	move right
+8 or up arrow		104 or 38	move forward
+2 or down arrow		98 or 40 	move back
++ 			107		move up
+-			109		move down
+
+
+
+
+var mpm = {
+            color: scene_edit.selectedObject.material.color,
+            ambient: scene_edit.selectedObject.material.ambient,
+            emissive: scene_edit.selectedObject.material.emissive,
+            specular: scene_edit.selectedObject.material.specular,
+            shininess: scene_edit.selectedObject.material.shininess,
+            opacity: scene_edit.selectedObject.material.opacity,
+            map: scene_edit.selectedObject.material.map,
+            bumpMap: scene_edit.selectedObject.material.bumpMap,
+            bumpScale: scene_edit.selectedObject.material.bumpScale,
+            normalMap: scene_edit.selectedObject.material.normalMap,
+            normalScale: scene_edit.selectedObject.material.normalScale,
+            specularMap: scene_edit.selectedObject.material.specularMap,
+            alphaMap: scene_edit.selectedObject.material.alphaMap,
+            envMap: scene_edit.selectedObject.material.envMap,
+            combine: scene_edit.selectedObject.material.combine,
+            reflectivity: scene_edit.selectedObject.material.reflectivity,
+            refractionRatio: scene_edit.selectedObject.material.refractionRatio,
+            shading: scene_edit.selectedObject.material.shading,
+            blending: scene_edit.selectedObject.material.blending,
+            depthTest: scene_edit.selectedObject.material.depthTest,
+            depthWrite: scene_edit.selectedObject.material.depthWrite,
+            wireframe: scene_edit.selectedObject.material.wireframe,
+            wireframeLinewidth: scene_edit.selectedObject.material.wireframeLinewidth,
+            vertexColors: scene_edit.selectedObject.material.vertexColors,
+            skinning: scene_edit.selectedObject.material.skinning,
+            morphTargets: scene_edit.selectedObject.material.morphTargets,
+            morphNormals: scene_edit.selectedObject.material.morphNormals,
+            fog: scene_edit.selectedObject.material.fog
+        }
+
+

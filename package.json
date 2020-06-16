@@ -1,0 +1,32 @@
+{
+  "name": "ngclockwork",
+  "version": "0.2.0",
+  "description": "angular clockwork",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-filelist": "^2.0.3",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^1.2.0"
+  },
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kellycode/ngClockwork.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "none",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kellycode/ngClockwork/issues"
+  },
+  "homepage": "https://github.com/kellycode/ngClockwork#readme"
+}

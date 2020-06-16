@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <created>2015-04-30T14:44:33Z</created>
+    <modified>2015-04-30T14:44:33Z</modified>
+    <unit meter="1.0" name="meter" />
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Image_cylinder_0_11_1" name="Image_cylinder_0_11_1" depth="1">
+      <init_from>maplebrk.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_10_18" name="Image_cylinder_10_18" depth="1">
+      <init_from>sandstone1.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_11_19" name="Image_cylinder_11_19" depth="1">
+      <init_from>sandstone1.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_12_20" name="Image_cylinder_12_20" depth="1">
+      <init_from>sandstone1.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_4_12_1" name="Image_cylinder_4_12_1" depth="1">
+      <init_from>maplebrk.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_5_14_1" name="Image_cylinder_5_14_1" depth="1">
+      <init_from>maplebrk.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_6_13_1" name="Image_cylinder_6_13_1" depth="1">
+      <init_from>maplebrk.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_7_15" name="Image_cylinder_7_15" depth="1">
+      <init_from>sandstone1.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_8_16" name="Image_cylinder_8_16" depth="1">
+      <init_from>sandstone1.jpg</init_from>
+    </image>
+    <image id="Image_cylinder_9_17" name="Image_cylinder_9_17" depth="1">
+      <init_from>sandstone1.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_cylinder_0_11">
+      <instance_effect url="#Effect_cylinder_0_11"/>
+    </material>
+    <material id="Material_cylinder_0_11_1">
+      <instance_effect url="#Effect_cylinder_0_11_1"/>
+    </material>
+    <material id="Material_cylinder_10_18">
+      <instance_effect url="#Effect_cylinder_10_18"/>
+    </material>
+    <material id="Material_cylinder_11_19">
+      <instance_effect url="#Effect_cylinder_11_19"/>
+    </material>
+    <material id="Material_cylinder_12_20">
+      <instance_effect url="#Effect_cylinder_12_20"/>
+    </material>
+    <material id="Material_cylinder_4_12">
+      <instance_effect url="#Effect_cylinder_4_12"/>
+    </material>
+    <material id="Material_cylinder_4_12_1">
+      <instance_effect url="#Effect_cylinder_4_12_1"/>
+    </material>
+    <material id="Material_cylinder_5_14">
+      <instance_effect url="#Effect_cylinder_5_14"/>
+    </material>
+    <material id="Material_cylinder_5_14_1">
+      <instance_effect url="#Effect_cylinder_5_14_1"/>
+    </material>
+    <material id="Material_cylinder_6_13">
+      <instance_effect url="#Effect_cylinder_6_13"/>
+    </material>
+    <material id="Material_cylinder_6_13_1">
+      <instance_effect url="#Effect_cylinder_6_13_1"/>
+    </material>
+    <material id="Material_cylinder_7_15">
+      <instance_effect url="#Effect_cylinder_7_15"/>
+    </material>
+    <material id="Material_cylinder_8_16">
+      <instance_effect url="#Effect_cylinder_8_16"/>
+    </material>
+    <material id="Material_cylinder_9_17">
+      <instance_effect url="#Effect_cylinder_9_17"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Effect_cylinder_0_11">
+      <profile_COMMON>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.2588 0.2588 0.2588 1.0</color></ambient>
+            <diffuse><color>0.2588 0.2588 0.2588 1.0</color></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_0_11_1">
+      <profile_COMMON>
+        <newparam sid="cylinder_0_11_1-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_0_11_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_0_11_1-sampler">
+          <sampler2D>
+            <source>cylinder_0_11_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_0_11_1-sampler" texcoord="cylinder_0_11_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_10_18">
+      <profile_COMMON>
+        <newparam sid="cylinder_10_18-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_10_18</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_10_18-sampler">
+          <sampler2D>
+            <source>cylinder_10_18-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_10_18-sampler" texcoord="cylinder_10_18-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_11_19">
+      <profile_COMMON>
+        <newparam sid="cylinder_11_19-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_11_19</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_11_19-sampler">
+          <sampler2D>
+            <source>cylinder_11_19-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_11_19-sampler" texcoord="cylinder_11_19-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_12_20">
+      <profile_COMMON>
+        <newparam sid="cylinder_12_20-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_12_20</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_12_20-sampler">
+          <sampler2D>
+            <source>cylinder_12_20-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_12_20-sampler" texcoord="cylinder_12_20-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_4_12">
+      <profile_COMMON>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.2588 0.2588 0.2588 1.0</color></ambient>
+            <diffuse><color>0.2588 0.2588 0.2588 1.0</color></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_4_12_1">
+      <profile_COMMON>
+        <newparam sid="cylinder_4_12_1-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_4_12_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_4_12_1-sampler">
+          <sampler2D>
+            <source>cylinder_4_12_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_4_12_1-sampler" texcoord="cylinder_4_12_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_5_14">
+      <profile_COMMON>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.2588 0.2588 0.2588 1.0</color></ambient>
+            <diffuse><color>0.2588 0.2588 0.2588 1.0</color></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_5_14_1">
+      <profile_COMMON>
+        <newparam sid="cylinder_5_14_1-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_5_14_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_5_14_1-sampler">
+          <sampler2D>
+            <source>cylinder_5_14_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_5_14_1-sampler" texcoord="cylinder_5_14_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_6_13">
+      <profile_COMMON>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.2588 0.2588 0.2588 1.0</color></ambient>
+            <diffuse><color>0.2588 0.2588 0.2588 1.0</color></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_6_13_1">
+      <profile_COMMON>
+        <newparam sid="cylinder_6_13_1-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_6_13_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_6_13_1-sampler">
+          <sampler2D>
+            <source>cylinder_6_13_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_6_13_1-sampler" texcoord="cylinder_6_13_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_7_15">
+      <profile_COMMON>
+        <newparam sid="cylinder_7_15-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_7_15</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_7_15-sampler">
+          <sampler2D>
+            <source>cylinder_7_15-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_7_15-sampler" texcoord="cylinder_7_15-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_8_16">
+      <profile_COMMON>
+        <newparam sid="cylinder_8_16-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_8_16</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_8_16-sampler">
+          <sampler2D>
+            <source>cylinder_8_16-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_8_16-sampler" texcoord="cylinder_8_16-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_cylinder_9_17">
+      <profile_COMMON>
+        <newparam sid="cylinder_9_17-surface">
+          <surface type="2D">
+            <init_from>Image_cylinder_9_17</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="cylinder_9_17-sampler">
+          <sampler2D>
+            <source>cylinder_9_17-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>1.0 1.0 1.0 1.0</color></ambient>
+            <diffuse><texture texture="cylinder_9_17-sampler" texcoord="cylinder_9_17-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="cylinder_0_11" name="cylinder_0_11">
+      <mesh>
+        <source id="cylinder_0_11-positions">
+          <float_array id="cylinder_0_11-positions-array" count="36">0 0.0 -0.035 0.01 0.0 -0.035 0.01 -0.01 -0.035 0 -0.01 -0.035 -0.01 0.0 -0.035 -0.01 -0.01 -0.035 0 -0.01 0.025 -0.01 -0.01 0.025 -0.01 0.0 0.025 0.01 -0.01 0.025 0.01 0.0 0.025 0 0.0 0.025</float_array>
+          <technique_common>
+            <accessor source="#cylinder_0_11-positions-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_0_11-vertices">
+          <input semantic="POSITION" source="#cylinder_0_11-positions"/>
+        </vertices>
+        <triangles count="8" material="Material_cylinder_0_11">
+          <input offset="0" semantic="VERTEX" source="#cylinder_0_11-vertices"/>
+          <p>2 0 1  3 0 2  5 0 3  5 4 0  8 7 6  9 8 6  10 8 9  11 8 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_0_11_1" name="cylinder_0_11_1">
+      <mesh>
+        <source id="cylinder_0_11_1-positions">
+          <float_array id="cylinder_0_11_1-positions-array" count="36">0 0.0 0.025 0 0.0 -0.035 0.01 0.0 -0.035 0.01 -0.01 -0.035 0.01 -0.01 0.025 0.01 0.0 0.025 0 -0.01 -0.035 -0.01 -0.01 0.025 0 -0.01 0.025 -0.01 -0.01 -0.035 -0.01 0.0 -0.035 -0.01 0.0 0.025</float_array>
+          <technique_common>
+            <accessor source="#cylinder_0_11_1-positions-array" count="12" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_0_11_1-uvs">
+          <float_array id="cylinder_0_11_1-uvs-array" count="32">1.0625 0 1.0625 1.0 1.1875 0 1.1875 1.0 1.3125 0 1.3125 1.0 1.4375 0 1.4375 1.0 1.5625 0 1.5625 1.0 1.6875 0 1.6875 1.0 1.8125 0 1.8125 1.0 1.9375 0 1.9375 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_0_11_1-uvs-array" count="16" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_0_11_1-vertices">
+          <input semantic="POSITION" source="#cylinder_0_11_1-positions"/>
+        </vertices>
+        <triangles count="12" material="Material_cylinder_0_11_1">
+          <input offset="0" semantic="VERTEX" source="#cylinder_0_11_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_0_11_1-uvs"/>
+          <p>0 9  1 8  10 10  10 10  11 11  0 9  5 5  2 4  1 6  1 6  0 7  5 5  4 3  3 2  2 4  2 4  5 5  4 3  8 1  6 0  3 2  3 2  4 3  8 1  7 13  9 12  6 14  6 14  8 15  7 13  11 11  10 10  9 12  9 12  7 13  11 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_10_18" name="cylinder_10_18">
+      <mesh>
+        <source id="cylinder_10_18-positions">
+          <float_array id="cylinder_10_18-positions-array" count="24">-0.01 -0.01 0.035 -0.02 -0.01 0.035 -0.02 0.0 0.025 -0.02 -0.01 0.025 -0.02 -0.01 0.015 0 -0.01 0.025 -0.01 0.0 0.025 -0.01 -0.01 0.025</float_array>
+          <technique_common>
+            <accessor source="#cylinder_10_18-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_10_18-uvs">
+          <float_array id="cylinder_10_18-uvs-array" count="26">0 0.5 0 1.0 0.125 0 0.125 1.0 0.25 0 0.25 1.0 0.375 0 0.375 1.0 0.5 0 0.5 1.0 0.8536 0.1464 0.8536 0.8536 1.0 0.5</float_array>
+          <technique_common>
+            <accessor source="#cylinder_10_18-uvs-array" count="13" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_10_18-vertices">
+          <input semantic="POSITION" source="#cylinder_10_18-positions"/>
+        </vertices>
+        <triangles count="8" material="Material_cylinder_10_18">
+          <input offset="0" semantic="VERTEX" source="#cylinder_10_18-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_10_18-uvs"/>
+          <p>2 10  0 0  6 8  3 11  0 0  2 12  1 9  0 0  3 11  2 7  4 6  3 8  6 5  7 4  4 6  4 6  2 7  6 5  6 3  5 2  7 4  5 2  6 3  0 1</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_11_19" name="cylinder_11_19">
+      <mesh>
+        <source id="cylinder_11_19-positions">
+          <float_array id="cylinder_11_19-positions-array" count="27">0.02 0.0 0.035 0.01 -0.01 0.015 0.01 -0.01 0.025 0.01 -0.01 0.035 0.02 -0.01 0.015 0.02 -0.01 0.025 0.02 0.0 0.015 0.02 -0.01 0.035 0.02 0.0 0.025</float_array>
+          <technique_common>
+            <accessor source="#cylinder_11_19-positions-array" count="9" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_11_19-uvs">
+          <float_array id="cylinder_11_19-uvs-array" count="30">0 0.5 0 1.0 0.125 0 0.125 1.0 0.1464 0.1464 0.25 0 0.25 1.0 0.375 0 0.375 1.0 0.5 0 0.5 1.0 0.625 0 0.8536 0.1464 0.8536 0.8536 1.0 0.5</float_array>
+          <technique_common>
+            <accessor source="#cylinder_11_19-uvs-array" count="15" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_11_19-vertices">
+          <input semantic="POSITION" source="#cylinder_11_19-positions"/>
+        </vertices>
+        <triangles count="10" material="Material_cylinder_11_19">
+          <input offset="0" semantic="VERTEX" source="#cylinder_11_19-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_11_19-uvs"/>
+          <p>3 0  0 4  8 9  6 12  3 0  8 9  1 13  3 0  6 14  2 10  3 0  1 13  6 10  4 9  1 11  8 6  5 5  4 7  4 7  6 8  8 6  0 3  7 2  5 5  5 5  8 6  0 3  7 2  0 3  3 1</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_12_20" name="cylinder_12_20">
+      <mesh>
+        <source id="cylinder_12_20-positions">
+          <float_array id="cylinder_12_20-positions-array" count="42">0.02 0.0 -0.015 0.02 0.0 0.005 0.03 0.0 0.005 0.03 0.0 -0.005 0.02 -0.01 -0.015 0.03 -0.01 -0.015 0.03 -0.01 0.005 0.03 -0.01 -0.005 0.02 0.0 0.015 0.02 -0.01 0.015 0.01 -0.01 0.005 0.01 -0.01 -0.015 0.01 0.0 -0.005 0.01 -0.01 -0.005</float_array>
+          <technique_common>
+            <accessor source="#cylinder_12_20-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_12_20-uvs">
+          <float_array id="cylinder_12_20-uvs-array" count="46">0 0 0 0.5 0 1.0 0.125 0 0.125 1.0 0.1464 0.8536 0.25 0 0.25 1.0 0.375 0 0.375 1.0 0.5 0 0.5 1.0 0.625 0 0.625 1.0 0.75 0 0.75 1.0 0.8536 0.1464 0.8536 0.8536 0.875 0 0.875 1.0 1.0 0 1.0 0.5 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_12_20-uvs-array" count="23" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_12_20-vertices">
+          <input semantic="POSITION" source="#cylinder_12_20-positions"/>
+        </vertices>
+        <triangles count="18" material="Material_cylinder_12_20">
+          <input offset="0" semantic="VERTEX" source="#cylinder_12_20-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_12_20-uvs"/>
+          <p>1 16  0 1  12 10  8 21  0 1  1 16  2 17  0 1  8 21  7 11  0 1  2 17  7 11  3 5  0 1  3 19  5 18  4 20  4 20  0 22  3 19  5 18  3 19  7 15  2 13  6 12  7 14  8 11  9 10  6 12  6 12  2 13  8 11  1 9  10 8  9 10  9 10  8 11  1 9  12 7  13 6  10 8  10 8  1 9  12 7  0 4  11 3  13 6  13 6  12 7  0 4  0 2  4 0  11 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_4_12" name="cylinder_4_12">
+      <mesh>
+        <source id="cylinder_4_12-positions">
+          <float_array id="cylinder_4_12-positions-array" count="15">-0.03 -0.01 0.015 -0.02 -0.01 0.015 -0.02 -0.01 0.025 -0.02 0.0 0.025 -0.03 0.0 0.015</float_array>
+          <technique_common>
+            <accessor source="#cylinder_4_12-positions-array" count="5" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_4_12-vertices">
+          <input semantic="POSITION" source="#cylinder_4_12-positions"/>
+        </vertices>
+        <triangles count="3" material="Material_cylinder_4_12">
+          <input offset="0" semantic="VERTEX" source="#cylinder_4_12-vertices"/>
+          <p>1 4 0  2 4 1  3 4 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_4_12_1" name="cylinder_4_12_1">
+      <mesh>
+        <source id="cylinder_4_12_1-positions">
+          <float_array id="cylinder_4_12_1-positions-array" count="21">-0.03 0.0 0.015 -0.02 0.0 0.025 0 0.01 -0.005 -0.02 -0.01 0.015 -0.02 -0.01 0.025 -0.03 -0.01 0.015 0 0.0 -0.005</float_array>
+          <technique_common>
+            <accessor source="#cylinder_4_12_1-positions-array" count="7" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_4_12_1-uvs">
+          <float_array id="cylinder_4_12_1-uvs-array" count="26">0.9375 1.0 1.0625 0 1.0625 1.0 1.1875 0 1.1875 1.0 1.3125 0 1.3125 1.0 1.4375 0 1.4375 1.0 1.6875 0 1.6875 1.0 1.8125 0 1.8125 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_4_12_1-uvs-array" count="13" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_4_12_1-vertices">
+          <input semantic="POSITION" source="#cylinder_4_12_1-positions"/>
+        </vertices>
+        <triangles count="7" material="Material_cylinder_4_12_1">
+          <input offset="0" semantic="VERTEX" source="#cylinder_4_12_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_4_12_1-uvs"/>
+          <p>2 7  0 8  1 6  4 4  6 3  2 5  2 5  1 6  4 4  6 3  4 4  3 2  6 1  3 2  5 0  0 10  2 9  6 11  6 11  5 12  0 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_5_14" name="cylinder_5_14">
+      <mesh>
+        <source id="cylinder_5_14-positions">
+          <float_array id="cylinder_5_14-positions-array" count="24">0.04 0.0 -0.015 0.04 -0.01 -0.015 0.04 0.0 -0.025 0.03 -0.01 -0.025 0.03 0.0 -0.025 -0.02 0.0 -0.005 -0.02 0.01 0.005 -0.02 0.01 -0.005</float_array>
+          <technique_common>
+            <accessor source="#cylinder_5_14-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_5_14-vertices">
+          <input semantic="POSITION" source="#cylinder_5_14-positions"/>
+        </vertices>
+        <triangles count="4" material="Material_cylinder_5_14">
+          <input offset="0" semantic="VERTEX" source="#cylinder_5_14-vertices"/>
+          <p>1 2 0  3 2 1  3 4 2  5 6 7</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_5_14_1" name="cylinder_5_14_1">
+      <mesh>
+        <source id="cylinder_5_14_1-positions">
+          <float_array id="cylinder_5_14_1-positions-array" count="24">0.04 0.0 -0.025 0.04 0.0 -0.015 -0.02 0.01 0.005 0.04 -0.01 -0.015 -0.02 0.01 -0.005 -0.02 0.0 -0.005 0.03 0.0 -0.025 0.03 -0.01 -0.025</float_array>
+          <technique_common>
+            <accessor source="#cylinder_5_14_1-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_5_14_1-uvs">
+          <float_array id="cylinder_5_14_1-uvs-array" count="32">1.0625 0 1.0625 1.0 1.1875 0 1.1875 1.0 1.3125 0 1.3125 1.0 1.4375 0 1.4375 1.0 1.5625 0 1.5625 1.0 1.6875 0 1.6875 1.0 1.8125 0 1.8125 1.0 1.9375 0 1.9375 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_5_14_1-uvs-array" count="16" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_5_14_1-vertices">
+          <input semantic="POSITION" source="#cylinder_5_14_1-positions"/>
+        </vertices>
+        <triangles count="8" material="Material_cylinder_5_14_1">
+          <input offset="0" semantic="VERTEX" source="#cylinder_5_14_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_5_14_1-uvs"/>
+          <p>4 9  0 8  6 10  2 5  1 4  0 6  0 6  4 7  2 5  2 3  3 2  1 4  5 1  7 0  3 2  3 2  2 3  5 1  7 14  5 15  4 13  4 11  6 10  7 12</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_6_13" name="cylinder_6_13">
+      <mesh>
+        <source id="cylinder_6_13-positions">
+          <float_array id="cylinder_6_13-positions-array" count="18">0.01 0.0 0.015 0.02 0.0 0.015 0.02 0.0 0.005 0.02 0.01 0.005 0.01 0.01 0.015 0.02 0.01 0.015</float_array>
+          <technique_common>
+            <accessor source="#cylinder_6_13-positions-array" count="6" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_6_13-vertices">
+          <input semantic="POSITION" source="#cylinder_6_13-positions"/>
+        </vertices>
+        <triangles count="4" material="Material_cylinder_6_13">
+          <input offset="0" semantic="VERTEX" source="#cylinder_6_13-vertices"/>
+          <p>2 0 1  3 0 2  5 0 3  5 4 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_6_13_1" name="cylinder_6_13_1">
+      <mesh>
+        <source id="cylinder_6_13_1-positions">
+          <float_array id="cylinder_6_13_1-positions-array" count="21">-0.03 -0.01 -0.025 0.01 0.01 0.015 0.02 0.01 0.005 0.02 0.01 0.015 0.02 0.0 0.005 0.02 0.0 0.015 0.01 0.0 0.015</float_array>
+          <technique_common>
+            <accessor source="#cylinder_6_13_1-positions-array" count="7" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_6_13_1-uvs">
+          <float_array id="cylinder_6_13_1-uvs-array" count="28">1.0625 1.0 1.1875 0 1.1875 1.0 1.3125 0 1.3125 1.0 1.4375 0 1.4375 1.0 1.5625 0 1.5625 1.0 1.6875 0 1.6875 1.0 1.8125 1.0 1.9375 0 1.9375 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_6_13_1-uvs-array" count="14" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_6_13_1-vertices">
+          <input semantic="POSITION" source="#cylinder_6_13_1-positions"/>
+        </vertices>
+        <triangles count="6" material="Material_cylinder_6_13_1">
+          <input offset="0" semantic="VERTEX" source="#cylinder_6_13_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_6_13_1-uvs"/>
+          <p>0 9  6 10  1 8  0 7  1 8  3 6  0 5  3 6  2 4  0 3  2 4  4 2  0 1  4 2  5 0  0 12  5 13  6 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_7_15" name="cylinder_7_15">
+      <mesh>
+        <source id="cylinder_7_15-positions">
+          <float_array id="cylinder_7_15-positions-array" count="39">-0.02 0.0 -0.025 -0.03 0.0 -0.035 -0.03 -0.01 -0.035 -0.02 -0.01 -0.035 -0.02 0.0 -0.035 -0.01 0.0 -0.035 -0.01 -0.01 -0.035 0 -0.01 -0.035 -0.01 0.0 -0.025 0 0.0 -0.035 -0.01 -0.01 -0.025 -0.01 -0.01 -0.015 -0.02 -0.01 -0.025</float_array>
+          <technique_common>
+            <accessor source="#cylinder_7_15-positions-array" count="13" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_7_15-uvs">
+          <float_array id="cylinder_7_15-uvs-array" count="48">0 0 0 0.5 0 1.0 0.125 0 0.125 1.0 0.1464 0.1464 0.1464 0.8536 0.25 0 0.25 1.0 0.375 0 0.375 1.0 0.5 0 0.5 1.0 0.625 0 0.625 1.0 0.75 0 0.75 1.0 0.8536 0.1464 0.8536 0.8536 0.875 0 0.875 1.0 1.0 0 1.0 0.5 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_7_15-uvs-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_7_15-vertices">
+          <input semantic="POSITION" source="#cylinder_7_15-positions"/>
+        </vertices>
+        <triangles count="17" material="Material_cylinder_7_15">
+          <input offset="0" semantic="VERTEX" source="#cylinder_7_15-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_7_15-uvs"/>
+          <p>1 1  0 5  8 11  9 22  1 1  8 17  5 18  1 1  9 22  5 12  4 6  1 1  4 20  3 19  2 21  2 21  1 23  4 20  5 16  6 15  3 19  3 19  4 20  5 16  9 12  7 11  6 13  6 13  5 14  9 12  8 10  10 9  7 11  7 11  9 12  8 10  8 8  11 7  10 9  0 4  12 3  11 7  11 7  8 8  0 4  1 2  2 0  12 3  12 3  0 4  1 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_8_16" name="cylinder_8_16">
+      <mesh>
+        <source id="cylinder_8_16-positions">
+          <float_array id="cylinder_8_16-positions-array" count="42">-0.03 0.0 -0.005 -0.02 0.0 -0.005 -0.03 0.0 -0.015 -0.03 0.0 -0.025 -0.04 0.0 -0.025 -0.04 -0.01 -0.025 -0.03 -0.01 -0.025 -0.03 -0.01 -0.015 -0.02 -0.01 -0.015 -0.02 -0.01 -0.005 -0.03 -0.01 -0.005 -0.04 -0.01 -0.005 -0.04 -0.01 -0.015 -0.04 0.0 -0.015</float_array>
+          <technique_common>
+            <accessor source="#cylinder_8_16-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_8_16-uvs">
+          <float_array id="cylinder_8_16-uvs-array" count="46">0 0 0 0.5 0 1.0 0.125 0 0.125 1.0 0.1464 0.8536 0.25 0 0.25 1.0 0.375 0 0.375 1.0 0.5 0 0.5 1.0 0.625 0 0.625 1.0 0.75 0 0.75 1.0 0.8536 0.1464 0.8536 0.8536 0.875 0 0.875 1.0 1.0 0 1.0 0.5 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_8_16-uvs-array" count="23" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_8_16-vertices">
+          <input semantic="POSITION" source="#cylinder_8_16-positions"/>
+        </vertices>
+        <triangles count="18" material="Material_cylinder_8_16">
+          <input offset="0" semantic="VERTEX" source="#cylinder_8_16-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_8_16-uvs"/>
+          <p>0 16  4 1  13 10  1 21  4 1  0 16  2 17  4 1  1 21  2 11  3 5  4 1  3 19  6 18  5 20  5 20  4 22  3 19  2 15  7 14  6 18  6 18  3 19  2 15  2 13  8 12  7 14  1 11  9 10  8 12  8 12  2 13  1 11  0 9  10 8  9 10  9 10  1 11  0 9  13 7  11 6  10 8  10 8  0 9  13 7  13 4  12 3  11 6  4 2  5 0  12 3  12 3  13 4  4 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cylinder_9_17" name="cylinder_9_17">
+      <mesh>
+        <source id="cylinder_9_17-positions">
+          <float_array id="cylinder_9_17-positions-array" count="39">-0.04 -0.01 0.005 -0.03 -0.01 0.025 -0.04 0.0 0.015 -0.03 0.0 0.015 -0.04 -0.01 0.015 -0.04 0.0 -0.005 -0.04 0.0 0.005 -0.03 0.0 -0.005 -0.04 -0.01 -0.005 -0.03 0.0 0.005 -0.03 -0.01 -0.005 -0.02 -0.01 0.005 -0.02 -0.01 0.015</float_array>
+          <technique_common>
+            <accessor source="#cylinder_9_17-positions-array" count="13" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cylinder_9_17-uvs">
+          <float_array id="cylinder_9_17-uvs-array" count="46">0 0 0 0.5 0 1.0 0.125 0 0.125 1.0 0.1464 0.8536 0.25 0 0.25 1.0 0.375 0 0.375 1.0 0.5 0 0.5 1.0 0.625 0 0.625 1.0 0.75 0 0.75 1.0 0.8536 0.1464 0.8536 0.8536 0.875 0 0.875 1.0 1.0 0 1.0 0.5 1.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#cylinder_9_17-uvs-array" count="23" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cylinder_9_17-vertices">
+          <input semantic="POSITION" source="#cylinder_9_17-positions"/>
+        </vertices>
+        <triangles count="17" material="Material_cylinder_9_17">
+          <input offset="0" semantic="VERTEX" source="#cylinder_9_17-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#cylinder_9_17-uvs"/>
+          <p>7 16  3 1  9 10  5 21  3 1  7 16  6 17  3 1  5 21  0 11  3 1  6 17  0 11  2 5  3 1  2 19  4 18  1 20  1 20  3 22  2 19  4 18  2 19  0 15  6 13  8 12  0 14  8 12  6 13  5 11  7 9  10 8  8 10  8 10  5 11  7 9  9 7  11 6  10 8  10 8  7 9  9 7  3 4  12 3  11 6  11 6  9 7  3 4  3 2  1 0  12 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="DefaultScene">
+      <node id="S_cylinder_0_11">
+        <instance_geometry url="#cylinder_0_11">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_0_11" target="#Material_cylinder_0_11"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_0_11_1">
+        <instance_geometry url="#cylinder_0_11_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_0_11_1" target="#Material_cylinder_0_11_1">
+                <bind_vertex_input semantic="cylinder_0_11_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_10_18">
+        <instance_geometry url="#cylinder_10_18">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_10_18" target="#Material_cylinder_10_18">
+                <bind_vertex_input semantic="cylinder_10_18-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_11_19">
+        <instance_geometry url="#cylinder_11_19">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_11_19" target="#Material_cylinder_11_19">
+                <bind_vertex_input semantic="cylinder_11_19-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_12_20">
+        <instance_geometry url="#cylinder_12_20">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_12_20" target="#Material_cylinder_12_20">
+                <bind_vertex_input semantic="cylinder_12_20-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_4_12">
+        <instance_geometry url="#cylinder_4_12">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_4_12" target="#Material_cylinder_4_12"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_4_12_1">
+        <instance_geometry url="#cylinder_4_12_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_4_12_1" target="#Material_cylinder_4_12_1">
+                <bind_vertex_input semantic="cylinder_4_12_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_5_14">
+        <instance_geometry url="#cylinder_5_14">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_5_14" target="#Material_cylinder_5_14"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_5_14_1">
+        <instance_geometry url="#cylinder_5_14_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_5_14_1" target="#Material_cylinder_5_14_1">
+                <bind_vertex_input semantic="cylinder_5_14_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_6_13">
+        <instance_geometry url="#cylinder_6_13">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_6_13" target="#Material_cylinder_6_13"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_6_13_1">
+        <instance_geometry url="#cylinder_6_13_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_6_13_1" target="#Material_cylinder_6_13_1">
+                <bind_vertex_input semantic="cylinder_6_13_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_7_15">
+        <instance_geometry url="#cylinder_7_15">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_7_15" target="#Material_cylinder_7_15">
+                <bind_vertex_input semantic="cylinder_7_15-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_8_16">
+        <instance_geometry url="#cylinder_8_16">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_8_16" target="#Material_cylinder_8_16">
+                <bind_vertex_input semantic="cylinder_8_16-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_cylinder_9_17">
+        <instance_geometry url="#cylinder_9_17">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_cylinder_9_17" target="#Material_cylinder_9_17">
+                <bind_vertex_input semantic="cylinder_9_17-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#DefaultScene"/>
+  </scene>
+</COLLADA>
