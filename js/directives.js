@@ -60,24 +60,33 @@ angular.module('ng-clockwork.directives', [])
         .directive('mouseLook', ['$document', 'editEvents', function ($document, editEvents) {
                 return {
                     link: function (scope, element, attr) {
-                        var startX = 0, startY = 0, x = 0, y = 0;
+                        let lastY;
 
                         element.on('mousedown', function (event) {
                             // Prevent default dragging of selected content
                             event.preventDefault();
-                            startX = event.pageX - x;
-                            startY = event.pageY - y;
                             $document.on('mousemove', mousemove);
                             $document.on('mouseup', mouseup);
                         });
 
                         function mousemove(event) {
-                            y = event.pageY - startY;
-                            x = event.pageX - startX;
-                            console.log('Y: ' + y);
+                            if (!lastY) {
+                                lastY = event.pageY;
+                                return;
+                            }
+                            if (event.pageY > lastY) {
+                                editEvents.actions.lookingUp = false;
+                                editEvents.actions.lookingDown = true;
+                            }
+                            else if (event.pageY < lastY) {
+                                editEvents.actions.lookingUp = true;
+                                editEvents.actions.lookingDown = false;
+                            }
+                            lastY = event.pageY;
                         }
 
                         function mouseup() {
+                            editEvents.actions.lookingDown = editEvents.actions.lookingUp = false;
                             $document.off('mousemove', mousemove);
                             $document.off('mouseup', mouseup);
                         }

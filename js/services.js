@@ -3,6 +3,7 @@ angular.module('ng-clockwork.services', [])
         .factory('dataService', ['$http', '$httpParamSerializerJQLike', 'templater', function ($http, $httpParamSerializerJQLike, templater) {
                 return {
                     loadSceneJSON: function (sceneUrl) {
+// TODO scene load can come from a json file, a firebase db or localstorage
 //                        var promise = $http.get(sceneUrl).then(
 //                                function (response) {
 //                                    return response;
@@ -39,19 +40,15 @@ angular.module('ng-clockwork.services', [])
                         var promise = $http.get(serviceUrl).then(
                                 function (response) {
                                     let values = Object.values(response.data);
-
-                                    console.log(values.length)
                                     let modelArray = [];
 
+                                    // arrange the data properly
                                     for (const key of values) {
                                         let url = key.split("/");
                                         let name = url[url.length - 1].split(".")[0];
-                                        console.log({'path': key, 'name': name})
                                         modelArray.push({'path': key, 'name': name});
                                     }
-                                    console.log(modelArray)
-
-
+                                    
                                     return modelArray;
                                 },
                                 function (response) {

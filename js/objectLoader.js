@@ -55,8 +55,10 @@ angular.module('ng-clockwork.objectLoader', [])
                             };
                             // copy the template, don't use a reference
                             var template = angular.extend({}, currentSelected.userData.template);
+                            
                             // always need to update template positions before copying
                             syncTemplate(template);
+                            
                             // a choice of two types
                             switch (template.type) {
                                 case 'ThreeMesh':
@@ -359,6 +361,7 @@ angular.module('ng-clockwork.objectLoader', [])
 
                         perspectiveCamera.userData.template = template;
                         this.camera = perspectiveCamera;
+                        this.camera.rotation.order = "YXZ";
                         // add as appropriate
                         this._addSceneObject(perspectiveCamera, false);
                     },

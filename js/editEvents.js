@@ -11,6 +11,8 @@ angular.module('ng-clockwork.editEvents', [])
                     moveBack: false,
                     moveObjectForward: false,
                     moveObjectBack: false,
+                    lookingUp: false,
+                    lookingDown: false,
                     turnLeft: false,
                     turnRight: false,
                     rollLeft: false,

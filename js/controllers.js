@@ -3,35 +3,35 @@
 /* Controllers */
 angular.module('ng-clockwork.controllers', [])
         .controller('ClockworkController', ['$scope', '$rootScope', 'threeScene', 'editEvents',
-            function($scope, $rootScope, threeScene, editEvents) {
+            function ($scope, $rootScope, threeScene, editEvents) {
                 // shows up in the browser tab
                 $rootScope.pageTitle = "ngClockwork";
                 $scope.selectedObject = null;
                 $scope.speedStatus = '';
                 $scope.editorVisible = true;
 
-                $scope.handleKeydown = function(event) {
+                $scope.handleKeydown = function (event) {
                     editEvents.keyDown(event, editEvents.actions);
                 };
 
-                $scope.handleKeyup = function(event) {
+                $scope.handleKeyup = function (event) {
                     editEvents.keyUp(event, editEvents.actions);
                 };
 
-                $scope.saveScene = function() {
+                $scope.saveScene = function () {
                     $scope.$broadcast('saveScene');
                 };
 
-                $scope.toggleGrid = function() {
+                $scope.toggleGrid = function () {
                     console.log('toggleGrid');
                 };
 
                 // just opens/closes the editing tabs
-                $scope.toggleEditingInterface = function(event) {
+                $scope.toggleEditingInterface = function (event) {
                     $scope.editorVisible = !$scope.editorVisible;
                 };
 
-                $scope.handleWindowResize = function() {
+                $scope.handleWindowResize = function () {
                     if (threeScene.ready) {
                         threeScene.camera.aspect = window.innerWidth / window.innerHeight;
                         threeScene.camera.updateProjectionMatrix();
@@ -40,21 +40,25 @@ angular.module('ng-clockwork.controllers', [])
                 };
             }])
         .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene',
-            function($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene) {
-                $scope.handleMousedown = function(event) {
-                    $scope.intersects = objectStore.objectSelect(event, threeScene);
+            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene) {
+
+                $scope.handleMousedown = function (event) {
+                    if ($scope.editorVisible) {
+                        $scope.intersects = objectStore.objectSelect(event, threeScene);
+                    }
                 };
 
-                $scope.$on('saveScene', function(e) {
+                $scope.$on('saveScene', function (e) {
                     editEvents.actions.fileSave = true;
                 });
 
                 // start the scene and load it
                 threeScene.init($element);
-                dataService.loadSceneJSON("./json/scene1.json?v=12").then(function(response) {
+                dataService.loadSceneJSON("./json/scene1.json?v=12").then(function (response) {
                     if (!response) {
                         console.error('File load error 1.  File could not be found. Error: ' + response.status);
-                    } else {
+                    }
+                    else {
                         threeScene.sceneData = response;
                         threeScene.camera = objectStore.loadScene(threeScene);
                         threeScene.ready = true;
@@ -63,7 +67,7 @@ angular.module('ng-clockwork.controllers', [])
                 });
 
                 // the render and update section
-                $scope.animate = function() {
+                $scope.animate = function () {
                     $scope.stats.update();
                     objectEditor.update(threeScene, editEvents.actions);
                     objectStore.update(threeScene, editEvents.actions);
@@ -75,12 +79,12 @@ angular.module('ng-clockwork.controllers', [])
                     $scope.render();
                 };
 
-                $scope.render = function() {
+                $scope.render = function () {
                     threeScene.renderer.render(threeScene.scene, threeScene.camera);
                 };
             }])
         .controller('ObjectEditController', ['$scope', 'threeScene', 'dataService', 'constants',
-            function($scope, threeScene, dataService, constants) {
+            function ($scope, threeScene, dataService, constants) {
                 $scope.textureList = [];
                 $scope.modelList = [];
                 $scope.modelNames = [];
@@ -92,26 +96,28 @@ angular.module('ng-clockwork.controllers', [])
                 $scope.defaultTexture = null;
                 $scope.testTexture = '';
                 $scope.activeTab = 'MOVEMENT';
-                
-                $scope.toggleVis = function(name) {
+
+                $scope.toggleVis = function (name) {
                     $scope.activeTab = name;
                 };
 
                 // object is showing a trial texture, we 
                 // want to remove that and replace the original
-                $scope.cancelTexture = function() {
+                $scope.cancelTexture = function () {
                     if ($scope.hasMap) {
                         var tTexture = $scope.selected.userData.template.texture.path;
                         var map = $scope.selected.material.map;
                         var x = map.repeat.x;
                         var y = map.repeat.y;
                         var loader = new THREE.TextureLoader();
-                        $scope.selected.material.map = loader.load(tTexture);;
+                        $scope.selected.material.map = loader.load(tTexture);
+                        ;
                         $scope.selected.material.map.wrapS = $scope.selected.material.map.wrapT = THREE.RepeatWrapping;
                         $scope.selected.material.map.repeat.set(x, y);
                         $scope.selected.material.needsUpdate = true;
                         $scope.testTexture = '';
-                    } else {
+                    }
+                    else {
                         $scope.selected.material.map = null;
                         $scope.selected.material.needsUpdate = true;
                         $scope.testTexture = '';
@@ -125,14 +131,15 @@ angular.module('ng-clockwork.controllers', [])
 
                 // try out a texture on this model, user can only try one at a time 
                 // required to remove the previous before trying out the next
-                $scope.applyTexture = function(newTexture) {
+                $scope.applyTexture = function (newTexture) {
                     if ($scope.selected.type === 'Mesh') {
                         var map, x, y;
                         if ($scope.selected.material.map) {
                             map = $scope.selected.material.map;
                             x = map.repeat.x;
                             y = map.repeat.y;
-                        } else {
+                        }
+                        else {
                             x = 1;
                             y = 1;
                         }
@@ -147,11 +154,12 @@ angular.module('ng-clockwork.controllers', [])
 
                 // go ahead and save this texture to the template for 
                 // file save, this is now the default texture for this object
-                $scope.confirmTexture = function(newTexture) {
+                $scope.confirmTexture = function (newTexture) {
                     var template = $scope.selected.userData.template;
                     if ('texture' in template) {
                         template.texture.path = newTexture;
-                    } else {
+                    }
+                    else {
                         template.texture = {
                             anisotropy: 16,
                             path: newTexture,
@@ -164,40 +172,42 @@ angular.module('ng-clockwork.controllers', [])
                     $scope.testTexture = '';
                 };
 
-                dataService.getAvailableTextures().then(function(response) {
+                dataService.getAvailableTextures().then(function (response) {
                     if (!response) {
                         console.error('Get Available Textures error.');
-                    } else {
+                    }
+                    else {
                         $scope.textureList = response.data;
                     }
                 });
 
-                dataService.getAvailableModels().then(function(response) {
+                dataService.getAvailableModels().then(function (response) {
                     if (!response) {
                         console.error('Get Available Models error.');
-                    } else {
+                    }
+                    else {
                         $scope.modelList = response;
                     }
                 });
 
                 // should we show the remove texture button
-                $scope.showRemoveTexture = function(media) {
+                $scope.showRemoveTexture = function (media) {
                     return ($scope.testTexture === media && $scope.selectedType !== 'Group');
                 };
 
                 // should we show the confirm (save) texture button
-                $scope.showConfirmTexture = function(media) {
+                $scope.showConfirmTexture = function (media) {
                     return ($scope.testTexture === media && $scope.selectedType !== 'Group');
                 };
 
                 // are we able to apply a texture?  Not possible on DAE models and other groups
-                $scope.applyIsDisabled = function() {
+                $scope.applyIsDisabled = function () {
                     return (!$scope.selected || $scope.selectedType === 'Group');
                 };
 
                 // we just want to see if the current selection is an 
                 // object with a texture that can be edited
-                $scope.enableTextureChange = function() {
+                $scope.enableTextureChange = function () {
                     $scope.selected = threeScene.selectedObject;
 
                     // set our defaults first
@@ -214,7 +224,8 @@ angular.module('ng-clockwork.controllers', [])
                             if ($scope.selected.material.map) {
                                 $scope.hasMap = true;
                                 $scope.defaultTexture = $scope.selected.material.map.sourceFile;
-                            } else {
+                            }
+                            else {
                                 $scope.hasMap = false;
                                 $scope.defaultTexture = null;
                             }
@@ -223,105 +234,105 @@ angular.module('ng-clockwork.controllers', [])
                 };
 
                 // make some updates when the selected object changes
-                $scope.$watch(function() {
+                $scope.$watch(function () {
                     return threeScene.selectedObject;
                 },
-                        function() {
+                        function () {
                             $scope.enableTextureChange();
                         }
                 );
             }])
         .controller('MeshEditScaleController', ['$scope', 'constants',
-            function($scope, constants) {
-                $scope.dec = function(num) {
+            function ($scope, constants) {
+                $scope.dec = function (num) {
                     return ((num * 1000) - (constants.OBJECT_SCALE_CHANGE * 1000)) / 1000;
                 };
-                $scope.inc = function(num) {
+                $scope.inc = function (num) {
                     return ((num * 1000) + (constants.OBJECT_SCALE_CHANGE * 1000)) / 1000;
                 };
-                $scope.incScaleX = function() {
+                $scope.incScaleX = function () {
                     $scope.selected.scale.x = $scope.inc($scope.selected.scale.x);
                 };
-                $scope.decScaleX = function() {
+                $scope.decScaleX = function () {
                     $scope.selected.scale.x = $scope.dec($scope.selected.scale.x);
                 };
-                $scope.incScaleY = function() {
+                $scope.incScaleY = function () {
                     $scope.selected.scale.y = $scope.inc($scope.selected.scale.y);
                 };
-                $scope.decScaleY = function() {
+                $scope.decScaleY = function () {
                     $scope.selected.scale.y = $scope.dec($scope.selected.scale.y);
                 };
-                $scope.incScaleZ = function() {
+                $scope.incScaleZ = function () {
                     $scope.selected.scale.z = $scope.inc($scope.selected.scale.z);
                 };
-                $scope.decScaleZ = function() {
+                $scope.decScaleZ = function () {
                     $scope.selected.scale.z = $scope.dec($scope.selected.scale.z);
                 };
             }])
         .controller('MeshEditPositionController', ['$scope', 'constants',
-            function($scope, constants) {
-                $scope.dec = function(num) {
+            function ($scope, constants) {
+                $scope.dec = function (num) {
                     return ((num * 1000) - (constants.OBJECT_MOVE_SPEED * 1000)) / 1000;
                 };
-                $scope.inc = function(num) {
+                $scope.inc = function (num) {
                     return ((num * 1000) + (constants.OBJECT_MOVE_SPEED * 1000)) / 1000;
                 };
-                $scope.incPosX = function() {
+                $scope.incPosX = function () {
                     $scope.selected.position.x = $scope.inc($scope.selected.position.x);
                 };
-                $scope.decPosX = function() {
+                $scope.decPosX = function () {
                     $scope.selected.position.x = $scope.dec($scope.selected.position.x);
                 };
-                $scope.incPosY = function() {
+                $scope.incPosY = function () {
                     $scope.selected.position.y = $scope.inc($scope.selected.position.y);
                 };
-                $scope.decPosY = function() {
+                $scope.decPosY = function () {
                     $scope.selected.position.y = $scope.dec($scope.selected.position.y);
                 };
-                $scope.incPosZ = function() {
+                $scope.incPosZ = function () {
                     $scope.selected.position.z = $scope.inc($scope.selected.position.z);
                 };
-                $scope.decPosZ = function() {
+                $scope.decPosZ = function () {
                     $scope.selected.position.z = $scope.dec($scope.selected.position.z);
                 };
             }])
         .controller('MeshEditRotationController', ['$scope', 'constants', 'degreeSync',
-            function($scope, constants, degreeSync) {
+            function ($scope, constants, degreeSync) {
                 $scope.degX = 0;
                 $scope.degY = 0;
                 $scope.degZ = 0;
 
-                $scope.updateRotation = function() {
+                $scope.updateRotation = function () {
                     degreeSync.updateRotation($scope.selected);
                 };
 
-                $scope.incDegX = function() {
+                $scope.incDegX = function () {
                     $scope.selected.degrees.x = degreeSync.safeChange($scope.selected.degrees.x, constants.OBJECT_ROTATE_DEGREES);
                     degreeSync.updateRotation($scope.selected);
                 };
-                $scope.decDegX = function() {
+                $scope.decDegX = function () {
                     $scope.selected.degrees.x = degreeSync.safeChange($scope.selected.degrees.x, -constants.OBJECT_ROTATE_DEGREES);
                     degreeSync.updateRotation($scope.selected);
                 };
-                $scope.incDegY = function() {
+                $scope.incDegY = function () {
                     $scope.selected.degrees.y = degreeSync.safeChange($scope.selected.degrees.y, constants.OBJECT_ROTATE_DEGREES);
                     degreeSync.updateRotation($scope.selected);
                 };
-                $scope.decDegY = function() {
+                $scope.decDegY = function () {
                     $scope.selected.degrees.y = degreeSync.safeChange($scope.selected.degrees.y, -constants.OBJECT_ROTATE_DEGREES);
                     degreeSync.updateRotation($scope.selected);
                 };
-                $scope.incDegZ = function() {
+                $scope.incDegZ = function () {
                     $scope.selected.degrees.z = degreeSync.safeChange($scope.selected.degrees.z, constants.OBJECT_ROTATE_DEGREES);
                     degreeSync.updateRotation($scope.selected);
                 };
-                $scope.decDegZ = function() {
+                $scope.decDegZ = function () {
                     $scope.selected.degrees.z = degreeSync.safeChange($scope.selected.degrees.z, -constants.OBJECT_ROTATE_DEGREES);
                     degreeSync.updateRotation($scope.selected);
                 };
             }])
         .controller('MaterialEditController', ['$scope', 'threeScene',
-            function($scope, threeScene) {
+            function ($scope, threeScene) {
                 $scope.onlyOneOpen = true;
                 $scope.openTop = true;
                 $scope.selected = null;
@@ -347,11 +358,11 @@ angular.module('ng-clockwork.controllers', [])
                     {value: 2, label: 'VertexColors'}
                 ];
 
-                $scope.boolToStr = function(arg) {
+                $scope.boolToStr = function (arg) {
                     return arg ? 'true' : 'false';
                 };
 
-                $scope.invertColor = function(hexTripletColor) {
+                $scope.invertColor = function (hexTripletColor) {
                     var color = hexTripletColor;
                     color = color.substring(1);           // remove #
                     color = parseInt(color, 16);          // convert to integer
@@ -365,7 +376,7 @@ angular.module('ng-clockwork.controllers', [])
                 // all colors are converted to css 
                 // style values on object selection change and 
                 // the colorpicker background and color is set to that color
-                $scope.getHexColors = function() {
+                $scope.getHexColors = function () {
                     $scope.colors.color = '#' + $scope.material.color.getHexString();
                     $scope.colors.emissive = '#' + $scope.material.emissive.getHexString();
                     $scope.colors.specular = '#' + $scope.material.specular.getHexString();
@@ -375,33 +386,33 @@ angular.module('ng-clockwork.controllers', [])
                 // color values to the default of #fff 
                 // because the input background adapts the
                 // available color
-                $scope.clearHexColors = function() {
+                $scope.clearHexColors = function () {
                     $scope.colors.color = '#ffffff';
                     $scope.colors.emissive = '#ffffff';
                     $scope.colors.specular = '#ffffff';
                 };
 
-                $scope.getRandomHexColor = function() {
+                $scope.getRandomHexColor = function () {
                     return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
                 };
 
                 // on change, set THREE color from the css 
                 // style color the input and colorpicker uses
-                $scope.setColor = function() {
+                $scope.setColor = function () {
                     $scope.material.color.setStyle($scope.colors.color);
                 };
-                $scope.setEmissive = function() {
+                $scope.setEmissive = function () {
                     $scope.material.emissive.setStyle($scope.colors.emissive);
                 };
-                $scope.setSpecular = function() {
+                $scope.setSpecular = function () {
                     $scope.material.specular.setStyle($scope.colors.emissive);
                 };
 
                 // make some updates when the selected object changes
-                $scope.$watch(function() {
+                $scope.$watch(function () {
                     return threeScene.selectedObject;
                 },
-                        function() {
+                        function () {
                             if (threeScene.selectedObject) {
                                 if (threeScene.selectedObject.type !== 'Group') {
                                     $scope.selected = threeScene.selectedObject;
@@ -409,7 +420,8 @@ angular.module('ng-clockwork.controllers', [])
                                     //console.log($scope.material);
                                     $scope.getHexColors();
                                 }
-                            } else {
+                            }
+                            else {
                                 $scope.selected = null;
                                 $scope.material = null;
                                 $scope.clearHexColors();
@@ -418,75 +430,75 @@ angular.module('ng-clockwork.controllers', [])
                 );
             }])
         .controller('MeshEditTextureOffsetController', ['$scope', 'constants',
-            function($scope, constants) {
-                $scope.dec = function(num) {
+            function ($scope, constants) {
+                $scope.dec = function (num) {
                     return ((num * 1000) - (constants.OBJECT_OFFSET_CHANGE * 1000)) / 1000;
                 };
-                $scope.inc = function(num) {
+                $scope.inc = function (num) {
                     return ((num * 1000) + (constants.OBJECT_OFFSET_CHANGE * 1000)) / 1000;
                 };
 
-                $scope.incOffsetX = function() {
+                $scope.incOffsetX = function () {
                     $scope.selected.material.map.offset.x = $scope.inc($scope.selected.material.map.offset.x);
                     $scope.selected.material.map.needsUpdate = true;
                 };
-                $scope.decOffsetX = function() {
+                $scope.decOffsetX = function () {
                     $scope.selected.material.map.offset.x = $scope.dec($scope.selected.material.map.offset.x);
                     $scope.selected.material.map.needsUpdate = true;
                 };
-                $scope.incOffsetY = function() {
+                $scope.incOffsetY = function () {
                     $scope.selected.material.map.offset.y = $scope.inc($scope.selected.material.map.offset.y);
                     $scope.selected.material.map.needsUpdate = true;
                 };
-                $scope.decOffsetY = function() {
+                $scope.decOffsetY = function () {
                     $scope.selected.material.map.offset.y = $scope.dec($scope.selected.material.map.offset.y);
                     $scope.selected.material.map.needsUpdate = true;
                 };
             }])
         .controller('MeshEditTextureRepeatController', ['$scope', 'constants',
-            function($scope, constants) {
-                $scope.dec = function(num) {
+            function ($scope, constants) {
+                $scope.dec = function (num) {
                     return ((num * 1000) - (constants.OBJECT_REPEAT_CHANGE * 1000)) / 1000;
                 };
-                $scope.inc = function(num) {
+                $scope.inc = function (num) {
                     return ((num * 1000) + (constants.OBJECT_REPEAT_CHANGE * 1000)) / 1000;
                 };
 
-                $scope.updateRepeat = function() {
+                $scope.updateRepeat = function () {
                     var map = $scope.selected.material.map;
                     map.wrapS = map.wrapT = THREE.RepeatWrapping;
                     map.repeat.set(map.repeat.x, map.repeat.y);
                     map.needsUpdate = true;
                 };
 
-                $scope.incRepeatX = function() {
+                $scope.incRepeatX = function () {
                     $scope.selected.material.map.repeat.x = $scope.inc($scope.selected.material.map.repeat.x);
                     $scope.updateRepeat();
                 };
-                $scope.decRepeatX = function() {
+                $scope.decRepeatX = function () {
                     $scope.selected.material.map.repeat.x = $scope.dec($scope.selected.material.map.repeat.x);
                     $scope.updateRepeat();
                 };
-                $scope.incRepeatY = function() {
+                $scope.incRepeatY = function () {
                     $scope.selected.material.map.repeat.y = $scope.inc($scope.selected.material.map.repeat.y);
                     $scope.updateRepeat();
                 };
-                $scope.decRepeatY = function() {
+                $scope.decRepeatY = function () {
                     $scope.selected.material.map.repeat.y = $scope.dec($scope.selected.material.map.repeat.y);
                     $scope.updateRepeat();
                 };
             }])
         .controller('MeshEditCreateController', ['$scope', 'objectStore', 'templater',
-            function($scope, objectStore, templater) {
+            function ($scope, objectStore, templater) {
                 $scope.onlyOneOpen = true;
                 $scope.openTop = true;
                 $scope.selectedModel = $scope.modelList[0];
-                
-                $scope.displayChanged = function(selection) {
+
+                $scope.displayChanged = function (selection) {
                     $scope.selectedModel = selection;
                 };
-                
-                $scope.createNewObject = function(type) {
+
+                $scope.createNewObject = function (type) {
                     switch (type) {
                         case 'box':
                             objectStore.createNewObject(templater.boxTemplate);
@@ -527,23 +539,23 @@ angular.module('ng-clockwork.controllers', [])
                             break;
                     }
                 };
-                
+
                 // watch for the model list arriving
-                $scope.$watch(function() {
+                $scope.$watch(function () {
                     return $scope.modelList;
                 },
-                        function() {
+                        function () {
                             $scope.selectedModel = $scope.modelList[0];
                         }
                 );
             }])
         .controller('StatsController', ['$scope', '$element',
-            function($scope, $element) {
-                    $scope.stats = new Stats();
-                    $element.append($scope.stats.domElement);
-                }])
+            function ($scope, $element) {
+                $scope.stats = new Stats();
+                $element.append($scope.stats.domElement);
+            }])
         .controller('EditPanelAccordionController', ['$scope',
-            function($scope) {
+            function ($scope) {
                 $scope.onlyOneOpen = true;
                 $scope.openTop = true;
 //                $scope.groups = [

@@ -15,7 +15,8 @@ angular.module("ng-clockwork.config", [])
             USER_MOVE_SPEED: 0.05,
             USER_MOVE_FAST_SPEED: 0.15,
             USER_TURN_SPEED: 0.05,
-            USER_HEIGHT: 0.1
+            USER_HEIGHT: 0.1,
+            USER_LOOK_SPEED: 0.01
         })
         .constant("clockworkConfig", {
             "name": "Development",
