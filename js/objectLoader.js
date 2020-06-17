@@ -5,14 +5,13 @@ angular.module('ng-clockwork.objectLoader', [])
                 return {
                     objectSelect: function (event, threeScene) {
                         var camera = threeScene.camera;
-                        var raycaster = threeScene.raycaster;
                         var pickerObjects = threeScene.pickerObjects;
 
                         var vector = new THREE.Vector3();
                         vector.set((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
                         vector.unproject(camera);
-                        raycaster.ray.set(camera.position, vector.sub(camera.position).normalize());
-                        var intersects = raycaster.intersectObjects(pickerObjects, true);
+                        threeScene.pickerRaycaster.ray.set(camera.position, vector.sub(camera.position).normalize());
+                        var intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
 
                         threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
                     },

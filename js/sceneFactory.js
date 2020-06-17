@@ -15,7 +15,7 @@ angular.module('ng-clockwork.sceneFactory', [])
                     };
                     this.scene = new THREE.Scene();
                     // raycaster
-                    this.raycaster = new THREE.Raycaster();
+                    this.pickerRaycaster = new THREE.Raycaster();
 
                     // renderer
                     this.renderer = new THREE.WebGLRenderer({antialias: true});

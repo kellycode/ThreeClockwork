@@ -106,18 +106,38 @@ angular.module('ng-clockwork.editActions', [])
                             }
                         };
 
-                        var _checkCollision = function () {
+                        var _canContinueForward = function () {
 
-                            var vector = camera.position;
+                            var camPositionVector = camera.position.clone();
 
-                            var raycaster = new THREE.Raycaster(vector, camera.getWorldDirection());
+                            var camWorldDirection = new THREE.Vector3();
+
+                            var smallestDistance = 0;
+
+                            camera.getWorldDirection(camWorldDirection);
+
+                            var raycaster = new THREE.Raycaster(camPositionVector, camWorldDirection);
 
                             var intersects = raycaster.intersectObjects(threeScene.scene.children);
 
                             if (intersects.length > 0) {
+                                smallestDistance = intersects[0].distance;
+
                                 for (var i = 0; i < intersects.length; i++) {
-                                    console.log(intersects[i].distance);
+
+                                    if (intersects[i].distance < smallestDistance) {
+                                        smallestDistance = intersects[i].distance;
+                                    }
                                 }
+                            }
+
+                            console.log(smallestDistance);
+
+                            if (intersects.length > 0 && smallestDistance < 0.8) {
+                                return false;
+                            }
+                            else {
+                                return true;
                             }
                         };
 
@@ -213,10 +233,12 @@ angular.module('ng-clockwork.editActions', [])
                         }
 
                         if (actions.moveForward) {
-                            _checkCollision();
-                            let forwardSpeed = !actions.moveForwardFast ? constants.USER_MOVE_SPEED : constants.USER_MOVE_FAST_SPEED;
-                            camera.position.z -= Math.cos(camera.rotation.y) * forwardSpeed;
-                            camera.position.x -= Math.sin(camera.rotation.y) * forwardSpeed;
+                            if (_canContinueForward()) {
+                                let forwardSpeed = !actions.moveForwardFast ? constants.USER_MOVE_SPEED : constants.USER_MOVE_FAST_SPEED;
+                                camera.position.z -= Math.cos(camera.rotation.y) * forwardSpeed;
+                                camera.position.x -= Math.sin(camera.rotation.y) * forwardSpeed;
+                            }
+
                         }
                         if (actions.moveObjectForward) {
                             if (currentSelected) {
