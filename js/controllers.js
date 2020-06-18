@@ -8,7 +8,7 @@ angular.module('ng-clockwork.controllers', [])
                 $rootScope.pageTitle = "ngClockwork";
                 $scope.selectedObject = null;
                 $scope.speedStatus = '';
-                $scope.editorVisible = true;
+                $scope.editorVisible = false;
 
                 $scope.handleKeydown = function (event) {
                     editEvents.keyDown(event, editEvents.actions);

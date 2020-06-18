@@ -355,6 +355,8 @@ angular.module('ng-clockwork.objectLoader', [])
                                 template.aspect,
                                 template.near,
                                 template.far);
+                                
+                        //template.movements.degY = 0;
 
                         this._applyMatrix(perspectiveCamera, template);
 
