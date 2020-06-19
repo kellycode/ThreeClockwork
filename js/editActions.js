@@ -110,7 +110,20 @@ angular.module('ng-clockwork.editActions', [])
                             }
                         };
 
-                        var _temp = function (lastX, lastZ, newX, newZ) {
+                        var fSaves = function () {
+                            // FOR THE HELPER ARROWS
+                                    var axis = new THREE.Vector3(0, 1, 0);
+                            // shift the angle left 45 degrees
+                            var newangle = Math.PI / 4;
+                            // clone the movement direction vector
+                            var direction2 = directionOfMotion.clone();
+                            // and then apply the rotation left
+                            direction2.applyAxisAngle(axis, newangle);
+                            // normalize
+                            direction2.normalize();
+                        };
+
+                        var _temp = function (pos) {
 
                             // THE POINT OF ALL OF THIS IS WE WANT TO CHECK
                             // COLLISIONS USING THE DIRECTION WE JUST MOVED IN
@@ -123,159 +136,184 @@ angular.module('ng-clockwork.editActions', [])
                             // WAS TO GET THE HYPOTHETICAL DIRECTION - THE ACTUAL
                             // CAMERA STARTING POSITION IS GOOD AS IT IS
                             var camPositionVector = camera.position.clone();
+                            
 
                             // USE THE CURRENT PLAYER/CAMERA POSITION AND
                             // POTENTIAL POSITION TO CREATE POSITION VECTORS
-                            var lastVector = new THREE.Vector3(lastX, 0, lastZ);
-                            var newVector = new THREE.Vector3(newX, 0, newZ);
+                            var currentPositionVector = new THREE.Vector3(pos.currX, 0, pos.currZ);
+                            var nextPositionVector = new THREE.Vector3(pos.nextX, 0, pos.nextZ);
+                            
+
+                            var nextZVector = new THREE.Vector3(0, 0, pos.nextZ);
+                            var nextXVector = new THREE.Vector3(pos.nextX, 0, 0);
+                            var currZVector = new THREE.Vector3(0, 0, pos.currZ);
+                            var currXVector = new THREE.Vector3(pos.currX, 0, 0);
+                            
 
                             // Make a direction Vector out of the before and
                             // after positions
-                            var direction = new THREE.Vector3();
-                            direction.subVectors(newVector, lastVector);
-                            direction.normalize();
+                            var directionOfMotion = new THREE.Vector3();
+                            directionOfMotion.subVectors(nextPositionVector, currentPositionVector);
+                            directionOfMotion.normalize();
+                            
 
-                            // for the helperArrows
-                            var axis = new THREE.Vector3(0, 1, 0);
-                            // shift the angle left 45 degrees
-                            var newangle = Math.PI / 4;
-                            // clone the movement direction vector
-                            var direction2 = direction.clone();
-                            // and then apply the rotation left
-                            direction2.applyAxisAngle(axis, newangle);
-                            // normalize
-                            direction2.normalize();
+                            var directionOfZMotion = new THREE.Vector3();
+                            directionOfZMotion.subVectors(nextZVector, currZVector);
+                            directionOfZMotion.normalize();
+                            
 
+                            var directionOfXMotion = new THREE.Vector3();
+                            directionOfXMotion.subVectors(nextXVector, currXVector);
+                            directionOfXMotion.normalize();
+                            
+                            // START FOR THE HELPER ARROWS
                             // once the helperArrows are defined, remove them before redraw
-                            if (threeScene.scene.arrow1 && threeScene.scene.arrow2) {
+                            if (threeScene.scene.arrow1 && threeScene.scene.arrow2 && threeScene.scene.arrow3) {
                                 threeScene.scene.remove(threeScene.scene.arrow1);
                                 threeScene.scene.remove(threeScene.scene.arrow2);
+                                threeScene.scene.remove(threeScene.scene.arrow3);
                             }
-                            
+
                             // arrows start where the camera is now
                             var arrowPos = camera.position.clone();
                             // a little lower
                             arrowPos.y -= 0.15;
-
                             // draw the arrows
-                            threeScene.scene.arrow1 = new THREE.ArrowHelper(direction, arrowPos, 5, 0x00ff00);
-                            threeScene.scene.arrow2 = new THREE.ArrowHelper(direction2, arrowPos, 5, 0x00ff00);
+                            threeScene.scene.arrow1 = new THREE.ArrowHelper(directionOfMotion, arrowPos, 5, 0x00ff00);
+                            threeScene.scene.arrow2 = new THREE.ArrowHelper(directionOfZMotion, arrowPos, 5, 0xff0000);
+                            threeScene.scene.arrow3 = new THREE.ArrowHelper(directionOfXMotion, arrowPos, 5, 0x0000ff);
+                            
                             threeScene.scene.add(threeScene.scene.arrow1);
                             threeScene.scene.add(threeScene.scene.arrow2);
-
+                            threeScene.scene.add(threeScene.scene.arrow3);
+                            // END FOR THE HELPER ARROWS
 
 
 
                             // WILL NEED 5 OF THESE
-                            var raycaster = new THREE.Raycaster(camPositionVector, direction);
+                            var diagRaycaster = new THREE.Raycaster(camPositionVector, directionOfMotion);
+                            var diagIntersects = diagRaycaster.intersectObjects(threeScene.pickerObjects);
+                            
+                            var zRaycaster = new THREE.Raycaster(camPositionVector, directionOfZMotion);
+                            var zIntersects = zRaycaster.intersectObjects(threeScene.pickerObjects);
+                            
+                            var xRaycaster = new THREE.Raycaster(camPositionVector, directionOfXMotion);
+                            var xIntersects = xRaycaster.intersectObjects(threeScene.pickerObjects);
 
-                            var intersects = raycaster.intersectObjects(threeScene.pickerObjects);
+                            var smallestDistance = 4;
+                            let lastIntersect;
+                            var minAllowedDistance = 1.0;
+                            
 
-                            var smallestDistance = 0;
-                            if (intersects.length > 0) {
-                                smallestDistance = intersects[0].distance;
-
-                                for (var i = 0; i < intersects.length; i++) {
-
-                                    if (intersects[i].distance < smallestDistance) {
-                                        smallestDistance = intersects[i].distance;
-                                    }
-                                }
+                            if (diagIntersects.length > 0 && diagIntersects[0].distance < minAllowedDistance) {
+                                console.log('d ' + diagIntersects[0].distance);
                             }
+                            if (zIntersects.length > 0 && zIntersects[0].distance < minAllowedDistance) {
+                                console.log('z ' + zIntersects[0].distance);
+                                let fix = zIntersects[0].distance * (minAllowedDistance/zIntersects[0].distance);
+                                console.log('.............zFix ' + fix);
+                            }
+                            if (xIntersects.length > 0 && xIntersects[0].distance < minAllowedDistance) {
+                                console.log('x ' + xIntersects[0].distance);
+                            }
+                            
+                            
+                            
+                            
+                            
 
-                            console.log(smallestDistance);
 
                         };
 
-                        var _canContinueForward = function (lastX, lastZ, newX, newZ) {
+                        var _canContinueForward = function (pos) {
 
-                            _temp(lastX, lastZ, newX, newZ);
+                            _temp(pos);
 
-                            var minAllowed = 1.0;
-
-                            var camPositionVector = camera.position.clone();
-
-                            var xPosRaycastDirection = new THREE.Vector3(1, 0, 0);
-                            var xNegRaycastDirection = new THREE.Vector3(-1, 0, 0);
-                            var zPosRaycastDirection = new THREE.Vector3(0, 0, 1);
-                            var zNegRaycastDirection = new THREE.Vector3(0, 0, -1);
-
-                            var xPosSmallestDistance = 2;
-                            var xNegSmallestDistance = 2;
-                            var zPosSmallestDistance = 2;
-                            var zNegSmallestDistance = 2;
-
-                            var xPosRaycaster = new THREE.Raycaster(camPositionVector, xPosRaycastDirection);
-                            var xNegRaycaster = new THREE.Raycaster(camPositionVector, xNegRaycastDirection);
-                            var zPosRaycaster = new THREE.Raycaster(camPositionVector, zPosRaycastDirection);
-                            var zNegRaycaster = new THREE.Raycaster(camPositionVector, zNegRaycastDirection);
-
-                            var xPosIntersects = xPosRaycaster.intersectObjects(threeScene.pickerObjects);
-                            var xNegIntersects = xNegRaycaster.intersectObjects(threeScene.pickerObjects);
-                            var zPosIntersects = zPosRaycaster.intersectObjects(threeScene.pickerObjects);
-                            var zNegIntersects = zNegRaycaster.intersectObjects(threeScene.pickerObjects);
-
-                            if (xPosIntersects.length > 0) {
-                                xPosSmallestDistance = xPosIntersects[0].distance;
-                                for (var i = 0; i < xPosIntersects.length; i++) {
-                                    if (xPosIntersects[i].distance < xPosSmallestDistance) {
-                                        xPosSmallestDistance = xPosIntersects[i].distance;
-                                    }
-                                }
-                            }
-
-                            if (xNegIntersects.length > 0) {
-                                xNegSmallestDistance = xNegIntersects[0].distance;
-                                for (var i = 0; i < xNegIntersects.length; i++) {
-                                    if (xNegIntersects[i].distance < xNegSmallestDistance) {
-                                        xNegSmallestDistance = xNegIntersects[i].distance;
-                                    }
-                                }
-                            }
-
-                            if (zPosIntersects.length > 0) {
-                                zPosSmallestDistance = zPosIntersects[0].distance;
-                                for (var i = 0; i < zPosIntersects.length; i++) {
-                                    if (zPosIntersects[i].distance < zPosSmallestDistance) {
-                                        zPosSmallestDistance = zPosIntersects[i].distance;
-                                    }
-                                }
-                            }
-
-                            if (zNegIntersects.length > 0) {
-                                zNegSmallestDistance = zNegIntersects[0].distance;
-                                for (var i = 0; i < zNegIntersects.length; i++) {
-                                    if (zNegIntersects[i].distance < zNegSmallestDistance) {
-                                        zNegSmallestDistance = zNegIntersects[i].distance;
-                                    }
-                                }
-                            }
-
-                            if (xPosSmallestDistance < minAllowed) {
-                                //console.log(xPosSmallestDistance);
-                                camera.position.x = lastX;
-                            }
-
-                            if (xNegSmallestDistance < minAllowed) {
-                                //console.log(xNegSmallestDistance);
-                                camera.position.x = lastX;
-                            }
-
-                            if (zPosSmallestDistance < minAllowed) {
-                                //console.log(zPosSmallestDistance);
-                                camera.position.z = lastZ;
-                            }
-
-                            if (zNegSmallestDistance < minAllowed) {
-                                //console.log(zNegSmallestDistance);
-                                camera.position.z = lastZ;
-                            }
+//                            var minAllowed = 1.0;
+//
+//                            var camPositionVector = camera.position.clone();
+//
+//                            var xPosRaycastDirection = new THREE.Vector3(1, 0, 0);
+//                            var xNegRaycastDirection = new THREE.Vector3(-1, 0, 0);
+//                            var zPosRaycastDirection = new THREE.Vector3(0, 0, 1);
+//                            var zNegRaycastDirection = new THREE.Vector3(0, 0, -1);
+//
+//                            var xPosSmallestDistance = 2;
+//                            var xNegSmallestDistance = 2;
+//                            var zPosSmallestDistance = 2;
+//                            var zNegSmallestDistance = 2;
+//
+//                            var xPosRaycaster = new THREE.Raycaster(camPositionVector, xPosRaycastDirection);
+//                            var xNegRaycaster = new THREE.Raycaster(camPositionVector, xNegRaycastDirection);
+//                            var zPosRaycaster = new THREE.Raycaster(camPositionVector, zPosRaycastDirection);
+//                            var zNegRaycaster = new THREE.Raycaster(camPositionVector, zNegRaycastDirection);
+//
+//                            var xPosIntersects = xPosRaycaster.intersectObjects(threeScene.pickerObjects);
+//                            var xNegIntersects = xNegRaycaster.intersectObjects(threeScene.pickerObjects);
+//                            var zPosIntersects = zPosRaycaster.intersectObjects(threeScene.pickerObjects);
+//                            var zNegIntersects = zNegRaycaster.intersectObjects(threeScene.pickerObjects);
+//
+//                            if (xPosIntersects.length > 0) {
+//                                xPosSmallestDistance = xPosIntersects[0].distance;
+//                                for (var i = 0; i < xPosIntersects.length; i++) {
+//                                    if (xPosIntersects[i].distance < xPosSmallestDistance) {
+//                                        xPosSmallestDistance = xPosIntersects[i].distance;
+//                                    }
+//                                }
+//                            }
+//
+//                            if (xNegIntersects.length > 0) {
+//                                xNegSmallestDistance = xNegIntersects[0].distance;
+//                                for (var i = 0; i < xNegIntersects.length; i++) {
+//                                    if (xNegIntersects[i].distance < xNegSmallestDistance) {
+//                                        xNegSmallestDistance = xNegIntersects[i].distance;
+//                                    }
+//                                }
+//                            }
+//
+//                            if (zPosIntersects.length > 0) {
+//                                zPosSmallestDistance = zPosIntersects[0].distance;
+//                                for (var i = 0; i < zPosIntersects.length; i++) {
+//                                    if (zPosIntersects[i].distance < zPosSmallestDistance) {
+//                                        zPosSmallestDistance = zPosIntersects[i].distance;
+//                                    }
+//                                }
+//                            }
+//
+//                            if (zNegIntersects.length > 0) {
+//                                zNegSmallestDistance = zNegIntersects[0].distance;
+//                                for (var i = 0; i < zNegIntersects.length; i++) {
+//                                    if (zNegIntersects[i].distance < zNegSmallestDistance) {
+//                                        zNegSmallestDistance = zNegIntersects[i].distance;
+//                                    }
+//                                }
+//                            }
+//
+//                            if (xPosSmallestDistance < minAllowed) {
+//                                //console.log(xPosSmallestDistance);
+//                                camera.position.x = currX;
+//                            }
+//
+//                            if (xNegSmallestDistance < minAllowed) {
+//                                //console.log(xNegSmallestDistance);
+//                                camera.position.x = currX;
+//                            }
+//
+//                            if (zPosSmallestDistance < minAllowed) {
+//                                //console.log(zPosSmallestDistance);
+//                                camera.position.z = currZ;
+//                            }
+//
+//                            if (zNegSmallestDistance < minAllowed) {
+//                                //console.log(zNegSmallestDistance);
+//                                camera.position.z = currZ;
+//                            }
                         };
 
 
-                        var _canContinueForward_1 = function (lastX, lastZ, newX, newZ) {
+                        var _canContinueForward_1 = function (currX, currZ, nextX, nextZ) {
 
-                            _temp(lastX, lastZ, newX, newZ);
+                            _temp(currX, currZ, nextX, nextZ);
 
                             var minAllowed = 1.0;
 
@@ -339,22 +377,22 @@ angular.module('ng-clockwork.editActions', [])
 
                             if (xPosSmallestDistance < minAllowed) {
                                 console.log(xPosSmallestDistance);
-                                camera.position.x = lastX;
+                                camera.position.x = currX;
                             }
 
                             if (xNegSmallestDistance < minAllowed) {
                                 console.log(xNegSmallestDistance);
-                                camera.position.x = lastX;
+                                camera.position.x = currX;
                             }
 
                             if (zPosSmallestDistance < minAllowed) {
                                 console.log(zPosSmallestDistance);
-                                camera.position.z = lastZ;
+                                camera.position.z = currZ;
                             }
 
                             if (zNegSmallestDistance < minAllowed) {
                                 console.log(zNegSmallestDistance);
-                                camera.position.z = lastZ;
+                                camera.position.z = currZ;
                             }
                         };
 
@@ -450,18 +488,22 @@ angular.module('ng-clockwork.editActions', [])
                         }
 
                         if (actions.moveForward) {
-                            let lastX = camera.position.x;
-                            let lastZ = camera.position.z;
+                            let pos = {};
+                            pos.currX = camera.position.x;
+                            pos.currZ = camera.position.z;
 
                             let forwardSpeed = !actions.moveForwardFast ? constants.USER_MOVE_SPEED : constants.USER_MOVE_FAST_SPEED;
 
-                            let newX = camera.position.x - (Math.sin(camera.rotation.y) * forwardSpeed);
-                            let newZ = camera.position.z - (Math.cos(camera.rotation.y) * forwardSpeed);
+                            pos.nextX = camera.position.x - (Math.sin(camera.rotation.y) * forwardSpeed);
+                            pos.nextZ = camera.position.z - (Math.cos(camera.rotation.y) * forwardSpeed);
+                            
+                            pos.changeX = pos.nextX - pos.currX;
+                            pos.changeZ = pos.nextZ - pos.currZ;
 
-                            _canContinueForward(lastX, lastZ, newX, newZ);
+                            _canContinueForward(pos);
 
-                            camera.position.x = newX;//-= Math.cos(camera.rotation.y) * forwardSpeed;
-                            camera.position.z = newZ;//-= Math.sin(camera.rotation.y) * forwardSpeed;
+                            camera.position.x += pos.changeX;//= pos.nextX;//-= Math.cos(camera.rotation.y) * forwardSpeed;
+                            camera.position.z += pos.changeZ;//= pos.nextZ;//-= Math.sin(camera.rotation.y) * forwardSpeed;
                         }
                         if (actions.moveObjectForward) {
                             if (currentSelected) {

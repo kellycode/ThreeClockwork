@@ -1,8 +1,6 @@
 
 # ngClockwork
 
-![ngClockwork in action](https://raw.githubusercontent.com/kellycode/ngClockwork/master/readme_img.jpg?token=ABTBN6JMVMAEYNKVJZZXWJ242HAQG)
-
 Built because it makes editing scenes extremely easy and it's fun to play with.
 
 An Angular(1) and [Three.JS](https://github.com/mrdoob/three.js) based  scene editor built for my own amusement back in 2015 and no longer developed as **it uses a custom save file format and it would be more useful to use the format that Three.JS uses and simply move the features I like over to the [ThreeJS Editor](https://threejs.org/editor/) or to use [PlayCanvas](https://github.com/playcanvas/engine) or [nunuStudio](https://github.com/tentone/nunuStudio)
@@ -16,7 +14,6 @@ Textures and DAE models to be used are loaded based on what's in the directories
 Model movement context is relative to the current camera direction when appropriate ( such as: Forward arrow always moves the model away from you )
 
 ### Requires
- - PHP Web Server
  - It sn't necessary to run but "npm install" will add grunt dependencies for minimized build if you plan to do a deployable version.
 
 ### Model keyboard commands:
