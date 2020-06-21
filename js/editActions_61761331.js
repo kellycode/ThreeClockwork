@@ -8,12 +8,6 @@ angular.module('ng-clockwork.editActions', [])
                         var camera = threeScene.camera;
                         var currentSelected = threeScene.selectedObject;
                         var constants = this.constants;
-                        var count = 0;
-                        var jrArrow;
-                        var mArrow;
-                        var jlArrow;
-                        var zArrow;
-                        var xArrow;
 
                         var _resetObjectRotations = function () {
                             currentSelected.degrees.x = 0;
@@ -112,168 +106,88 @@ angular.module('ng-clockwork.editActions', [])
                             }
                         };
 
-                        var _canContinueForward = function (pos) {
+                        var _canContinueForward = function (lastX, lastZ) {
+
+                            var minAllowed = 1.0;
 
                             var camPositionVector = camera.position.clone();
 
-                            // hard wired new vectors
-                            // currentPositionVector = camPositionVector
-                            var currentPositionVector = new THREE.Vector3(pos.currX, 0, pos.currZ);
-                            var nextPositionVector = new THREE.Vector3(pos.nextX, 0, pos.nextZ);
+                            var xPosRaycastDirection = new THREE.Vector3(1, 0, 0);
+                            var xNegRaycastDirection = new THREE.Vector3(-1, 0, 0);
+                            var zPosRaycastDirection = new THREE.Vector3(0, 0, 1);
+                            var zNegRaycastDirection = new THREE.Vector3(0, 0, -1);
 
-                            // always at right angles to where we are
-                            var nextZVector = new THREE.Vector3(0, 0, pos.nextZ);
-                            var nextXVector = new THREE.Vector3(pos.nextX, 0, 0);
-                            var currZVector = new THREE.Vector3(0, 0, pos.currZ);
-                            var currXVector = new THREE.Vector3(pos.currX, 0, 0);
+                            var xPosSmallestDistance = 2;
+                            var xNegSmallestDistance = 2;
+                            var zPosSmallestDistance = 2;
+                            var zNegSmallestDistance = 2;
 
-                            // Make a direction Vector out of the before and
-                            // after positions
-                            var directionOfMotion = new THREE.Vector3();
-                            directionOfMotion.subVectors(nextPositionVector, currentPositionVector);
-                            directionOfMotion.normalize();
+                            var xPosRaycaster = new THREE.Raycaster(camPositionVector, xPosRaycastDirection);
+                            var xNegRaycaster = new THREE.Raycaster(camPositionVector, xNegRaycastDirection);
+                            var zPosRaycaster = new THREE.Raycaster(camPositionVector, zPosRaycastDirection);
+                            var zNegRaycaster = new THREE.Raycaster(camPositionVector, zNegRaycastDirection);
 
-                            var leftOfMotion = directionOfMotion.clone();
-                            var lom_axis = new THREE.Vector3(0, 1, 0);
-                            var lom_angle = 2 * (Math.PI / 180);
-                            leftOfMotion.applyAxisAngle(lom_axis, lom_angle);
+                            var xPosIntersects = xPosRaycaster.intersectObjects(threeScene.scene.children);
+                            var xNegIntersects = xNegRaycaster.intersectObjects(threeScene.scene.children);
+                            var zPosIntersects = zPosRaycaster.intersectObjects(threeScene.scene.children);
+                            var zNegIntersects = zNegRaycaster.intersectObjects(threeScene.scene.children);
 
-                            var rightOfMotion = directionOfMotion.clone();
-                            var rom_axis = new THREE.Vector3(0, 1, 0);
-                            var rom_angle = -2 * (Math.PI / 180);
-                            rightOfMotion.applyAxisAngle(rom_axis, rom_angle);
-
-                            var directionOfZMotion = new THREE.Vector3();
-                            directionOfZMotion.subVectors(nextZVector, currZVector);
-                            directionOfZMotion.normalize();
-
-                            var directionOfXMotion = new THREE.Vector3();
-                            directionOfXMotion.subVectors(nextXVector, currXVector);
-                            directionOfXMotion.normalize();
-
-
-                            if (false) {
-                                // START FOR THE HELPER ARROWS
-                                // remove before redraw
-                                if (threeScene.scene.mArrow) {
-                                    //threeScene.scene.remove(threeScene.scene.jrArrow);
-                                    //threeScene.scene.remove(threeScene.scene.jlArrow);
-                                    threeScene.scene.remove(threeScene.scene.mArrow);
-                                    threeScene.scene.remove(threeScene.scene.zArrow);
-                                    threeScene.scene.remove(threeScene.scene.xArrow);
-                                }
-                                // arrows start where the camera is now
-                                var arrowPos = camera.position.clone();
-                                // a little lower
-                                arrowPos.y -= 0.15;
-                                // draw the arrows
-                                //threeScene.scene.jlArrow = new THREE.ArrowHelper(leftOfMotion, arrowPos, 5, 0x00ffff);
-                                threeScene.scene.mArrow = new THREE.ArrowHelper(directionOfMotion, arrowPos, 5, 0x00ff00);
-                                //threeScene.scene.jrArrow = new THREE.ArrowHelper(rightOfMotion, arrowPos, 5, 0xffff00);
-                                threeScene.scene.zArrow = new THREE.ArrowHelper(directionOfZMotion, arrowPos, 5, 0xff0000);
-                                threeScene.scene.xArrow = new THREE.ArrowHelper(directionOfXMotion, arrowPos, 5, 0x0000ff);
-                                // add to the scene
-                                //threeScene.scene.add(threeScene.scene.jlArrow);
-                                threeScene.scene.add(threeScene.scene.mArrow);
-                                //threeScene.scene.add(threeScene.scene.jrArrow);
-                                threeScene.scene.add(threeScene.scene.zArrow);
-                                threeScene.scene.add(threeScene.scene.xArrow);
-                                // END FOR THE HELPER ARROWS
-                            }
-
-
-
-
-                            // WILL NEED 5 OF THESE
-                            var forwardRaycaster = new THREE.Raycaster(camPositionVector, directionOfMotion, 0, 2.0);
-                            var forwardIntersects = forwardRaycaster.intersectObjects(threeScene.pickerObjects);
-
-                            var leftRaycaster = new THREE.Raycaster(camPositionVector, leftOfMotion, 0, 2.0);
-                            var leftIntersects = leftRaycaster.intersectObjects(threeScene.pickerObjects);
-
-                            var rightRaycaster = new THREE.Raycaster(camPositionVector, rightOfMotion, 0, 2.0);
-                            var rightIntersects = rightRaycaster.intersectObjects(threeScene.pickerObjects);
-
-//                            var zRaycaster = new THREE.Raycaster(camPositionVector, directionOfZMotion);
-//                            var zIntersects = zRaycaster.intersectObjects(threeScene.pickerObjects);
-//
-//                            var xRaycaster = new THREE.Raycaster(camPositionVector, directionOfXMotion);
-//                            var xIntersects = xRaycaster.intersectObjects(threeScene.pickerObjects);
-
-                            var smallestDistance = 4;
-                            let lastIntersect;
-                            var minAllowedDistance = 1.0;
-
-                            var forwardSpeeds = {
-                                x: constants.USER_MOVE_SPEED,
-                                z: constants.USER_MOVE_SPEED
-                            };
-
-                            if (forwardIntersects.length > 0 && forwardIntersects[0].distance < minAllowedDistance) {
-                                //wconsole.log(forwardIntersects[0].distance);
-                                let lookAngle;
-
-                                if (leftIntersects.length > 0 && rightIntersects.length > 0) {
-                                    
-                                    
-                                    if (rightIntersects[0].distance > forwardIntersects[0].distance && leftIntersects[0].distance < forwardIntersects[0].distance) {
-                                        
-                                        console.log('looking right');
-
-                                        lookAngle = rightIntersects[0].point.angleTo(forwardIntersects[0].point);
-
-                                        //threeScene.scene.remove(threeScene.scene.jrArrow);
-                                        var dom = new THREE.Vector3();
-                                        dom.subVectors(rightIntersects[0].point, forwardIntersects[0].point);
-                                        dom.normalize();
-
-                                        if (false) {
-                                            if (threeScene.scene.jrArrow) {
-                                                threeScene.scene.remove(threeScene.scene.jrArrow);
-                                            }
-                                            threeScene.scene.jrArrow = new THREE.ArrowHelper(dom, forwardIntersects[0].point, 5, 0xffff00);
-                                            threeScene.scene.add(threeScene.scene.jrArrow);
-                                        }
-
-                                        console.log(dom.x + ' ; ' + dom.z);
-
-                                        pos.changeX = pos.forwardSpeed * dom.x;
-                                        pos.changeZ = pos.forwardSpeed * dom.z;
-
-                                    } else if (leftIntersects[0].distance > forwardIntersects[0].distance && rightIntersects[0].distance < forwardIntersects[0].distance) {
-                                        console.log('looking left');
-
-                                        lookAngle = leftIntersects[0].point.angleTo(forwardIntersects[0].point);
-
-                                        //threeScene.scene.remove(threeScene.scene.jrArrow);
-                                        var dom = new THREE.Vector3();
-                                        dom.subVectors(leftIntersects[0].point, forwardIntersects[0].point);
-                                        dom.normalize();
-
-                                        if (false) {
-                                            if (threeScene.scene.jrArrow) {
-                                                threeScene.scene.remove(threeScene.scene.jrArrow);
-                                            }
-                                            threeScene.scene.jrArrow = new THREE.ArrowHelper(dom, forwardIntersects[0].point, 5, 0xffff00);
-                                            threeScene.scene.add(threeScene.scene.jrArrow);
-                                        }
-
-                                        console.log(dom.x + ' ; ' + dom.z);
-
-                                        pos.changeX = pos.forwardSpeed * dom.x;
-                                        pos.changeZ = pos.forwardSpeed * dom.z;
-                                    } else {
-                                        console.log('In a corner');
-                                        
-                                        pos.changeX = 0;
-                                        pos.changeZ = 0;
+                            if (xPosIntersects.length > 0) {
+                                xPosSmallestDistance = xPosIntersects[0].distance;
+                                for (var i = 0; i < xPosIntersects.length; i++) {
+                                    if (xPosIntersects[i].distance < xPosSmallestDistance) {
+                                        xPosSmallestDistance = xPosIntersects[i].distance;
                                     }
-                                    console.log(lookAngle);
-                                    
                                 }
                             }
 
+                            if (xNegIntersects.length > 0) {
+                                xNegSmallestDistance = xNegIntersects[0].distance;
+                                for (var i = 0; i < xNegIntersects.length; i++) {
+                                    if (xNegIntersects[i].distance < xNegSmallestDistance) {
+                                        xNegSmallestDistance = xNegIntersects[i].distance;
+                                    }
+                                }
+                            }
 
+                            if (zPosIntersects.length > 0) {
+                                zPosSmallestDistance = zPosIntersects[0].distance;
+                                for (var i = 0; i < zPosIntersects.length; i++) {
+                                    if (zPosIntersects[i].distance < zPosSmallestDistance) {
+                                        zPosSmallestDistance = zPosIntersects[i].distance;
+                                    }
+                                }
+                            }
+
+                            if (zNegIntersects.length > 0) {
+                                zNegSmallestDistance = zNegIntersects[0].distance;
+                                for (var i = 0; i < zNegIntersects.length; i++) {
+                                    if (zNegIntersects[i].distance < zNegSmallestDistance) {
+                                        zNegSmallestDistance = zNegIntersects[i].distance;
+                                    }
+                                }
+                            }
+
+                            if (xPosSmallestDistance < minAllowed) {
+                                console.log(xPosSmallestDistance);
+                                camera.position.x = lastX;
+                            }
+
+                            if (xNegSmallestDistance < minAllowed) {
+                                console.log(xNegSmallestDistance);
+                                camera.position.x = lastX;
+                            }
+
+                            if (zPosSmallestDistance < minAllowed) {
+                                console.log(zPosSmallestDistance);
+                                camera.position.z = lastZ;
+                            }
+
+                            if (zNegSmallestDistance < minAllowed) {
+                                console.log(zNegSmallestDistance);
+                                camera.position.z = lastZ;
+                            }
+                            ;
                         };
 
 
@@ -368,26 +282,15 @@ angular.module('ng-clockwork.editActions', [])
                         }
 
                         if (actions.moveForward) {
-                            let pos = {};
-                            pos.currX = camera.position.x;
-                            pos.currZ = camera.position.z;
+                            let lastX = camera.position.x;
+                            let lastZ = camera.position.z;
 
-                            pos.forwardSpeed = !actions.moveForwardFast ? constants.USER_MOVE_SPEED : constants.USER_MOVE_FAST_SPEED;
+                            let forwardSpeed = !actions.moveForwardFast ? constants.USER_MOVE_SPEED : constants.USER_MOVE_FAST_SPEED;
 
-                            pos.nextX = camera.position.x - (Math.sin(camera.rotation.y) * pos.forwardSpeed);
-                            pos.nextZ = camera.position.z - (Math.cos(camera.rotation.y) * pos.forwardSpeed);
+                            camera.position.z -= Math.cos(camera.rotation.y) * forwardSpeed;
+                            camera.position.x -= Math.sin(camera.rotation.y) * forwardSpeed;
 
-                            pos.dom = camera.rotation.y;
-
-                            pos.changeX = -(Math.sin(pos.dom) * pos.forwardSpeed);
-                            pos.changeZ = -(Math.cos(pos.dom) * pos.forwardSpeed);
-
-                            _canContinueForward(pos);
-
-                            if (true) {
-                                camera.position.x += pos.changeX;//= pos.nextX;//-= Math.cos(camera.rotation.y) * forwardSpeed;
-                                camera.position.z += pos.changeZ;//= pos.nextZ;//-= Math.sin(camera.rotation.y) * forwardSpeed;
-                            }
+                            _canContinueForward(lastX, lastZ);
 
                         }
                         if (actions.moveObjectForward) {
