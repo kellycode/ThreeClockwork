@@ -14,6 +14,8 @@ angular.module('ng-clockwork.objectLoader', [])
                         var intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
 
                         threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
+                        
+                        console.log(threeScene.selectedObject)
                     },
                     update: function (threeScene, actions) {
                         var currentSelected = threeScene.selectedObject;
@@ -128,6 +130,8 @@ angular.module('ng-clockwork.objectLoader', [])
                         if (canSelect) {
                             this.pickerObjects.push(sceneObject);
                         }
+                        sceneObject.updateMatrixWorld();
+                        
                     },
                     // SELECTABLE OBJECTS
                     _loadMeshMaterial: function (material, textureParams) {

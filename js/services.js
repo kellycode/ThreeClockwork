@@ -72,6 +72,10 @@ angular.module('ng-clockwork.services', [])
                         var children = scene.children;
                         for (var i = 0; i < children.length; i++) {
                             //console.log(children[i])
+                            
+                            if(children[i].type === 'ArrowHelper') {
+                                continue;
+                            }
 
                             templater.updateTemplateMovements(children[i]);
                             
