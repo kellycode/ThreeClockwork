@@ -577,6 +577,9 @@ angular.module('ng-clockwork.templateFactory', [])
                 // Movements (position and scale)
                 // no checks here, every template has a position
                 updateTemplateMovements: function(obj) {
+                    if(!obj.userData.template) {
+                        return;
+                    }
                     obj.userData.template.movements = {};
                     obj.userData.template.movements = {
                         posX: obj.position.x,

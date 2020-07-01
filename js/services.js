@@ -2,26 +2,35 @@
 angular.module('ng-clockwork.services', [])
         .factory('dataService', ['$http', '$httpParamSerializerJQLike', 'templater', function ($http, $httpParamSerializerJQLike, templater) {
                 return {
-                    loadSceneJSON: function (sceneUrl) {
-// TODO scene load can come from a json file, a firebase db or localstorage
-//                        var promise = $http.get(sceneUrl).then(
-//                                function (response) {
-//                                    return response;
-//                                },
-//                                function (response) {
-//                                    console.error('Server returned an error or scene data file load: ' + response.status);
-//                                    return response.status;
-//                        });
-//                        return promise;
-                        
-                        
-                        // my original code was a php call so promise
-                        return Promise.resolve().then(function () {
-                            return JSON.parse(localStorage.getItem('scene_save'));
-                        });
+                    loadSceneJSON: function (sceneUrl, loadFromFile) {
+                        if (loadFromFile) {
+                            var promise = $http.get(sceneUrl).then(
+                                    function (response) {
+                                        return response;
+                                    },
+                                    function (response) {
+                                        console.error('Server returned an error or scene data file load: ' + response.status);
+                                        return response.status;
+                                    });
+                            return promise;
+                        }
+                        else {
+                            return Promise.resolve().then(function () {
+                                return JSON.parse(localStorage.getItem('scene_save'));
+                            });
+                        }
                     },
                     saveSceneJSON: function (scene_json) {
                         localStorage.setItem('scene_save', scene_json);
+                    },
+                    downloadScene: function (content, fileName, contentType) {
+                        var a = document.createElement("a");
+                        var file = new Blob([content], {type: contentType});
+                        a.href = URL.createObjectURL(file);
+                        a.download = fileName;
+                        a.click();
+                        console.log("Processing JSON Data Complete");
+
                     },
                     getAvailableTextures: function () {
                         var serviceUrl = "./textures/textureList.json";
@@ -67,6 +76,10 @@ angular.module('ng-clockwork.services', [])
                         return newArray;
                     },
                     saveScene: function (threeScene) {
+                        
+                        console.log('Save off atm unitl you manage new object adds');
+                        return;
+                        
                         var scene = threeScene.scene;
                         var templateArray = [];
                         var children = scene.children;

@@ -113,7 +113,9 @@ angular.module('ng-clockwork.objectLoader', [])
                         var rotX = template.movements.degX * (Math.PI / 180);
                         var rotY = template.movements.degY * (Math.PI / 180);
                         var rotZ = template.movements.degZ * (Math.PI / 180);
+                        
                         sceneObject.rotation.set(rotX, rotY, rotZ);
+                        
                         // get and set scale from the saved template
                         sceneObject.scale.set(template.movements.scaX, template.movements.scaY, template.movements.scaZ);
                     },
@@ -148,7 +150,7 @@ angular.module('ng-clockwork.objectLoader', [])
                             var texture = loader.load(textureParams.path);
                             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                             texture.repeat.set(textureParams.repeat.width, textureParams.repeat.height);
-                            texture.magFilter = THREE.LinearMipMapLinearFilter;
+                            texture.magFilter = THREE.LinearFilter;  //THREE.NearestFilter
                             tempMat.map = texture;
                         }
 
@@ -353,22 +355,27 @@ angular.module('ng-clockwork.objectLoader', [])
                         });
                     },
                     // STATIS OBJECTS
-                    _loadPerspectiveCamera: function (template) {
-                        var perspectiveCamera = new THREE.PerspectiveCamera(
-                                template.fov,
-                                template.aspect,
-                                template.near,
-                                template.far);
-                                
-                        //template.movements.degY = 0;
+                    _loadPerspectiveCamera: function (template, threeScene) {
+                        
+                        // get and set positions from the saved template
+                        threeScene.camera.position.set(template.movements.posX, template.movements.posY, template.movements.posZ);
+                        
+                        // get rotations from the saved template, convert to radians and set
+                        var rotX = template.movements.degX * (Math.PI / 180);
+                        var rotY = template.movements.degY * (Math.PI / 180);
+                        var rotZ = template.movements.degZ * (Math.PI / 180);
+                        
+                        threeScene.camera.rotation.set(rotX, rotY, rotZ);
 
-                        this._applyMatrix(perspectiveCamera, template);
-
-                        perspectiveCamera.userData.template = template;
-                        this.camera = perspectiveCamera;
-                        this.camera.rotation.order = "YXZ";
+                        threeScene.camera.userData.template = template;
+                        
+                        threeScene.camera.degrees = new THREE.Vector3(
+                                threeScene.camera.userData.template.movements.degX,
+                                threeScene.camera.userData.template.movements.degY,
+                                threeScene.camera.userData.template.movements.degZ);
+                        
+                        threeScene.camera.rotation.order = "YXZ";
                         // add as appropriate
-                        this._addSceneObject(perspectiveCamera, false);
                     },
                     _loadAmbientLight: function (template) {
                         var ambLight = new THREE.AmbientLight(template.color);
@@ -489,16 +496,16 @@ angular.module('ng-clockwork.objectLoader', [])
                                     this._loadThreeType(this.sceneData[i]);
                                     break;
                                 case 'PerspectiveCamera':
-                                    this._loadPerspectiveCamera(this.sceneData[i]);
+                                    this._loadPerspectiveCamera(this.sceneData[i], threeScene);
                                     break;
                                 case 'AmbientLight':
-                                    this._loadAmbientLight(this.sceneData[i]);
+                                    //this._loadAmbientLight(this.sceneData[i]);
                                     break;
                                 case 'Collada':
                                     this._loadCollada(this.sceneData[i]);
                                     break;
                                 case 'DirectionalLight':
-                                    this._loadDirectionalLight(this.sceneData[i]);
+                                    //this._loadDirectionalLight(this.sceneData[i]);
                                     break;
                                 case 'ShaderSkybox':
                                     this._loadShaderSkybox(this.sceneData[i]);
@@ -513,7 +520,7 @@ angular.module('ng-clockwork.objectLoader', [])
                                     console.log("No handler for: " + this.sceneData[i].type);
                             }
                         }
-                        return this.camera;
+                        //return this.camera;
                     },
                     select: function (intersects, currentSelected, scene) {
                         if (intersects.length > 0)

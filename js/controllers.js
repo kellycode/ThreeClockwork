@@ -39,8 +39,8 @@ angular.module('ng-clockwork.controllers', [])
                     }
                 };
             }])
-        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene',
-            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene) {
+        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics',
+            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics) {
 
                 $scope.handleMousedown = function (event) {
                     if ($scope.editorVisible) {
@@ -51,16 +51,23 @@ angular.module('ng-clockwork.controllers', [])
                 $scope.$on('saveScene', function (e) {
                     editEvents.actions.fileSave = true;
                 });
+                
+                //cannonPhysics.initPhysics();
+                let loadControls = false;
+                let loadGround = false;
 
                 // start the scene and load it
-                threeScene.init($element);
-                dataService.loadSceneJSON("./json/scene1.json?v=12").then(function (response) {
+                threeScene.init($element, loadGround, loadControls);
+                
+                let loadFromFile = false;
+                
+                dataService.loadSceneJSON("./json/scene1.json?v=12", loadFromFile).then(function (response) {
                     if (!response) {
                         console.error('File load error 1.  File could not be found. Error: ' + response.status);
                     }
                     else {
-                        threeScene.sceneData = response;
-                        threeScene.camera = objectStore.loadScene(threeScene);
+                        threeScene.sceneData = loadFromFile ? response.data : response;
+                        objectStore.loadScene(threeScene);
                         threeScene.ready = true;
                         $scope.animate();
                     }
