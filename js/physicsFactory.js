@@ -20,10 +20,13 @@ angular.module('ng-clockwork.physicsFactory', [])
 
                         let split = true;
 
-                        if (split)
+                        if (split) {
                             this.world.solver = new CANNON.SplitSolver(this.solver);
-                        else
+                        }
+                        else {
                             this.world.solver = this.solver;
+                        }
+
 
                         this.world.gravity.set(0, -20, 0);
                         this.world.broadphase = new CANNON.NaiveBroadphase();
@@ -31,11 +34,15 @@ angular.module('ng-clockwork.physicsFactory', [])
                         // Create a slippery material (friction coefficient = 0.0)
                         this.physicsMaterial = new CANNON.Material("slipperyMaterial");
 
-                        var physicsContactMaterial = new CANNON.ContactMaterial(this.physicsMaterial,
-                                this.physicsMaterial,
-                                0.0, // friction coefficient
-                                0.3  // restitution
-                                );
+                        let options = {
+                            friction: 0.3,
+                            restitution: 0.3,
+                            contactEquationStiffness: 1e7,
+                            contactEquationRelaxation: 3,
+                            frictionEquationStiffness: 1e7,
+                            frictionEquationRelaxation: 3
+                        };
+                        var physicsContactMaterial = new CANNON.ContactMaterial(this.physicsMaterial, this.physicsMaterial, options);
 
                         // We must add the contact materials to the world
                         this.world.addContactMaterial(physicsContactMaterial);

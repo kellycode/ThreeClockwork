@@ -4,7 +4,7 @@
  */
 let CannonControls = function (camera, sphereCannonBody) {
 
-    let velocityFactor = 0.2;
+    let velocityFactor = 0.008;
     let jumpVelocity = 20;
 
     let pitchObject = new THREE.Object3D();

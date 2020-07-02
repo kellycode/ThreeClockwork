@@ -42,6 +42,10 @@ angular.module('ng-clockwork.controllers', [])
         .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics',
             function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics) {
 
+                let time = Date.now();
+                let dt = 1 / 60;
+                let areActive = true;
+
                 $scope.handleMousedown = function (event) {
                     if ($scope.editorVisible) {
                         $scope.intersects = objectStore.objectSelect(event, threeScene);
@@ -51,16 +55,16 @@ angular.module('ng-clockwork.controllers', [])
                 $scope.$on('saveScene', function (e) {
                     editEvents.actions.fileSave = true;
                 });
-                
-                //cannonPhysics.initPhysics();
-                let loadControls = false;
-                let loadGround = false;
+
+                cannonPhysics.initPhysics();
+                let loadControls = true;
+                let loadGround = true;
 
                 // start the scene and load it
                 threeScene.init($element, loadGround, loadControls);
-                
+
                 let loadFromFile = false;
-                
+
                 dataService.loadSceneJSON("./json/scene1.json?v=12", loadFromFile).then(function (response) {
                     if (!response) {
                         console.error('File load error 1.  File could not be found. Error: ' + response.status);
@@ -75,15 +79,30 @@ angular.module('ng-clockwork.controllers', [])
 
                 // the render and update section
                 $scope.animate = function () {
+
                     $scope.stats.update();
                     objectEditor.update(threeScene, editEvents.actions);
                     objectStore.update(threeScene, editEvents.actions);
+
+                    cannonPhysics.world.step(dt);
+
+                    threeScene.controls.update(Date.now() - time);
+
                     if (editEvents.actions.fileSave) {
                         editEvents.actions.fileSave = false;
                         dataService.saveScene(threeScene);
                     }
+
+
+
                     requestAnimationFrame($scope.animate);
-                    $scope.render();
+
+
+
+                    threeScene.renderer.render(threeScene.scene, threeScene.camera);
+
+                    //requestAnimationFrame($scope.animate);
+                    //$scope.render();
                 };
 
                 $scope.render = function () {

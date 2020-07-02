@@ -14,9 +14,8 @@ angular.module('ng-clockwork',
             'ng-clockwork.editActions',
             'ng-clockwork.sceneFactory',
             'ng-clockwork.physicsFactory',
+            'ng-clockwork.cannonControlsFactory',
             'ng-clockwork.utilFactory',
             'ng-clockwork.templateFactory',
-            //'monospaced.mousewheel',
-            //'colorpicker.module',
             'ui.bootstrap'
         ]);

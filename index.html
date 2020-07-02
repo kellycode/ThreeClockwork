@@ -19,8 +19,8 @@
         
     </head>
     <body resize
-          ng-controller="ClockworkController""
-          ng-keydown="handleKeydown($event);" ng-keyup="handleKeyup($event);">
+          ng-controller="ClockworkController">
+<!--          ng-keydown="handleKeydown($event);" ng-keyup="handleKeyup($event);">-->
 
         <div id="clockworkTools" data-clockwork-tools></div>
 
@@ -29,8 +29,8 @@
         <div id="clockwork"
              mouse-look
              tabindex="0"
-             ng-controller="SceneController"
-             ng-mousedown="handleMousedown($event);"></div>
+             ng-controller="SceneController"></div>
+<!--             ng-mousedown="handleMousedown($event);"></div>-->
 
         <div data-object-edit-panel id="objectEditPanel" ng-show="editorVisible"></div>
 
@@ -49,8 +49,9 @@
 
         <script src="libs/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
         
-        <script src="libs/cannon.js-0.6.2/cannon.min.js" type="text/javascript"></script>
-        <script src="js/CannonControls.js" type="text/javascript"></script>
+<!--        <script src="libs/cannon.js-0.6.2/cannon.min.js" type="text/javascript"></script>-->
+        <script src="libs/cannon.js-0.6.2/cannon.js" type="text/javascript"></script>
+<!--        <script src="js/CannonControls.js" type="text/javascript"></script>-->
 
         <!-- Minified-->
         <!--        <script src="build/clockwork.min.js"></script>-->
@@ -66,6 +67,7 @@
         <script src="js/editActions.js" type="text/javascript"></script>
         <script src="js/sceneFactory.js" type="text/javascript"></script>
         <script src="js/physicsFactory.js" type="text/javascript"></script>
+        <script src="js/cannonControlsFactory.js" type="text/javascript"></script>
         <script src="js/boxFactory.js" type="text/javascript"></script>
         <script src="js/bulletFactory.js" type="text/javascript"></script>
         <script src="js/utilFactory.js" type="text/javascript"></script>

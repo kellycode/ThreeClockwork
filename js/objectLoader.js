@@ -185,9 +185,13 @@ angular.module('ng-clockwork.objectLoader', [])
                                 template.geometry.widthSegments,
                                 template.geometry.heightSegments,
                                 template.geometry.depthSegments);
+                                
                         var sceneObject = new THREE.Mesh(
                                 boxGeometry,
                                 this._loadMeshMaterial(template.material, template.texture));
+                                
+                        sceneObject.castShadow = true;
+                        sceneObject.receiveShadow = true;
 
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
@@ -430,6 +434,8 @@ angular.module('ng-clockwork.objectLoader', [])
                         var groundGeometry = new THREE.PlaneBufferGeometry(template.geometry.width, template.geometry.height);
                         var ground = new THREE.Mesh(groundGeometry, this._loadMeshMaterial(template.material, template.texture));
                         ground.position.y = 0;
+                        ground.castShadow = false;
+                        ground.receiveShadow = true;
                         ground.rotation.x = -Math.PI / 2;
                         ground.userData.clockworkType = 'ClockworkGround';
                         ground.userData.template = template;

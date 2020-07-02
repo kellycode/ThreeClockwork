@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ng-clockwork.sceneFactory', [])
-        .factory('threeScene', ['cannonPhysics', function (cannonPhysics) {
+        .factory('threeScene', ['cannonControls', 'cannonPhysics',  function (cannonControls, cannonPhysics) {
                 return {
                     // clickable objects
                     pickerObjects: [],
@@ -53,22 +53,23 @@ angular.module('ng-clockwork.sceneFactory', [])
                         //dscene.add(helper);
 
                         if (loadControls) {
-                            this.controls = new CannonControls(this.camera, cannonPhysics.sphereCannonBody);
+                            this.controls = cannonControls.initControls(this.camera, cannonPhysics.sphereCannonBody);
+                            //this.controls = new CannonControls(this.camera, cannonPhysics.sphereCannonBody);
                             this.scene.add(this.controls.getObject());
                         }
 
                         // floor
-                        this.geometry = new THREE.PlaneBufferGeometry(300, 300, 50, 50);
-                        this.geometry.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
-
-                        this.genericMaterial = new THREE.MeshLambertMaterial({color: 0xdddddd});
-
-                        if (loadGround) {
-                            this.groundMesh = new THREE.Mesh(this.geometry, this.genericMaterial);
-                            this.groundMesh.castShadow = false;
-                            this.groundMesh.receiveShadow = true;
-                            this.scene.add(this.groundMesh);
-                        }
+//                        this.geometry = new THREE.PlaneBufferGeometry(300, 300, 50, 50);
+//                        this.geometry.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
+//
+//                        this.genericMaterial = new THREE.MeshLambertMaterial({color: 0xdddddd});
+//
+//                        if (loadGround) {
+//                            this.groundMesh = new THREE.Mesh(this.geometry, this.genericMaterial);
+//                            this.groundMesh.castShadow = false;
+//                            this.groundMesh.receiveShadow = true;
+//                            this.scene.add(this.groundMesh);
+//                        }
 
 
                         // renderer
