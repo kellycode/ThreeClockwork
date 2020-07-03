@@ -8,7 +8,7 @@ angular.module('ng-clockwork.sceneFactory', [])
                     selectedObject: null,
                     intersects: null,
                     ready: false,
-                    init: function ($element, loadGround, loadControls) {
+                    init: function ($element, loadControls) {
                         this.viewDimensions = {
                             width: $element[0].offsetWidth,
                             height: $element[0].offsetHeight
@@ -29,7 +29,7 @@ angular.module('ng-clockwork.sceneFactory', [])
                         //light = new THREE.SpotLight(0xffffff);
                         this.light = new THREE.DirectionalLight('#ffffff', 1);
 
-                        this.light.position.set(100, 100, 50);
+                        this.light.position.set(50, 50, -10);
                         //light.target.position.set(0, 0, 0);
 
                         // do we want shadows
@@ -80,6 +80,10 @@ angular.module('ng-clockwork.sceneFactory', [])
                         this.renderer.setSize(this.viewDimensions.width, this.viewDimensions.height);
 
                         $element.append(this.renderer.domElement);
+                        
+                        this.renderer.domElement.addEventListener('contextmenu', function (e) {
+                            e.preventDefault();
+                        });
 
                         window.addEventListener('resize', function () {
                             this.camera.aspect = window.innerWidth / window.innerHeight;

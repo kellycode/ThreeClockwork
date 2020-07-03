@@ -57,6 +57,7 @@ angular.module('ng-clockwork.directives', [])
                     }
                 };
             }])
+        // mouse-look attribute
         .directive('mouseLook', ['$document', 'editEvents', function ($document, editEvents) {
                 return {
                     link: function (scope, element, attr) {

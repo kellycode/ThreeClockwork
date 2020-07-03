@@ -187,12 +187,8 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             }
                         };
 
-                        //document.addEventListener('mousemove', onMouseMove, false);
                         document.addEventListener('mouseup', this.onMouseButtonUp, false);
-                        document.addEventListener('mousedown', this.onMouseButtonDown, false);
                         document.addEventListener('wheel', this.onMouseWheel, false);
-                        document.addEventListener('keydown', this.onKeyDown, false);
-                        document.addEventListener('keyup', this.onKeyUp, false);
 
                         this.getObject = function () {
                             return _this.yawObject;

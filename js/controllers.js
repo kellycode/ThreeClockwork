@@ -10,13 +10,13 @@ angular.module('ng-clockwork.controllers', [])
                 $scope.speedStatus = '';
                 $scope.editorVisible = false;
 
-                $scope.handleKeydown = function (event) {
-                    editEvents.keyDown(event, editEvents.actions);
-                };
+//                $scope.handleKeydown = function (event) {
+//                    editEvents.keyDown(event, editEvents.actions);
+//                };
 
-                $scope.handleKeyup = function (event) {
-                    editEvents.keyUp(event, editEvents.actions);
-                };
+//                $scope.handleKeyup = function (event) {
+//                    editEvents.keyUp(event, editEvents.actions);
+//                };
 
                 $scope.saveScene = function () {
                     $scope.$broadcast('saveScene');
@@ -39,8 +39,8 @@ angular.module('ng-clockwork.controllers', [])
                     }
                 };
             }])
-        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics',
-            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics) {
+        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls',
+            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics, cannonControls) {
 
                 let time = Date.now();
                 let dt = 1 / 60;
@@ -49,19 +49,30 @@ angular.module('ng-clockwork.controllers', [])
                 $scope.handleMousedown = function (event) {
                     if ($scope.editorVisible) {
                         $scope.intersects = objectStore.objectSelect(event, threeScene);
+                    } else {
+                        cannonControls.onMouseButtonDown(event);
                     }
+                };
+                
+                $scope.handleKeydown = function (event) {
+                    //editEvents.keyDown(event, editEvents.actions);
+                    cannonControls.onKeyDown(event);
+                };
+                
+                $scope.handleKeyup = function (event) {
+                    //editEvents.keyUp(event, editEvents.actions);
+                    cannonControls.onKeyUp(event);
                 };
 
                 $scope.$on('saveScene', function (e) {
-                    editEvents.actions.fileSave = true;
+                    editEvents.actions.fileSave = true;w
                 });
 
                 cannonPhysics.initPhysics();
                 let loadControls = true;
-                let loadGround = true;
 
                 // start the scene and load it
-                threeScene.init($element, loadGround, loadControls);
+                threeScene.init($element, loadControls);
 
                 let loadFromFile = false;
 
