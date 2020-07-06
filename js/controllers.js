@@ -47,11 +47,11 @@ angular.module('ng-clockwork.controllers', [])
                 let areActive = true;
 
                 $scope.handleMousedown = function (event) {
-                    //if ($scope.editorVisible) {
+                    if ($scope.editorVisible) {
                         $scope.intersects = objectStore.objectSelect(event, threeScene);
-                    //} else {
+                    } else {
                         cannonControls.onMouseButtonDown(event);
-                    //}
+                    }
                 };
                 
                 $scope.handleKeydown = function (event) {
@@ -65,7 +65,7 @@ angular.module('ng-clockwork.controllers', [])
                 };
 
                 $scope.$on('saveScene', function (e) {
-                    editEvents.actions.fileSave = true;w
+                    editEvents.actions.fileSave = true;
                 });
 
                 cannonPhysics.initPhysics();
@@ -99,26 +99,17 @@ angular.module('ng-clockwork.controllers', [])
                     objectStore.update(threeScene, editEvents.actions);
                     
                     boxFactory.update();
-
                     cannonPhysics.world.step(dt);
-
                     threeScene.controls.update(Date.now() - time);
 
                     if (editEvents.actions.fileSave) {
-                        editEvents.actions.fileSave = false;
+                        //editEvents.actions.fileSave = false;
                         dataService.saveScene(threeScene);
+                        editEvents.actions.fileSave = false;
                     }
-
-
-
+                    
                     requestAnimationFrame($scope.animate);
-
-
-
                     threeScene.renderer.render(threeScene.scene, threeScene.camera);
-
-                    //requestAnimationFrame($scope.animate);
-                    //$scope.render();
                 };
 
                 $scope.render = function () {

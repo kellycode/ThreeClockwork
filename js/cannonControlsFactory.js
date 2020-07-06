@@ -27,13 +27,12 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                     upAxis: null,
 
                     initControls: function (camera, sphereCannonBody) {
+                        // camera is synced with these collision objects during update
                         this.pitchObject = new THREE.Object3D();
-                        this.pitchObject.add(camera);
-
                         this.yawObject = new THREE.Object3D();
                         this.yawObject.add(this.pitchObject);
-
-                        this.yawObject.position.y = 1;
+                        // start a little above ground
+                        this.yawObject.position.y = 3;
 
                         this.quat = new THREE.Quaternion();
 
@@ -66,11 +65,10 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         };
 
                         sphereCannonBody.addEventListener("collide", this.handleSphereCollide);
-
                         this.velocity = sphereCannonBody.velocity;
 
-                        // TODO switch this back to right mouse look
-                        this.watchScrolling = function (event) {
+                        // makes scrolling work like key up/down
+                        let watchScrolling = function (event) {
                             // Clear our timeout throughout the scroll
                             window.clearTimeout(_this.isScrolling);
                             // Set a timeout to run after scrolling ends
@@ -100,7 +98,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                                     _this.moveForward = true;
                                     break;
 
-                                case 37: // left
+                                case 81: // left q
                                     _this.moveLeft = true;
                                     break;
 
@@ -109,7 +107,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                                     _this.moveBackward = true;
                                     break;
 
-                                case 39: // right
+                                case 69: // right e
                                     _this.moveRight = true;
                                     break;
 
@@ -138,7 +136,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                                     _this.moveForward = false;
                                     break;
 
-                                case 37: // left
+                                case 81: // left q
                                     _this.moveLeft = false;
                                     break;
 
@@ -147,7 +145,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                                     _this.moveBackward = false;
                                     break;
 
-                                case 39: // right
+                                case 69: // right e
                                     _this.moveRight = false;
                                     break;
 
@@ -188,6 +186,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         };
 
                         document.addEventListener('mouseup', this.onMouseButtonUp, false);
+                        // may use the wheel for something else
                         document.addEventListener('wheel', this.onMouseWheel, false);
 
                         this.getObject = function () {
@@ -262,6 +261,11 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             this.velocity.z += inputVelocity.z;
 
                             this.yawObject.position.copy(sphereCannonBody.position);
+                            
+                            camera.position.copy(this.yawObject.position);
+                            //camera.rotation.y = this.yawObject.rotation.y;
+                            //camera.rotation.x = this.pitchObject.rotation.x;
+                            //this.camera.position
                            
                         };
 

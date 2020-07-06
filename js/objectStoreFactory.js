@@ -10,34 +10,8 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                         var vector = new THREE.Vector3();
                         vector.set((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
                         vector.unproject(camera);
-                        
-                        
-                        camera.updateMatrixWorld();
-                        let posVector = new THREE.Vector3();
-                        posVector = camera.getWorldPosition(posVector);
-                        
-                        let dirVector = new THREE.Vector3();
-                        dirVector = camera.getWorldDirection(dirVector);
-                        dirVector.normalize();
-                        
-                         if (threeScene.scene.mArrow) {
-                            threeScene.scene.remove(threeScene.scene.mArrow);
-                        }
-
-                        console.log(camera.position)
-
-                        threeScene.scene.mArrow = new THREE.ArrowHelper(vector, camera.position, 5, 0x00ff00);
-
-                        threeScene.scene.add(threeScene.scene.mArrow);
-                        
-                        
-                        
-                        
-                        threeScene.pickerRaycaster.ray.set(posVector, dirVector);
+                        threeScene.pickerRaycaster.ray.set(camera.position, vector.sub(camera.position).normalize());
                         var intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
-
-
-                        
 
                         threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
 
@@ -442,21 +416,63 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                     },
                     // img order fr bk up dn lf rt
                     _loadShaderSkybox: function (template) {
-//                var loader = new THREE.CubeTextureLoader();
-//                var cubemap = loader.load(template.images);
-//                cubemap.mapping = THREE.CubeRefractionMapping;
-//                this.scene.background = cubemap;
 
-                        this.scene.background = new THREE.CubeTextureLoader()
-                                .setPath('assets/skybox/meadow/')
-                                .load(['meadow_ft.jpg', 'meadow_bk.jpg', 'meadow_up.jpg', 'meadow_dn.jpg', 'meadow_rt.jpg', 'meadow_lf.jpg']);
+                        this.scene.background = new THREE.Color().setHSL(0.6, 0, 1);
+                        this.scene.fog = new THREE.Fog(this.scene.background, 1, 5000);
+
+//                        this.scene.background = new THREE.CubeTextureLoader()
+//                                .setPath('assets/skybox/meadow/')
+//                                .load(['meadow_ft.jpg', 'meadow_bk.jpg', 'meadow_up.jpg', 'meadow_dn.jpg', 'meadow_rt.jpg', 'meadow_lf.jpg']);
                         //.load(['dark-s_px.jpg', 'dark-s_nx.jpg', 'dark-s_py.jpg', 'dark-s_ny.jpg', 'dark-s_pz.jpg', 'dark-s_nz.jpg']);
                         //.load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
-
+                        this.scene.userData.template = template;
+                        this.scene.userData.template.type = 'ShaderSkybox';
                         this.scene.userData.background = template;
                     },
-                    _loadGround: function (template) {
+                    _loadGround: function () {
+                        let template = {
+                            "geometry": {
+                                "width": 500,
+                                "height": 500,
+                                "type": "PlaneBufferGeometry"
+                            },
+                            "material": {
+                                "color": "#333333",
+                                "emissive": "#000000",
+                                "fog": true,
+                                "name": "",
+                                "opacity": 1,
+                                "reflectivity": 1,
+                                "refractionRatio": 0.98,
+                                "flatShading": false,
+                                "side": 0,
+                                "transparent": false,
+                                "type": "MeshLambertMaterial",
+                                "vertexColors": 0,
+                                "visible": true
+                            },
+                            "texture": {
+                                "anisotropy": 1,
+                                "path": "./textures/grasslight-big.jpg",
+                                "repeat": {
+                                    "height": 100,
+                                    "width": 100
+                                }
+                            },
+                            "type": "ClockworkGround",
+                            "movements": {
+                                "posX": 0,
+                                "posY": 0,
+                                "posZ": 0,
+                                "degX": -90,
+                                "degY": 0,
+                                "degZ": 0,
+                                "scaX": 1,
+                                "scaY": 1,
+                                "scaZ": 1
+                            }
+                        };
                         var groundGeometry = new THREE.PlaneBufferGeometry(template.geometry.width, template.geometry.height);
                         var ground = new THREE.Mesh(groundGeometry, this._loadMeshMaterial(template.material, template.texture));
                         ground.position.y = 0;
@@ -521,6 +537,7 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                         this.sceneData = threeScene.sceneData;
                         this.scene = threeScene.scene;
                         this.pickerObjects = threeScene.pickerObjects;
+                        this._loadGround();
                         // first load all of the THREE items
                         for (var i = 0; i < this.sceneData.length; i++) {
                             switch (this.sceneData[i].type) {
@@ -544,9 +561,6 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                                     break;
                                 case 'SimpleSkybox':
                                     this._loadSimpleSkybox(this.sceneData[i]);
-                                    break;
-                                case 'ClockworkGround':
-                                    this._loadGround(this.sceneData[i]);
                                     break;
                                 default:
                                     console.log("No handler for: " + this.sceneData[i].type);

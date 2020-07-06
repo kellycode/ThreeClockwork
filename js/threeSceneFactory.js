@@ -17,14 +17,15 @@ angular.module('ng-clockwork.threeSceneFactory', [])
                         this.pickerRaycaster = new THREE.Raycaster();
 
                         this.scene = new THREE.Scene();
-                        this.scene.fog = new THREE.Fog(0xff0000, 0, 500);
+                        this.scene.fog = new THREE.Fog(0xc0c0c0, 0, 500);
+                        //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0, 10 );
 
                         this.ambient = new THREE.AmbientLight('#d8e7e8');
                         this.scene.add(this.ambient);
 
                         this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-                        var helper = new THREE.CameraHelper(this.camera);
-                        this.scene.add(helper);
+                        //var helper = new THREE.CameraHelper(this.camera);
+                        //this.scene.add(helper);
 
                         //light = new THREE.SpotLight(0xffffff);
                         this.light = new THREE.DirectionalLight('#ffffff', 1);
@@ -54,7 +55,7 @@ angular.module('ng-clockwork.threeSceneFactory', [])
 
                         if (loadControls) {
                             this.controls = cannonControls.initControls(this.camera, cannonPhysics.sphereCannonBody);
-                            //this.controls = new CannonControls(this.camera, cannonPhysics.sphereCannonBody);
+                            // this is the collision object used by controls
                             this.scene.add(this.controls.getObject());
                         }
 

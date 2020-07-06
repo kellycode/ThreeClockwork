@@ -593,20 +593,14 @@ angular.module('ng-clockwork.templateFactory', [])
                         scaZ: obj.scale.z
                     };
                 },
+                // not used atm
                 updateShaderSkybox: function(obj) {
-                    //template.geometry.width,
-                    //template.geometry.height,
-                    //template.geometry.depth,
-                    //template.geometry.widthSegments,
-                    //template.geometry.heightSegments,
-                    //template.geometry.depthSegments
                     obj.userData.template.geometry.width = obj.geometry.parameters.width;
                     obj.userData.template.geometry.height = obj.geometry.parameters.height;
                     obj.userData.template.geometry.depth = obj.geometry.parameters.depth;
                     obj.userData.template.geometry.widthSegments = obj.geometry.parameters.widthSegments;
                     obj.userData.template.geometry.heightSegments = obj.geometry.parameters.heightSegments;
                     obj.userData.template.geometry.depthSegments = obj.geometry.parameters.depthSegments;
-                    //obj.userData.template.geometry = obj.geometry.parameters;
                 },
                 updateSimpleSkybox: function(obj) {
 

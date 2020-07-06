@@ -57,7 +57,7 @@ angular.module('ng-clockwork.services', [])
                                         let name = url[url.length - 1].split(".")[0];
                                         modelArray.push({'path': key, 'name': name});
                                     }
-                                    
+
                                     return modelArray;
                                 },
                                 function (response) {
@@ -76,37 +76,38 @@ angular.module('ng-clockwork.services', [])
                         return newArray;
                     },
                     saveScene: function (threeScene) {
-                        
-                        console.log('Save off atm unitl you manage new object adds');
-                        return;
-                        
+
+                        //console.log('Save off atm unitl you manage new object adds');
+                        //return;
+
                         var scene = threeScene.scene;
                         var templateArray = [];
-                        var children = scene.children;
+                        var children = threeScene.pickerObjects;
                         for (var i = 0; i < children.length; i++) {
-                            //console.log(children[i])
-                            
-                            if(children[i].type === 'ArrowHelper') {
+                            console.log(children[i])
+
+                            if (children[i].type === 'ArrowHelper') {
                                 continue;
                             }
 
                             templater.updateTemplateMovements(children[i]);
-                            
-                            if(scene.userData.background) {
+
+                            if (scene.userData.background) {
                                 templateArray.push(scene.userData.background);
                             }
-                            
+
                             // handle clockwork specials
-                            if (children[i].userData.template.type === 'ShaderSkybox') {
-                                templater.updateShaderSkybox(children[i]);
+                            if (children[i].userData.template) {
+                                if (children[i].userData.template.type === 'ShaderSkybox') {
+                                    //templater.updateShaderSkybox(children[i]);
+                                }
                             }
-                            else if (children[i].userData.template.type === 'SimpleSkybox') {
-                                console.log('SimpleSkybox');
-                            }
-                            else if (children[i].userData.template.type === 'ClockworkGround') {
-                                templater.updateMeshGeometry(children[i]);
-                                templater.updateMeshTemplateMaterial(children[i]);
-                                templater.updateMeshTemplateTexture(children[i]);
+                            else if (children[i].userData.template) {
+                                if (children[i].userData.template.type === 'ClockworkGround') {
+                                    templater.updateMeshGeometry(children[i]);
+                                    templater.updateMeshTemplateMaterial(children[i]);
+                                    templater.updateMeshTemplateTexture(children[i]);
+                                }
                             }
                             else {
                                 if (children[i].type === 'Mesh') {
