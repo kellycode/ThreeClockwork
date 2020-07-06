@@ -416,9 +416,9 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                     },
                     // img order fr bk up dn lf rt
                     _loadShaderSkybox: function (template) {
-
-                        this.scene.background = new THREE.Color().setHSL(0.6, 0, 1);
-                        this.scene.fog = new THREE.Fog(this.scene.background, 1, 5000);
+                        // experiment
+                        this.scene.background = new THREE.Color(0xc0c0ff);
+                        this.scene.fog = new THREE.Fog(this.scene.background, 1, 250);
 
 //                        this.scene.background = new THREE.CubeTextureLoader()
 //                                .setPath('assets/skybox/meadow/')

@@ -31,6 +31,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         this.pitchObject = new THREE.Object3D();
                         this.yawObject = new THREE.Object3D();
                         this.yawObject.add(this.pitchObject);
+                        this.pitchObject.add(camera);
                         // start a little above ground
                         this.yawObject.position.y = 3;
 
@@ -260,13 +261,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             this.velocity.x += inputVelocity.x;
                             this.velocity.z += inputVelocity.z;
 
-                            this.yawObject.position.copy(sphereCannonBody.position);
-                            
-                            camera.position.copy(this.yawObject.position);
-                            //camera.rotation.y = this.yawObject.rotation.y;
-                            //camera.rotation.x = this.pitchObject.rotation.x;
-                            //this.camera.position
-                           
+                            this.yawObject.position.copy(sphereCannonBody.position);                           
                         };
 
                         return this;

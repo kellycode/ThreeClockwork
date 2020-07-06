@@ -39,8 +39,8 @@ angular.module('ng-clockwork.controllers', [])
                     }
                 };
             }])
-        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls', 'boxFactory',
-            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics, cannonControls, boxFactory) {
+        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls', 'boxFactory', 'bulletFactory',
+            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics, cannonControls, boxFactory, bulletFactory) {
 
                 let time = Date.now();
                 let dt = 1 / 60;
@@ -51,6 +51,7 @@ angular.module('ng-clockwork.controllers', [])
                         $scope.intersects = objectStore.objectSelect(event, threeScene);
                     } else {
                         cannonControls.onMouseButtonDown(event);
+                        bulletFactory.addBullet();
                     }
                 };
                 
@@ -89,6 +90,7 @@ angular.module('ng-clockwork.controllers', [])
                 });
                 
                 boxFactory.initBoxes();
+                bulletFactory.initBullets();
 
                 // the render and update section
                 $scope.animate = function () {
@@ -99,6 +101,8 @@ angular.module('ng-clockwork.controllers', [])
                     objectStore.update(threeScene, editEvents.actions);
                     
                     boxFactory.update();
+                    bulletFactory.update();
+
                     cannonPhysics.world.step(dt);
                     threeScene.controls.update(Date.now() - time);
 

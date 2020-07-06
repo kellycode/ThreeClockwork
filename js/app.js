@@ -16,6 +16,7 @@ angular.module('ng-clockwork',
             'ng-clockwork.physicsFactory',
             'ng-clockwork.cannonControlsFactory',
             'ng-clockwork.boxFactory',
+            'ngClockworkApp.bulletFactory',
             'ng-clockwork.utilFactory',
             'ng-clockwork.templateFactory',
             'ui.bootstrap'
