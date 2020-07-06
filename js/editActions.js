@@ -8,12 +8,6 @@ angular.module('ng-clockwork.editActions', [])
                         var camera = threeScene.camera;
                         var currentSelected = threeScene.selectedObject;
                         var constants = this.constants;
-                        var count = 0;
-                        var jrArrow;
-                        var mArrow;
-                        var jlArrow;
-                        var zArrow;
-                        var xArrow;
 
                         var _resetObjectRotations = function () {
                             currentSelected.degrees.x = 0;

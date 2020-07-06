@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ng-clockwork.sceneFactory', [])
-        .factory('threeScene', ['cannonControls', 'cannonPhysics',  function (cannonControls, cannonPhysics) {
+angular.module('ng-clockwork.threeSceneFactory', [])
+        .factory('threeScene', ['cannonControls', 'cannonPhysics', function (cannonControls, cannonPhysics) {
                 return {
                     // clickable objects
                     pickerObjects: [],
@@ -16,15 +16,15 @@ angular.module('ng-clockwork.sceneFactory', [])
 
                         this.pickerRaycaster = new THREE.Raycaster();
 
-                        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-
-                        this.scene = new THREE.Scene();
-
                         this.scene = new THREE.Scene();
                         this.scene.fog = new THREE.Fog(0xff0000, 0, 500);
 
                         this.ambient = new THREE.AmbientLight('#d8e7e8');
                         this.scene.add(this.ambient);
+
+                        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+                        var helper = new THREE.CameraHelper(this.camera);
+                        this.scene.add(helper);
 
                         //light = new THREE.SpotLight(0xffffff);
                         this.light = new THREE.DirectionalLight('#ffffff', 1);
@@ -62,7 +62,7 @@ angular.module('ng-clockwork.sceneFactory', [])
 //                        this.geometry = new THREE.PlaneBufferGeometry(300, 300, 50, 50);
 //                        this.geometry.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
 //
-//                        this.genericMaterial = new THREE.MeshLambertMaterial({color: 0xdddddd});
+                        this.genericMaterial = new THREE.MeshLambertMaterial({color: 0xdddddd});
 //
 //                        if (loadGround) {
 //                            this.groundMesh = new THREE.Mesh(this.geometry, this.genericMaterial);
@@ -80,7 +80,7 @@ angular.module('ng-clockwork.sceneFactory', [])
                         this.renderer.setSize(this.viewDimensions.width, this.viewDimensions.height);
 
                         $element.append(this.renderer.domElement);
-                        
+
                         this.renderer.domElement.addEventListener('contextmenu', function (e) {
                             e.preventDefault();
                         });

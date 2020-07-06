@@ -39,19 +39,19 @@ angular.module('ng-clockwork.controllers', [])
                     }
                 };
             }])
-        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls',
-            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics, cannonControls) {
+        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls', 'boxFactory',
+            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics, cannonControls, boxFactory) {
 
                 let time = Date.now();
                 let dt = 1 / 60;
                 let areActive = true;
 
                 $scope.handleMousedown = function (event) {
-                    if ($scope.editorVisible) {
+                    //if ($scope.editorVisible) {
                         $scope.intersects = objectStore.objectSelect(event, threeScene);
-                    } else {
+                    //} else {
                         cannonControls.onMouseButtonDown(event);
-                    }
+                    //}
                 };
                 
                 $scope.handleKeydown = function (event) {
@@ -87,13 +87,18 @@ angular.module('ng-clockwork.controllers', [])
                         $scope.animate();
                     }
                 });
+                
+                boxFactory.initBoxes();
 
                 // the render and update section
                 $scope.animate = function () {
 
                     $scope.stats.update();
+                    
                     objectEditor.update(threeScene, editEvents.actions);
                     objectStore.update(threeScene, editEvents.actions);
+                    
+                    boxFactory.update();
 
                     cannonPhysics.world.step(dt);
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngClockworkApp.boxFactory', [])
+angular.module('ng-clockwork.boxFactory', [])
         .factory('boxFactory', ['cannonPhysics', 'threeScene', function (cannonPhysics, threeScene) {
                 return {
                     boxBodies: [],

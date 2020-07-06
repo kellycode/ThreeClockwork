@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ng-clockwork.objectLoader', [])
+angular.module('ng-clockwork.objectStoreFactory', [])
         .factory('objectStore', ['objectUtils', function (objectUtils) {
                 return {
                     objectSelect: function (event, threeScene) {
@@ -10,11 +10,37 @@ angular.module('ng-clockwork.objectLoader', [])
                         var vector = new THREE.Vector3();
                         vector.set((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
                         vector.unproject(camera);
-                        threeScene.pickerRaycaster.ray.set(camera.position, vector.sub(camera.position).normalize());
+                        
+                        
+                        camera.updateMatrixWorld();
+                        let posVector = new THREE.Vector3();
+                        posVector = camera.getWorldPosition(posVector);
+                        
+                        let dirVector = new THREE.Vector3();
+                        dirVector = camera.getWorldDirection(dirVector);
+                        dirVector.normalize();
+                        
+                         if (threeScene.scene.mArrow) {
+                            threeScene.scene.remove(threeScene.scene.mArrow);
+                        }
+
+                        console.log(camera.position)
+
+                        threeScene.scene.mArrow = new THREE.ArrowHelper(vector, camera.position, 5, 0x00ff00);
+
+                        threeScene.scene.add(threeScene.scene.mArrow);
+                        
+                        
+                        
+                        
+                        threeScene.pickerRaycaster.ray.set(posVector, dirVector);
                         var intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
 
-                        threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
+
                         
+
+                        threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
+
                         console.log(threeScene.selectedObject)
                     },
                     update: function (threeScene, actions) {
@@ -56,10 +82,10 @@ angular.module('ng-clockwork.objectLoader', [])
                             };
                             // copy the template, don't use a reference
                             var template = angular.extend({}, currentSelected.userData.template);
-                            
+
                             // always need to update template positions before copying
                             syncTemplate(template);
-                            
+
                             // a choice of two types
                             switch (template.type) {
                                 case 'ThreeMesh':
@@ -113,9 +139,9 @@ angular.module('ng-clockwork.objectLoader', [])
                         var rotX = template.movements.degX * (Math.PI / 180);
                         var rotY = template.movements.degY * (Math.PI / 180);
                         var rotZ = template.movements.degZ * (Math.PI / 180);
-                        
+
                         sceneObject.rotation.set(rotX, rotY, rotZ);
-                        
+
                         // get and set scale from the saved template
                         sceneObject.scale.set(template.movements.scaX, template.movements.scaY, template.movements.scaZ);
                     },
@@ -133,7 +159,7 @@ angular.module('ng-clockwork.objectLoader', [])
                             this.pickerObjects.push(sceneObject);
                         }
                         sceneObject.updateMatrixWorld();
-                        
+
                     },
                     // SELECTABLE OBJECTS
                     _loadMeshMaterial: function (material, textureParams) {
@@ -185,11 +211,11 @@ angular.module('ng-clockwork.objectLoader', [])
                                 template.geometry.widthSegments,
                                 template.geometry.heightSegments,
                                 template.geometry.depthSegments);
-                                
+
                         var sceneObject = new THREE.Mesh(
                                 boxGeometry,
                                 this._loadMeshMaterial(template.material, template.texture));
-                                
+
                         sceneObject.castShadow = true;
                         sceneObject.receiveShadow = true;
 
@@ -360,24 +386,24 @@ angular.module('ng-clockwork.objectLoader', [])
                     },
                     // STATIS OBJECTS
                     _loadPerspectiveCamera: function (template, threeScene) {
-                        
+
                         // get and set positions from the saved template
                         threeScene.camera.position.set(template.movements.posX, template.movements.posY, template.movements.posZ);
-                        
+
                         // get rotations from the saved template, convert to radians and set
                         var rotX = template.movements.degX * (Math.PI / 180);
                         var rotY = template.movements.degY * (Math.PI / 180);
                         var rotZ = template.movements.degZ * (Math.PI / 180);
-                        
+
                         threeScene.camera.rotation.set(rotX, rotY, rotZ);
 
                         threeScene.camera.userData.template = template;
-                        
+
                         threeScene.camera.degrees = new THREE.Vector3(
                                 threeScene.camera.userData.template.movements.degX,
                                 threeScene.camera.userData.template.movements.degY,
                                 threeScene.camera.userData.template.movements.degZ);
-                        
+
                         threeScene.camera.rotation.order = "YXZ";
                         // add as appropriate
                     },
