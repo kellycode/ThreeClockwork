@@ -6,22 +6,20 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                     objectSelect: function (event, threeScene) {
                         var camera = threeScene.camera;
                         var pickerObjects = threeScene.pickerObjects;
+                        var intersects = [];
+                        var mouse = {x: 0,y: 0};
 
-                        var vector = new THREE.Vector3();
-                        vector.set((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
-                        vector.unproject(camera);
-                        threeScene.pickerRaycaster.ray.set(camera.position, vector.sub(camera.position).normalize());
-                        var intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
-
+                        mouse.x = ((event.clientX - threeScene.renderer.domElement.offsetLeft) / threeScene.renderer.domElement.width) * 2 - 1;
+                        mouse.y = -((event.clientY - threeScene.renderer.domElement.offsetTop) / threeScene.renderer.domElement.height) * 2 + 1;
+                        
+                        threeScene.pickerRaycaster.setFromCamera(mouse, camera);
+                        intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
                         threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
-
-                        console.log(threeScene.selectedObject)
                     },
                     update: function (threeScene, actions) {
                         var currentSelected = threeScene.selectedObject;
                         var scene = threeScene.scene;
                         var pickerObjects = threeScene.pickerObjects;
-                        var constants = this.constants;
                         var self = this;
 
                         var _removeObject = function () {
@@ -85,7 +83,6 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                                         }
                                     }
                                 }
-                                ;
                             }
                             else {
                                 for (var i = 0; i < pickerObjects.length; i++) {
@@ -93,7 +90,6 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                                         pickerObjects.splice(i, 1);
                                     }
                                 }
-                                ;
                             }
                         };
 
@@ -333,7 +329,6 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                             //positions: model.positions,
                             movements: model.movements
                         };
-
                         loader.load(model.path, function (collada) {
                             dae_model = collada.scene;
 
@@ -358,65 +353,9 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                             self._addSceneObject(dae_model, false);
                         });
                     },
-                    // STATIS OBJECTS
-                    _loadPerspectiveCamera: function (template, threeScene) {
-
-                        // get and set positions from the saved template
-                        threeScene.camera.position.set(template.movements.posX, template.movements.posY, template.movements.posZ);
-
-                        // get rotations from the saved template, convert to radians and set
-                        var rotX = template.movements.degX * (Math.PI / 180);
-                        var rotY = template.movements.degY * (Math.PI / 180);
-                        var rotZ = template.movements.degZ * (Math.PI / 180);
-
-                        threeScene.camera.rotation.set(rotX, rotY, rotZ);
-
-                        threeScene.camera.userData.template = template;
-
-                        threeScene.camera.degrees = new THREE.Vector3(
-                                threeScene.camera.userData.template.movements.degX,
-                                threeScene.camera.userData.template.movements.degY,
-                                threeScene.camera.userData.template.movements.degZ);
-
-                        threeScene.camera.rotation.order = "YXZ";
-                        // add as appropriate
-                    },
-                    _loadAmbientLight: function (template) {
-                        var ambLight = new THREE.AmbientLight(template.color);
-                        ambLight.userData.template = template;
-                        // add as appropriate
-                        this._addSceneObject(ambLight, false);
-                    },
-                    _loadDirectionalLight: function (template) {
-                        var directionalLight = new THREE.DirectionalLight(template.color, template.intensity);
-                        directionalLight.userData.template = template;
-                        directionalLight.position.set(template.posX, template.posY, template.posZ);
-                        this._addSceneObject(directionalLight, false);
-                    },
-                    _loadSimpleSkybox: function (template) {
-                        var skyGeometry = new THREE.BoxGeometry(
-                                template.geometry.width,
-                                template.geometry.height,
-                                template.geometry.depth);
-
-                        var materialArray = [];
-                        for (var i = 0; i < 6; i++)
-                            var loader = new THREE.TextureLoader();
-                        materialArray.push(new THREE.MeshBasicMaterial({
-                            map: loader.load(template.images[i]),
-                            side: THREE.BackSide
-                        }));
-
-                        var skyMaterial = new THREE.MeshFaceMaterial(materialArray);
-                        var skyBox = new THREE.Mesh(skyGeometry, skyMaterial);
-
-                        skyBox.userData.template = template;
-
-                        this._addSceneObject(skyBox, false);
-                    },
-                    // img order fr bk up dn lf rt
                     _loadShaderSkybox: function (template) {
                         // experiment
+                        // img order fr bk up dn lf rt
                         this.scene.background = new THREE.Color(0xc0c0ff);
                         this.scene.fog = new THREE.Fog(this.scene.background, 1, 250);
 
@@ -430,6 +369,7 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                         this.scene.userData.template.type = 'ShaderSkybox';
                         this.scene.userData.background = template;
                     },
+                    // CALLED AS DEFAULT, WILL LIKELY BUILD A GROUND FACTORY
                     _loadGround: function () {
                         let template = {
                             "geometry": {
@@ -537,36 +477,21 @@ angular.module('ng-clockwork.objectStoreFactory', [])
                         this.sceneData = threeScene.sceneData;
                         this.scene = threeScene.scene;
                         this.pickerObjects = threeScene.pickerObjects;
+                        // loading static ground here atm
                         this._loadGround();
-                        // first load all of the THREE items
+                        // basic items
                         for (var i = 0; i < this.sceneData.length; i++) {
                             switch (this.sceneData[i].type) {
                                 case 'ThreeMesh':
                                     this._loadThreeType(this.sceneData[i]);
                                     break;
-                                case 'PerspectiveCamera':
-                                    this._loadPerspectiveCamera(this.sceneData[i], threeScene);
-                                    break;
-                                case 'AmbientLight':
-                                    //this._loadAmbientLight(this.sceneData[i]);
-                                    break;
                                 case 'Collada':
                                     this._loadCollada(this.sceneData[i]);
-                                    break;
-                                case 'DirectionalLight':
-                                    //this._loadDirectionalLight(this.sceneData[i]);
-                                    break;
-                                case 'ShaderSkybox':
-                                    this._loadShaderSkybox(this.sceneData[i]);
-                                    break;
-                                case 'SimpleSkybox':
-                                    this._loadSimpleSkybox(this.sceneData[i]);
                                     break;
                                 default:
                                     console.log("No handler for: " + this.sceneData[i].type);
                             }
                         }
-                        //return this.camera;
                     },
                     select: function (intersects, currentSelected, scene) {
                         if (intersects.length > 0)

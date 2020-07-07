@@ -8,7 +8,7 @@ angular.module('ng-clockwork.controllers', [])
                 $rootScope.pageTitle = "ngClockwork";
                 $scope.selectedObject = null;
                 $scope.speedStatus = '';
-                $scope.editorVisible = false;
+                $scope.editorVisible = true;
 
 //                $scope.handleKeydown = function (event) {
 //                    editEvents.keyDown(event, editEvents.actions);
@@ -56,12 +56,12 @@ angular.module('ng-clockwork.controllers', [])
                 };
                 
                 $scope.handleKeydown = function (event) {
-                    //editEvents.keyDown(event, editEvents.actions);
+                    editEvents.keyDown(event, editEvents.actions);
                     cannonControls.onKeyDown(event);
                 };
                 
                 $scope.handleKeyup = function (event) {
-                    //editEvents.keyUp(event, editEvents.actions);
+                    editEvents.keyUp(event, editEvents.actions);
                     cannonControls.onKeyUp(event);
                 };
 

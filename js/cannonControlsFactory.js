@@ -27,11 +27,14 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                     upAxis: null,
 
                     initControls: function (camera, sphereCannonBody) {
-                        // camera is synced with these collision objects during update
+
+                        // camera containers, these have no physical or visual
+                        // presence, they're just here to manage the camera view
                         this.pitchObject = new THREE.Object3D();
                         this.yawObject = new THREE.Object3D();
                         this.yawObject.add(this.pitchObject);
                         this.pitchObject.add(camera);
+
                         // start a little above ground
                         this.yawObject.position.y = 3;
 
@@ -44,6 +47,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         let _this = this;
 
                         this.handleSphereCollide = function (e) {
+                            console.log('sc');
                             let contact = e.contact;
                             // contact.bi and contact.bj are the colliding bodies,
                             // and contact.ni is the collision normal.
@@ -194,11 +198,6 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             return _this.yawObject;
                         };
 
-                        this.getDirection = function (targetVec) {
-                            targetVec.set(0, 0, -1);
-                            _this.quat.multiplyVector3(targetVec);
-                        };
-
                         let inputVelocity = new THREE.Vector3();
                         let euler = new THREE.Euler();
 
@@ -218,7 +217,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             }
 
                             if (this.moveForward) {
-                                inputVelocity.z = - this.velocityFactor * shiftDiff * delta;
+                                inputVelocity.z = -this.velocityFactor * shiftDiff * delta;
                             }
                             if (this.moveBackward) {
                                 inputVelocity.z = this.velocityFactor * delta;
@@ -249,19 +248,23 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                                 }
                             }
 
+                            this.getDirection = function (targetVec) {
+                                targetVec.set(0, 0, -1);
+                                _this.quat.multiplyVector3(targetVec);
+                            };
+
                             // Convert velocity to world coordinates
                             euler.x = this.pitchObject.rotation.x;
                             euler.y = this.yawObject.rotation.y;
                             euler.order = "XYZ";
                             this.quat.setFromEuler(euler);
                             inputVelocity.applyQuaternion(this.quat);
-                            //this.quat.multiplyVector3(inputVelocity);
 
                             // Add to the object
                             this.velocity.x += inputVelocity.x;
                             this.velocity.z += inputVelocity.z;
 
-                            this.yawObject.position.copy(sphereCannonBody.position);                           
+                            this.yawObject.position.copy(sphereCannonBody.position);
                         };
 
                         return this;
