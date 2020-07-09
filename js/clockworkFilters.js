@@ -1,7 +1,7 @@
 'use strict';
 
 /* Filters */
-angular.module('ng-clockwork.filters', [])
+angular.module('clockworkApp.clockworkFilters', [])
         // inserts text into an element
         .filter('interpolate', ['version', function(version) {
                 return function(text) {

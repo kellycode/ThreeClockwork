@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ng-clockwork.objectStoreFactory', [])
+angular.module('clockworkApp.clockworkObjectStore', [])
         .factory('objectStore', ['objectUtils', function (objectUtils) {
                 return {
                     objectSelect: function (event, threeScene) {

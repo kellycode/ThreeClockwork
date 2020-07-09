@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ng-clockwork.threeSceneFactory', [])
+angular.module('clockworkApp.clockworkThreeScene', [])
         .factory('threeScene', ['cannonControls', 'cannonPhysics', function (cannonControls, cannonPhysics) {
                 return {
                     // clickable objects
@@ -8,7 +8,7 @@ angular.module('ng-clockwork.threeSceneFactory', [])
                     selectedObject: null,
                     intersects: null,
                     ready: false,
-                    init: function ($element, loadControls) {
+                    init: function ($element) {
                         this.viewDimensions = {
                             width: $element[0].offsetWidth,
                             height: $element[0].offsetHeight
@@ -18,7 +18,6 @@ angular.module('ng-clockwork.threeSceneFactory', [])
 
                         this.scene = new THREE.Scene();
                         this.scene.fog = new THREE.Fog(0xc0c0c0, 0, 500);
-                        //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0, 10 );
 
                         this.ambient = new THREE.AmbientLight('#d8e7e8');
                         this.scene.add(this.ambient);
@@ -27,11 +26,9 @@ angular.module('ng-clockwork.threeSceneFactory', [])
                         //var helper = new THREE.CameraHelper(this.camera);
                         //this.scene.add(helper);
 
-                        //light = new THREE.SpotLight(0xffffff);
                         this.light = new THREE.DirectionalLight('#ffffff', 1);
 
                         this.light.position.set(50, 50, -10);
-                        //light.target.position.set(0, 0, 0);
 
                         // do we want shadows
                         if (true) {
@@ -50,28 +47,12 @@ angular.module('ng-clockwork.threeSceneFactory', [])
 
                         this.scene.add(this.light);
 
-                        //var helper = new THREE.CameraHelper(light.shadow.camera);
-                        //dscene.add(helper);
+                        // cannon controls
+                        this.controls = cannonControls.initControls(this.camera, cannonPhysics.playerSphereBody);
+                        // this is the mesh containing the camera moved by controls
+                        this.scene.add(this.controls.getObject());
 
-                        if (loadControls) {
-                            this.controls = cannonControls.initControls(this.camera, cannonPhysics.sphereCannonBody);
-                            // this is the collision object used by controls
-                            this.scene.add(this.controls.getObject());
-                        }
-
-                        // floor
-//                        this.geometry = new THREE.PlaneBufferGeometry(300, 300, 50, 50);
-//                        this.geometry.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
-//
                         this.genericMaterial = new THREE.MeshLambertMaterial({color: 0xdddddd});
-//
-//                        if (loadGround) {
-//                            this.groundMesh = new THREE.Mesh(this.geometry, this.genericMaterial);
-//                            this.groundMesh.castShadow = false;
-//                            this.groundMesh.receiveShadow = true;
-//                            this.scene.add(this.groundMesh);
-//                        }
-
 
                         // renderer
                         this.renderer = new THREE.WebGLRenderer({antialias: true});

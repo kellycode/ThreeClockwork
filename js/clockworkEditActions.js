@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ng-clockwork.editActions', [])
-        .factory('objectEditor', ['constants', 'degreeSync', function (constants, degreeSync) {
+angular.module('clockworkApp.clockworkEditActions', [])
+        .factory('editActions', ['constants', 'degreeSync', function (constants, degreeSync) {
                 return {
                     constants: constants,
                     update: function (threeScene, actions) {

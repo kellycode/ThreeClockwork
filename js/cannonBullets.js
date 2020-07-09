@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ngClockworkApp.bulletFactory', [])
-        .factory('bulletFactory', ['cannonPhysics', 'threeScene', function (cannonPhysics, threeScene) {
+angular.module('clockworkApp.cannonBullets', [])
+        .factory('cannonBullet', ['cannonPhysics', 'threeScene', function (cannonPhysics, threeScene) {
                 return {
                     bulletBalls: [],
                     bulletBallMeshes: [],
@@ -25,10 +25,10 @@ angular.module('ngClockworkApp.bulletFactory', [])
                         }
                     },
 
-                    addBullet: function () {
-                        var x = cannonPhysics.sphereCannonBody.position.x;
-                        var y = cannonPhysics.sphereCannonBody.position.y;
-                        var z = cannonPhysics.sphereCannonBody.position.z;
+                    addBullet: function (position) {
+                        var x = position.x;
+                        var y = position.y;
+                        var z = position.z;
 
                         var ballBody = new CANNON.Body({mass: 2});
                         ballBody.addShape(this.ballShape);

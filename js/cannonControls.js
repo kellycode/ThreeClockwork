@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('ng-clockwork.cannonControlsFactory', [])
+angular.module('clockworkApp.cannonControls', [])
         .factory('cannonControls', [function () {
                 return {
                     velocityFactor: 0.9,
                     jumpVelocity: 20,
+                    
                     moveForward: false,
                     moveBackward: false,
                     moveLeft: false,
@@ -26,7 +27,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                     contactNormal: null,
                     upAxis: null,
 
-                    initControls: function (camera, sphereCannonBody) {
+                    initControls: function (camera, playerSphereBody) {
 
                         // camera containers, these have no physical or visual
                         // presence, they're just here to manage the camera view
@@ -47,13 +48,12 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         let _this = this;
 
                         this.handleSphereCollide = function (e) {
-                            console.log('sc');
                             let contact = e.contact;
                             // contact.bi and contact.bj are the colliding bodies,
                             // and contact.ni is the collision normal.
                             // We do not yet know which one is which! Let's check.
                             // bi is the player body, flip the contact normal
-                            if (contact.bi.id === sphereCannonBody.id) {
+                            if (contact.bi.id === playerSphereBody.id) {
                                 contact.ni.negate(_this.contactNormal);
                             }
                             // bi is something else. Keep the normal as it is
@@ -69,8 +69,8 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             }
                         };
 
-                        sphereCannonBody.addEventListener("collide", this.handleSphereCollide);
-                        this.velocity = sphereCannonBody.velocity;
+                        playerSphereBody.addEventListener("collide", this.handleSphereCollide);
+                        this.velocity = playerSphereBody.velocity;
 
                         // makes scrolling work like key up/down
                         let watchScrolling = function (event) {
@@ -98,32 +98,24 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         this.onKeyDown = function (event) {
                             _this.shiftDown = event.shiftKey;
                             switch (event.keyCode) {
-                                case 38: // up
                                 case 87: // w
                                     _this.moveForward = true;
                                     break;
-
                                 case 81: // left q
                                     _this.moveLeft = true;
                                     break;
-
-                                case 40: // down
                                 case 83: // s
                                     _this.moveBackward = true;
                                     break;
-
                                 case 69: // right e
                                     _this.moveRight = true;
                                     break;
-
                                 case 65: // A
                                     _this.turnLeft = true;
                                     break;
-
                                 case 68: // D
                                     _this.turnRight = true;
                                     break;
-
                                 case 32: // space
                                     if (_this.canJump === true) {
                                         _this.velocity.y = _this.jumpVelocity;
@@ -136,28 +128,21 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                         this.onKeyUp = function (event) {
                             _this.shiftDown = event.shiftKey;
                             switch (event.keyCode) {
-                                case 38: // up
                                 case 87: // w
                                     _this.moveForward = false;
                                     break;
-
                                 case 81: // left q
                                     _this.moveLeft = false;
                                     break;
-
-                                case 40: // down
                                 case 83: // a
                                     _this.moveBackward = false;
                                     break;
-
                                 case 69: // right e
                                     _this.moveRight = false;
                                     break;
-
                                 case 65: // A
                                     _this.turnLeft = false;
                                     break;
-
                                 case 68: // D
                                     _this.turnRight = false;
                                     break;
@@ -200,13 +185,11 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
 
                         let inputVelocity = new THREE.Vector3();
                         let euler = new THREE.Euler();
+                        let shiftDiff = 1;
 
                         this.update = function (delta) {
 
                             delta = 1;//*= 0.1;
-
-                            let shiftDiff = 1;
-
                             inputVelocity.set(0, 0, 0);
 
                             if (this.shiftDown) {
@@ -264,7 +247,7 @@ angular.module('ng-clockwork.cannonControlsFactory', [])
                             this.velocity.x += inputVelocity.x;
                             this.velocity.z += inputVelocity.z;
 
-                            this.yawObject.position.copy(sphereCannonBody.position);
+                            this.yawObject.position.copy(playerSphereBody.position);
                         };
 
                         return this;

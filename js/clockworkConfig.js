@@ -1,5 +1,5 @@
 "use strict";
-angular.module("ng-clockwork.config", [])
+angular.module("clockworkApp.clockworkConfig", [])
         .constant("constants", {
             EIGHTH_PI: Math.PI / 8,
             TWELFTH_PI: Math.PI / 12,

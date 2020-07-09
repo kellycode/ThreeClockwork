@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ng-clockwork.utilFactory', [])
+angular.module('clockworkApp.clockworkUtilities', [])
         .factory('objectUtils', [function() {
                 return {
                     // from https://github.com/mrdoob/three.js/issues/581

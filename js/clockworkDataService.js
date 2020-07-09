@@ -1,6 +1,6 @@
 'use strict';
-angular.module('ng-clockwork.services', [])
-        .factory('dataService', ['$http', '$httpParamSerializerJQLike', 'templater', function ($http, $httpParamSerializerJQLike, templater) {
+angular.module('clockworkApp.clockworkDataService', [])
+        .factory('dataService', ['$http', 'templater', function ($http, templater) {
                 return {
                     loadSceneJSON: function (sceneUrl, loadFromFile) {
                         if (loadFromFile) {
@@ -30,7 +30,6 @@ angular.module('ng-clockwork.services', [])
                         a.download = fileName;
                         a.click();
                         console.log("Processing JSON Data Complete");
-
                     },
                     getAvailableTextures: function () {
                         var serviceUrl = "./textures/textureList.json";
@@ -76,57 +75,13 @@ angular.module('ng-clockwork.services', [])
                         return newArray;
                     },
                     saveScene: function (threeScene) {
-
-                        //console.log('Save off atm unitl you manage new object adds');
-                        //return;
-
-                        var scene = threeScene.scene;
                         var templateArray = [];
                         var children = threeScene.pickerObjects;
                         for (var i = 0; i < children.length; i++) {
-                            console.log(children[i])
-
-                            if (children[i].type === 'ArrowHelper') {
-                                continue;
-                            }
-
+                            console.log(children[i].userData.template.type)
                             templater.updateTemplateMovements(children[i]);
-
-                            if (scene.userData.background) {
-                                templateArray.push(scene.userData.background);
-                            }
-
-                            // handle clockwork specials
-                            if (children[i].userData.template) {
-                                if (children[i].userData.template.type === 'ShaderSkybox') {
-                                    //templater.updateShaderSkybox(children[i]);
-                                }
-                            }
-                            else if (children[i].userData.template) {
-                                if (children[i].userData.template.type === 'ClockworkGround') {
-                                    templater.updateMeshGeometry(children[i]);
-                                    templater.updateMeshTemplateMaterial(children[i]);
-                                    templater.updateMeshTemplateTexture(children[i]);
-                                }
-                            }
-                            else {
-                                if (children[i].type === 'Mesh') {
-                                    templater.updateMeshGeometry(children[i]);
-                                    templater.updateMeshTemplateMaterial(children[i]);
-                                    templater.updateMeshTemplateTexture(children[i]);
-                                }
-
-                                if (children[i].type === 'PerspectiveCamera') {
-                                    templater.updatePerspectiveCameraTemplate(children[i]);
-                                }
-
-                                if (children[i].type === 'AmbientLight') {
-                                    templater.updateAmbientLightTemplate(children[i]);
-                                }
-                            }
                             templateArray.push(children[i].userData.template);
                         }
-
                         this.saveSceneJSON(JSON.stringify(templateArray));
                     },
                     jsonStringifyDebug: function (stringifiedObject) {

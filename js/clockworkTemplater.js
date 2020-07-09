@@ -1,5 +1,5 @@
 'use strict';
-angular.module('ng-clockwork.templateFactory', [])
+angular.module('clockworkApp.clockworkTemplater', [])
         .factory('templater', function() {
             return {
                 boxTemplate: {
@@ -592,21 +592,6 @@ angular.module('ng-clockwork.templateFactory', [])
                         scaY: obj.scale.y,
                         scaZ: obj.scale.z
                     };
-                },
-                // not used atm
-                updateShaderSkybox: function(obj) {
-                    obj.userData.template.geometry.width = obj.geometry.parameters.width;
-                    obj.userData.template.geometry.height = obj.geometry.parameters.height;
-                    obj.userData.template.geometry.depth = obj.geometry.parameters.depth;
-                    obj.userData.template.geometry.widthSegments = obj.geometry.parameters.widthSegments;
-                    obj.userData.template.geometry.heightSegments = obj.geometry.parameters.heightSegments;
-                    obj.userData.template.geometry.depthSegments = obj.geometry.parameters.depthSegments;
-                },
-                updateSimpleSkybox: function(obj) {
-
-                },
-                updateClockworkGround: function(obj) {
-
                 }
             };
         });

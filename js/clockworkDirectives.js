@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ng-clockwork.directives', [])
+angular.module('clockworkApp.clockworkDirectives', [])
         .directive('threeStats', [function () {
                 return {
                     restrict: 'AE',

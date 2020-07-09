@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('ng-clockwork.physicsFactory', [])
+angular.module('clockworkApp.cannonPhysics', [])
         .factory('cannonPhysics', [function () {
                 return {
-
                     initPhysics: function () {
                         // Setup our world
                         this.world = new CANNON.World();
@@ -27,7 +26,6 @@ angular.module('ng-clockwork.physicsFactory', [])
                             this.world.solver = this.solver;
                         }
 
-
                         this.world.gravity.set(0, -20, 0);
                         this.world.broadphase = new CANNON.NaiveBroadphase();
 
@@ -42,13 +40,13 @@ angular.module('ng-clockwork.physicsFactory', [])
                             frictionEquationStiffness: 1e7,
                             frictionEquationRelaxation: 3
                         };
+
                         var physicsContactMaterial = new CANNON.ContactMaterial(this.physicsMaterial, this.physicsMaterial, options);
 
                         // We must add the contact materials to the world
                         this.world.addContactMaterial(physicsContactMaterial);
 
-                        // Create a sphere
-                        var mass = 100, radius = 1.8;
+
 
 //                        let scale2 = 1.8;
 //                        boxBody.shapes[0].halfExtents.x = scale2;
@@ -57,13 +55,16 @@ angular.module('ng-clockwork.physicsFactory', [])
 //                        boxBody.shapes[0].boundingSphereRadiusNeedsUpdate = true;
 //                        boxBody.shapes[0].updateConvexPolyhedronRepresentation();
 
+                        // Create a sphere
+                        var mass = 100, radius = 1.8;
+
                         // this will be the body that encloses the camera
                         this.sphereShape = new CANNON.Sphere(radius);
-                        this.sphereCannonBody = new CANNON.Body({mass: mass});
-                        this.sphereCannonBody.addShape(this.sphereShape);
-                        this.sphereCannonBody.position.set(0, 5, 20);
-                        this.sphereCannonBody.linearDamping = 0.9;
-                        this.world.addBody(this.sphereCannonBody);
+                        this.playerSphereBody = new CANNON.Body({mass: mass});
+                        this.playerSphereBody.addShape(this.sphereShape);
+                        this.playerSphereBody.position.set(0, 5, 20);
+                        this.playerSphereBody.linearDamping = 0.9;
+                        this.world.addBody(this.playerSphereBody);
 
                         // Create a ground plane
                         var groundShape = new CANNON.Plane();

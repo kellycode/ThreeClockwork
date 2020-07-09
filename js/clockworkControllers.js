@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-angular.module('ng-clockwork.controllers', [])
+angular.module('clockworkApp.clockworkControllers', [])
         .controller('ClockworkController', ['$scope', '$rootScope', 'threeScene', 'editEvents',
             function ($scope, $rootScope, threeScene, editEvents) {
                 // shows up in the browser tab
@@ -39,41 +39,53 @@ angular.module('ng-clockwork.controllers', [])
                     }
                 };
             }])
-        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'objectEditor', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls', 'boxFactory', 'bulletFactory',
-            function ($scope, dataService, $element, editEvents, objectEditor, objectStore, threeScene, cannonPhysics, cannonControls, boxFactory, bulletFactory) {
+        .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'editActions', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls', 'cannonBoxes', 'cannonBullet',
+            function ($scope, dataService, $element, editEvents, editActions, objectStore, threeScene, cannonPhysics, cannonControls, cannonBoxes, cannonBullet) {
 
                 let time = Date.now();
                 let dt = 1 / 60;
-                let areActive = true;
 
                 $scope.handleMousedown = function (event) {
                     if ($scope.editorVisible) {
                         $scope.intersects = objectStore.objectSelect(event, threeScene);
                     } else {
+                        // turn event over to cannon
                         cannonControls.onMouseButtonDown(event);
-                        bulletFactory.addBullet();
+                        // shoot a bullet
+                        if(event.which === 1) {
+                            cannonBullet.addBullet(cannonPhysics.playerSphereBody.position);
+                        }
                     }
                 };
                 
                 $scope.handleKeydown = function (event) {
+                    // 'r' for toggling the edit window
+                    if(event.which === 82) {
+                        $scope.$parent.editorVisible = !$scope.$parent.editorVisible;
+                    }
+                    // our event handler
                     editEvents.keyDown(event, editEvents.actions);
+                    // cannon event handler
                     cannonControls.onKeyDown(event);
                 };
                 
                 $scope.handleKeyup = function (event) {
+                    // our event handler
                     editEvents.keyUp(event, editEvents.actions);
+                    // cannon event handler
                     cannonControls.onKeyUp(event);
                 };
 
+                // TODO FIX: weird way of doing this
                 $scope.$on('saveScene', function (e) {
-                    editEvents.actions.fileSave = true;
+                    dataService.saveScene(threeScene);
                 });
 
+                // init the cannon physics engine
                 cannonPhysics.initPhysics();
-                let loadControls = true;
 
                 // start the scene and load it
-                threeScene.init($element, loadControls);
+                threeScene.init($element);
 
                 let loadFromFile = false;
 
@@ -89,30 +101,30 @@ angular.module('ng-clockwork.controllers', [])
                     }
                 });
                 
-                boxFactory.initBoxes();
-                bulletFactory.initBullets();
+                // cannon boxes for play
+                cannonBoxes.initBoxes();
+                // cannon bullets for play
+                cannonBullet.initBullets();
 
                 // the render and update section
                 $scope.animate = function () {
 
                     $scope.stats.update();
                     
-                    objectEditor.update(threeScene, editEvents.actions);
+                    editActions.update(threeScene, editEvents.actions);
                     objectStore.update(threeScene, editEvents.actions);
                     
-                    boxFactory.update();
-                    bulletFactory.update();
+                    cannonBoxes.update();
+                    
+                    cannonBullet.update();
 
                     cannonPhysics.world.step(dt);
+                    
+                    // cannonControls update
                     threeScene.controls.update(Date.now() - time);
-
-                    if (editEvents.actions.fileSave) {
-                        //editEvents.actions.fileSave = false;
-                        dataService.saveScene(threeScene);
-                        editEvents.actions.fileSave = false;
-                    }
                     
                     requestAnimationFrame($scope.animate);
+                    
                     threeScene.renderer.render(threeScene.scene, threeScene.camera);
                 };
 
@@ -160,11 +172,6 @@ angular.module('ng-clockwork.controllers', [])
                         $scope.testTexture = '';
                     }
                 };
-
-//                var map = $scope.selected.material.map;
-//                map.wrapS = map.wrapT = THREE.RepeatWrapping;
-//                map.repeat.set(map.repeat.x, map.repeat.y);
-//                map.needsUpdate = true;
 
                 // try out a texture on this model, user can only try one at a time 
                 // required to remove the previous before trying out the next

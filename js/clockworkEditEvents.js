@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ng-clockwork.editEvents', [])
+angular.module('clockworkApp.clockworkEditEvents', [])
         .factory('editEvents', function() {
             return {
                 actions: {
