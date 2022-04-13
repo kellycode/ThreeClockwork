@@ -213,9 +213,13 @@ div {
     background-color: green;
 }
 
-.menuButton.on {
+.menuButton.active {
     opacity: 1.0;
     color: #00b0dd;
+}
+
+.menuButton#cannonClicker .disabled {
+    text-decoration: line-through;
 }
 
 .transform_tab {

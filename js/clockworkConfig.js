@@ -32,6 +32,13 @@ angular.module("clockworkApp.clockworkConfig", [])
         .constant("menuBar", {
             menuItems: [[
                     {
+                        name: 'cannonClicker',
+                        active: true,
+                        onclick: 'toggleCannon($event)',
+                        text: 'Cannon',
+                        title: 'Toggle Ball Throw'
+                    },
+                    {
                         name: 'editButton',
                         active: true,
                         onclick: 'toggleEditingInterface($event)',

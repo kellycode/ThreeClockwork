@@ -46,15 +46,6 @@ angular.module('clockworkApp.cannonPhysics', [])
                         // We must add the contact materials to the world
                         this.world.addContactMaterial(physicsContactMaterial);
 
-
-
-//                        let scale2 = 1.8;
-//                        boxBody.shapes[0].halfExtents.x = scale2;
-//                        boxBody.shapes[0].halfExtents.y = scale2;
-//                        boxBody.shapes[0].halfExtents.z = scale2;
-//                        boxBody.shapes[0].boundingSphereRadiusNeedsUpdate = true;
-//                        boxBody.shapes[0].updateConvexPolyhedronRepresentation();
-
                         // Create a sphere
                         var mass = 100, radius = 1.8;
 
