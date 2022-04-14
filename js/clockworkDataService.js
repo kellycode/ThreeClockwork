@@ -78,9 +78,10 @@ angular.module('clockworkApp.clockworkDataService', [])
                         var templateArray = [];
                         var children = threeScene.pickerObjects;
                         for (var i = 0; i < children.length; i++) {
-                            console.log(children[i].userData.template.type)
                             templater.updateTemplateMovements(children[i]);
-                            templateArray.push(children[i].userData.template);
+                            if(children[i].userData.template) {
+                                templateArray.push(children[i].userData.template);
+                            }
                         }
                         this.saveSceneJSON(JSON.stringify(templateArray));
                     },

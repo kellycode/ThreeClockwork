@@ -347,10 +347,11 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                 dae_model.children[i].material.side = THREE.DoubleSide;
                                 dae_model.children[i].userData.id = dae_model.id;
                                 // and add this child to the picker, groups are selected by children
-                                self.pickerObjects.push(dae_model.children[i]);
+                                //self.pickerObjects.push(dae_model.children[i]);
+                                self.pickerObjects.push(dae_model);
                             }
                             // add as appropriate
-                            self._addSceneObject(dae_model, false);
+                            self._addSceneObject(dae_model, true);
                         });
                     },
                     _loadShaderSkybox: function (template) {
@@ -481,6 +482,9 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._loadGround();
                         // basic items
                         for (var i = 0; i < this.sceneData.length; i++) {
+                            if(this.sceneData[i] === null) {
+                                continue;
+                            }
                             switch (this.sceneData[i].type) {
                                 case 'ThreeMesh':
                                     this._loadThreeType(this.sceneData[i]);
@@ -540,17 +544,13 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         return currentSelected;
                     },
                     _addSelectionWrapper: function (currentSelected) {
-                        var dims = objectUtils.getCompoundBoundingBox(currentSelected);
-                        var geometry = new THREE.BoxGeometry(dims.x, dims.y, dims.z);
-                        var material = new THREE.MeshBasicMaterial({wireframe: true});
-                        var wrapper = new THREE.Mesh(geometry, material);
-                        wrapper.name = 'wrap';
-                        wrapper.position.set(0, 0, 0);
-                        currentSelected.add(wrapper);
+                        const box = new THREE.BoxHelper( currentSelected, 0xffff00 );
+                        box.name = 'selectionWrapper';
+                        this.scene.add(box);
                     },
-                    _removeSelectionWrapper: function (currentSelected) {
-                        var wrap = currentSelected.getObjectByName('wrap');
-                        currentSelected.remove(wrap);
+                    _removeSelectionWrapper: function () {
+                        var wrapper = this.scene.getObjectByName('selectionWrapper')
+                        this.scene.remove(wrapper);
                     },
                     _addSelectionHighlight: function (currentSelected) {
                         if (currentSelected.type === "Group") {

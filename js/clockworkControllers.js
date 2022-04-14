@@ -8,7 +8,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             $rootScope.pageTitle = "ngClockwork";
             $scope.selectedObject = null;
             $scope.speedStatus = '';
-            $scope.editorVisible = false;
+            $scope.editorVisible = true;
             $scope.cannonActive = false;
 
             //                $scope.handleKeydown = function (event) {
@@ -27,7 +27,7 @@ angular.module('clockworkApp.clockworkControllers', [])
                 console.log('toggleGrid');
             };
             
-            $scope.toggleCannon = function () {
+            $scope.toggleCannon = function (evnt) {
                 $scope.cannonActive = !$scope.cannonActive;
             }
 
@@ -92,7 +92,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             // start the scene and load it
             threeScene.init($element);
 
-            let loadFromFile = true;
+            let loadFromFile = false;
 
             dataService.loadSceneJSON("json/scene1.json", loadFromFile).then(function (response) {
                 if (!response) {
@@ -107,9 +107,9 @@ angular.module('clockworkApp.clockworkControllers', [])
             });
 
             // cannon boxes for play
-            cannonBoxes.initBoxes();
+            //blobk cannon//cannonBoxes.initBoxes();
             // cannon bullets for play
-            cannonBullet.initBullets();
+            //blobk cannon//cannonBullet.initBullets();
 
             // the render and update section
             $scope.animate = function () {

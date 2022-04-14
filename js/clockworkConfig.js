@@ -28,29 +28,4 @@ angular.module("clockworkApp.clockworkConfig", [])
             }()),
             "restUrl": "./json/",
             "enableLogging": false
-        })
-        .constant("menuBar", {
-            menuItems: [[
-                    {
-                        name: 'cannonClicker',
-                        active: true,
-                        onclick: 'toggleCannon($event)',
-                        text: 'Cannon',
-                        title: 'Toggle Ball Throw'
-                    },
-                    {
-                        name: 'editButton',
-                        active: true,
-                        onclick: 'toggleEditingInterface($event)',
-                        text: 'Edit',
-                        title: 'Show/Hide Edit Panel'
-                    },
-                    {
-                        name: 'saveButton',
-                        active: true,
-                        onclick: 'saveScene()',
-                        text: 'Save',
-                        title: 'Save'
-                    }
-                ]]
         });

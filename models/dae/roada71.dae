@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <created>2015-04-30T14:10:31Z</created>
+    <modified>2015-04-30T14:10:31Z</modified>
+    <unit meter="1.0" name="meter" />
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Image_Object_000" name="Image_Object_000" depth="1">
+      <init_from>road1.jpg</init_from>
+    </image>
+    <image id="Image_Object_000_1" name="Image_Object_000_1" depth="1">
+      <init_from>road7.jpg</init_from>
+    </image>
+    <image id="Image_Object_000_2" name="Image_Object_000_2" depth="1">
+      <init_from>road5.jpg</init_from>
+    </image>
+    <image id="Image_Object_000_3" name="Image_Object_000_3" depth="1">
+      <init_from>road6.jpg</init_from>
+    </image>
+    <image id="Image_Object_000_4" name="Image_Object_000_4" depth="1">
+      <init_from>road2.jpg</init_from>
+    </image>
+    <image id="Image_Object_000_5" name="Image_Object_000_5" depth="1">
+      <init_from>road4.jpg</init_from>
+    </image>
+    <image id="Image_Object_000_6" name="Image_Object_000_6" depth="1">
+      <init_from>road3.jpg</init_from>
+    </image>
+    <image id="Image_Object_001" name="Image_Object_001" depth="1">
+      <init_from>road7.jpg</init_from>
+    </image>
+    <image id="Image_Object_001_1" name="Image_Object_001_1" depth="1">
+      <init_from>road1.jpg</init_from>
+    </image>
+    <image id="Image_Object_001_2" name="Image_Object_001_2" depth="1">
+      <init_from>road3.jpg</init_from>
+    </image>
+    <image id="Image_Object_001_3" name="Image_Object_001_3" depth="1">
+      <init_from>road4.jpg</init_from>
+    </image>
+    <image id="Image_Object_001_4" name="Image_Object_001_4" depth="1">
+      <init_from>road2.jpg</init_from>
+    </image>
+    <image id="Image_Object_001_5" name="Image_Object_001_5" depth="1">
+      <init_from>road5.jpg</init_from>
+    </image>
+    <image id="Image_Object_001_6" name="Image_Object_001_6" depth="1">
+      <init_from>road6.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_Object_000">
+      <instance_effect url="#Effect_Object_000"/>
+    </material>
+    <material id="Material_Object_000_1">
+      <instance_effect url="#Effect_Object_000_1"/>
+    </material>
+    <material id="Material_Object_000_2">
+      <instance_effect url="#Effect_Object_000_2"/>
+    </material>
+    <material id="Material_Object_000_3">
+      <instance_effect url="#Effect_Object_000_3"/>
+    </material>
+    <material id="Material_Object_000_4">
+      <instance_effect url="#Effect_Object_000_4"/>
+    </material>
+    <material id="Material_Object_000_5">
+      <instance_effect url="#Effect_Object_000_5"/>
+    </material>
+    <material id="Material_Object_000_6">
+      <instance_effect url="#Effect_Object_000_6"/>
+    </material>
+    <material id="Material_Object_001">
+      <instance_effect url="#Effect_Object_001"/>
+    </material>
+    <material id="Material_Object_001_1">
+      <instance_effect url="#Effect_Object_001_1"/>
+    </material>
+    <material id="Material_Object_001_2">
+      <instance_effect url="#Effect_Object_001_2"/>
+    </material>
+    <material id="Material_Object_001_3">
+      <instance_effect url="#Effect_Object_001_3"/>
+    </material>
+    <material id="Material_Object_001_4">
+      <instance_effect url="#Effect_Object_001_4"/>
+    </material>
+    <material id="Material_Object_001_5">
+      <instance_effect url="#Effect_Object_001_5"/>
+    </material>
+    <material id="Material_Object_001_6">
+      <instance_effect url="#Effect_Object_001_6"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Effect_Object_000">
+      <profile_COMMON>
+        <newparam sid="Object_000-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000-sampler">
+          <sampler2D>
+            <source>Object_000-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000-sampler" texcoord="Object_000-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_000_1">
+      <profile_COMMON>
+        <newparam sid="Object_000_1-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000_1-sampler">
+          <sampler2D>
+            <source>Object_000_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000_1-sampler" texcoord="Object_000_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_000_2">
+      <profile_COMMON>
+        <newparam sid="Object_000_2-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000_2</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000_2-sampler">
+          <sampler2D>
+            <source>Object_000_2-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000_2-sampler" texcoord="Object_000_2-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_000_3">
+      <profile_COMMON>
+        <newparam sid="Object_000_3-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000_3</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000_3-sampler">
+          <sampler2D>
+            <source>Object_000_3-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000_3-sampler" texcoord="Object_000_3-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_000_4">
+      <profile_COMMON>
+        <newparam sid="Object_000_4-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000_4</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000_4-sampler">
+          <sampler2D>
+            <source>Object_000_4-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000_4-sampler" texcoord="Object_000_4-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_000_5">
+      <profile_COMMON>
+        <newparam sid="Object_000_5-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000_5</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000_5-sampler">
+          <sampler2D>
+            <source>Object_000_5-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000_5-sampler" texcoord="Object_000_5-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_000_6">
+      <profile_COMMON>
+        <newparam sid="Object_000_6-surface">
+          <surface type="2D">
+            <init_from>Image_Object_000_6</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_000_6-sampler">
+          <sampler2D>
+            <source>Object_000_6-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_000_6-sampler" texcoord="Object_000_6-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001">
+      <profile_COMMON>
+        <newparam sid="Object_001-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001-sampler">
+          <sampler2D>
+            <source>Object_001-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001-sampler" texcoord="Object_001-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001_1">
+      <profile_COMMON>
+        <newparam sid="Object_001_1-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001_1</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001_1-sampler">
+          <sampler2D>
+            <source>Object_001_1-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001_1-sampler" texcoord="Object_001_1-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001_2">
+      <profile_COMMON>
+        <newparam sid="Object_001_2-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001_2</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001_2-sampler">
+          <sampler2D>
+            <source>Object_001_2-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001_2-sampler" texcoord="Object_001_2-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001_3">
+      <profile_COMMON>
+        <newparam sid="Object_001_3-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001_3</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001_3-sampler">
+          <sampler2D>
+            <source>Object_001_3-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001_3-sampler" texcoord="Object_001_3-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001_4">
+      <profile_COMMON>
+        <newparam sid="Object_001_4-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001_4</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001_4-sampler">
+          <sampler2D>
+            <source>Object_001_4-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001_4-sampler" texcoord="Object_001_4-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001_5">
+      <profile_COMMON>
+        <newparam sid="Object_001_5-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001_5</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001_5-sampler">
+          <sampler2D>
+            <source>Object_001_5-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001_5-sampler" texcoord="Object_001_5-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Effect_Object_001_6">
+      <profile_COMMON>
+        <newparam sid="Object_001_6-surface">
+          <surface type="2D">
+            <init_from>Image_Object_001_6</init_from>
+            <format>B8G8R8A8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Object_001_6-sampler">
+          <sampler2D>
+            <source>Object_001_6-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="COMMON">
+          <phong>
+            <emission><color>0 0 0 1.0</color></emission>
+            <ambient><color>0.4063 0.4063 0.4063 1.0</color></ambient>
+            <diffuse><texture texture="Object_001_6-sampler" texcoord="Object_001_6-TEX0"/></diffuse>
+            <specular><color>0 0 0 1.0</color></specular>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object_000" name="Object_000">
+      <mesh>
+        <source id="Object_000-positions">
+          <float_array id="Object_000-positions-array" count="42">-0.6899 -0.0234 -0.8373 -0.6909 -0.0234 -0.8375 -0.7335 -0.0234 -0.7345 -0.8363 -0.0234 -0.6919 -0.8372 -0.0234 0.692 -1.002 -0.0234 0.692 -1.002 -0.0234 -0.6919 -0.6899 -0.0234 0.8373 -0.6907 -0.0234 0.8375 -0.7331 -0.0234 0.7351 -0.6899 -0.0234 1.0015 -0.6899 -0.0234 -1.0015 0.69 -0.0234 -1.0015 0.69 -0.0234 1.0015</float_array>
+          <technique_common>
+            <accessor source="#Object_000-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000-uvs">
+          <float_array id="Object_000-uvs-array" count="28">6.0 0 6.0 6.0 6.491 4.6468 6.4915 4.6434 6.7978 4.8311 6.927 5.2839 6.927 6.0 11.0728 5.2798 11.0728 6.0 11.2002 4.8331 11.508 4.6434 11.5086 4.6476 12.0 0 12.0 6.0</float_array>
+          <technique_common>
+            <accessor source="#Object_000-uvs-array" count="14" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000-vertices">
+          <input semantic="POSITION" source="#Object_000-positions"/>
+        </vertices>
+        <triangles count="10" material="Material_Object_000">
+          <input offset="0" semantic="VERTEX" source="#Object_000-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000-uvs"/>
+          <p>7 3  0 10  1 11  2 9  7 3  1 11  3 7  7 3  2 9  6 8  7 3  3 7  6 8  5 6  4 5  9 4  6 8  4 5  9 4  8 2  7 3  6 8  9 4  7 3  11 13  10 1  13 0  13 0  12 12  11 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_000_1" name="Object_000_1">
+      <mesh>
+        <source id="Object_000_1-positions">
+          <float_array id="Object_000_1-positions-array" count="42">-0.9999 0.025 0.801 -0.8575 0.025 0.801 -0.9999 0.025 1.001 -0.7996 0.025 1.001 -0.7996 0.025 0.8594 -0.8172 0.025 0.818 -0.817 0.025 0.8178 -0.8168 0.025 -0.8176 -0.9999 0.025 -0.8009 -0.7996 0.025 -1.0009 -0.7996 0.025 -0.8597 -0.8171 0.025 -0.8179 -0.9999 0.025 -1.0009 -0.8569 0.025 -0.8009</float_array>
+          <technique_common>
+            <accessor source="#Object_000_1-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000_1-uvs">
+          <float_array id="Object_000_1-uvs-array" count="28">6.0 0 6.0 1.0 6.4282 0 6.5476 0.0852 6.5485 0.0838 6.5998 0.2942 6.5998 1.0 11.3999 0.2924 11.3999 1.0 11.4519 0.0845 11.4525 0.0855 11.5733 0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_000_1-uvs-array" count="14" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000_1-vertices">
+          <input semantic="POSITION" source="#Object_000_1-positions"/>
+        </vertices>
+        <triangles count="10" material="Material_Object_000_1">
+          <input offset="0" semantic="VERTEX" source="#Object_000_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000_1-uvs"/>
+          <p>1 11  0 12  2 13  3 8  1 11  2 13  4 7  1 11  3 8  5 10  1 11  4 7  5 10  6 9  1 11  11 3  8 0  7 4  11 3  10 5  9 6  12 1  11 3  9 6  8 0  11 3  12 1  8 0  13 2  7 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_000_2" name="Object_000_2">
+      <mesh>
+        <source id="Object_000_2-positions">
+          <float_array id="Object_000_2-positions-array" count="69">-0.6899 -0.0234 -1.0014 -0.6899 -0.0234 -0.8372 -0.6999 -0.0234 -0.8393 -0.6999 -0.0234 -1.0014 -0.7328 -0.0234 -0.7336 -0.7405 -0.0234 -0.7413 -0.6999 -0.0234 -0.8394 -0.6899 -0.0234 -0.8373 -0.7327 -0.0234 -0.7338 -0.8363 -0.0234 -0.6909 -0.8383 -0.0234 -0.7009 -0.7404 -0.0234 -0.7415 -0.6999 -0.0234 1.0014 -0.6999 -0.0234 0.8389 -0.6899 -0.0234 0.8369 -0.6899 -0.0234 1.0014 -0.733 -0.0234 0.7338 -0.6902 -0.0234 0.837 -0.7002 -0.0234 0.8391 -0.7406 -0.0234 0.7414 -0.8383 -0.0234 0.7009 -0.8363 -0.0234 0.6909 -0.7329 -0.0234 0.7337</float_array>
+          <technique_common>
+            <accessor source="#Object_000_2-positions-array" count="23" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000_2-uvs">
+          <float_array id="Object_000_2-uvs-array" count="48">6.0 0.9573 6.0 1.0 6.4865 1.0 6.4926 0.9573 11.2014 0.9573 11.2138 1.0 11.342 0.9573 11.3544 1.0 11.392 0.9573 11.3979 1.0 11.5081 0.9573 11.5142 1.0 11.5318 1.0 11.5341 0.9573 11.5376 0.9573 11.5401 1.0 11.6713 1.0 11.6772 0.9573 11.7155 1.0 11.7278 0.9573 11.8566 1.0 11.869 0.9573 12.0 0.9573 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_000_2-uvs-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000_2-vertices">
+          <input semantic="POSITION" source="#Object_000_2-positions"/>
+        </vertices>
+        <triangles count="12" material="Material_Object_000_2">
+          <input offset="0" semantic="VERTEX" source="#Object_000_2-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000_2-uvs"/>
+          <p>1 10  0 22  3 23  3 23  2 11  1 10  6 12  5 5  4 4  4 4  7 14  6 12  9 8  8 19  11 18  11 18  10 9  9 8  13 2  12 1  15 0  15 0  14 3  13 2  17 13  16 21  19 20  19 20  18 15  17 13  20 16  19 7  22 6  22 6  21 17  20 16</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_000_3" name="Object_000_3">
+      <mesh>
+        <source id="Object_000_3-positions">
+          <float_array id="Object_000_3-positions-array" count="24">-0.9999 -0.0234 -0.7009 -0.8382 -0.0234 -0.7009 -0.8362 -0.0234 -0.6909 -0.9999 -0.0234 -0.6909 -0.9999 -0.0234 0.691 -0.8362 -0.0234 0.691 -0.8383 -0.0234 0.701 -0.9999 -0.0234 0.701</float_array>
+          <technique_common>
+            <accessor source="#Object_000_3-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000_3-uvs">
+          <float_array id="Object_000_3-uvs-array" count="16">6.0 0 6.0 0.043 6.4841 0 6.4902 0.043 11.5093 0.043 11.5153 0 12.0 0 12.0 0.043</float_array>
+          <technique_common>
+            <accessor source="#Object_000_3-uvs-array" count="8" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000_3-vertices">
+          <input semantic="POSITION" source="#Object_000_3-positions"/>
+        </vertices>
+        <triangles count="4" material="Material_Object_000_3">
+          <input offset="0" semantic="VERTEX" source="#Object_000_3-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000_3-uvs"/>
+          <p>1 5  0 6  3 7  3 7  2 4  1 5  5 3  4 1  7 0  7 0  6 2  5 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_000_4" name="Object_000_4">
+      <mesh>
+        <source id="Object_000_4-positions">
+          <float_array id="Object_000_4-positions-array" count="96">-0.9999 -0.0234 0.751 -0.9999 -0.0234 0.701 -0.8382 -0.0234 0.701 -0.8484 -0.0234 0.751 -0.7789 -0.0234 0.7797 -0.8484 -0.0234 0.7509 -0.8383 -0.0234 0.701 -0.7406 -0.0234 0.7414 -0.75 -0.0234 1.0014 -0.75 -0.0234 0.8491 -0.7 -0.0234 0.8389 -0.7 -0.0234 1.0014 -0.7789 -0.0234 0.7798 -0.7407 -0.0234 0.7415 -0.7002 -0.0234 0.8391 -0.7502 -0.0234 0.8492 -0.9999 -0.0234 -0.7509 -0.8483 -0.0234 -0.7509 -0.8382 -0.0234 -0.7009 -0.9999 -0.0234 -0.7009 -0.7404 -0.0234 -0.7415 -0.8383 -0.0234 -0.7009 -0.8484 -0.0234 -0.7509 -0.7787 -0.0234 -0.7798 -0.7405 -0.0234 -0.7413 -0.7788 -0.0234 -0.7796 -0.7498 -0.0234 -0.8495 -0.6999 -0.0234 -0.8394 -0.75 -0.0234 -1.0014 -0.7 -0.0234 -1.0014 -0.7 -0.0234 -0.8393 -0.75 -0.0234 -0.8495</float_array>
+          <technique_common>
+            <accessor source="#Object_000_4-positions-array" count="32" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000_4-uvs">
+          <float_array id="Object_000_4-uvs-array" count="56">6.0 0 6.0 1.0 6.4541 1.0 6.456 1.0 6.4844 0 6.4865 0 11.2139 0 11.276 1.0 11.3544 0 11.3979 0 11.4165 1.0 11.4272 1.0 11.5026 1.0 11.5143 0 11.5155 0 11.5318 0 11.5401 0 11.5448 1.0 11.5458 1.0 11.5691 1.0 11.6419 1.0 11.6533 1.0 11.6712 0 11.7155 0 11.7944 1.0 11.8565 0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_000_4-uvs-array" count="28" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000_4-vertices">
+          <input semantic="POSITION" source="#Object_000_4-positions"/>
+        </vertices>
+        <triangles count="16" material="Material_Object_000_4">
+          <input offset="0" semantic="VERTEX" source="#Object_000_4-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000_4-uvs"/>
+          <p>2 14  1 26  0 27  0 27  3 18  2 14  5 20  4 10  7 8  7 8  6 22  5 20  9 3  8 1  11 0  11 0  10 5  9 3  14 16  13 25  12 24  12 24  15 19  14 16  17 2  16 1  19 0  19 0  18 4  17 2  21 9  20 23  23 21  23 21  22 11  21 9  26 12  25 7  24 6  24 6  27 15  26 12  30 13  29 26  28 27  28 27  31 17  30 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_000_5" name="Object_000_5">
+      <mesh>
+        <source id="Object_000_5-positions">
+          <float_array id="Object_000_5-positions-array" count="93">-0.7789 0.025 0.7798 -0.7502 0.025 0.8492 -0.8001 0.025 0.8594 -0.8 0.025 1.0014 -0.8 0.025 0.8593 -0.75 0.025 0.8491 -0.75 0.025 1.0014 -0.7789 0.025 0.7797 -0.8172 0.025 0.818 -0.8585 0.025 0.8008 -0.8484 0.025 0.7509 -0.9999 0.025 0.801 -0.9999 0.025 0.751 -0.8484 0.025 0.751 -0.8585 0.025 0.801 -0.75 0.025 -1.0014 -0.75 0.025 -0.8495 -0.8 0.025 -0.8596 -0.8 0.025 -1.0014 -0.8171 0.025 -0.8179 -0.7997 0.025 -0.8597 -0.7498 0.025 -0.8495 -0.7788 0.025 -0.7796 -0.7787 0.025 -0.7798 -0.8484 0.025 -0.7509 -0.8585 0.025 -0.8008 -0.817 0.025 -0.818 -0.9999 0.025 -0.8009 -0.8584 0.025 -0.8009 -0.8483 0.025 -0.7509 -0.9999 0.025 -0.7509</float_array>
+          <technique_common>
+            <accessor source="#Object_000_5-positions-array" count="31" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000_5-uvs">
+          <float_array id="Object_000_5-uvs-array" count="56">6.0 0 6.0 1.0 6.4238 1.0 6.4255 1.0 6.4541 0 6.456 0 11.276 0 11.338 1.0 11.4165 0 11.4272 0 11.4565 1.0 11.4735 1.0 11.4785 1.0 11.5026 0 11.5448 0 11.5458 0 11.5691 0 11.5752 1.0 11.5761 1.0 11.5914 1.0 11.5982 1.0 11.6126 1.0 11.6419 0 11.6533 0 11.7324 1.0 11.7944 0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_000_5-uvs-array" count="28" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000_5-vertices">
+          <input semantic="POSITION" source="#Object_000_5-positions"/>
+        </vertices>
+        <triangles count="16" material="Material_Object_000_5">
+          <input offset="0" semantic="VERTEX" source="#Object_000_5-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000_5-uvs"/>
+          <p>1 16  0 25  8 24  8 24  2 20  1 16  4 3  3 1  6 0  6 0  5 5  4 3  9 21  8 12  7 8  7 8  10 22  9 21  13 15  12 26  11 27  11 27  14 18  13 15  16 14  15 26  18 27  18 27  17 17  16 14  20 11  19 7  22 6  22 6  21 13  20 11  24 9  23 23  26 19  26 19  25 10  24 9  28 2  27 1  30 0  30 0  29 4  28 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_000_6" name="Object_000_6">
+      <mesh>
+        <source id="Object_000_6-positions">
+          <float_array id="Object_000_6-positions-array" count="96">-0.7789 -0.025 0.7798 -0.7502 -0.025 0.8492 -0.7502 0.025 0.8492 -0.7789 0.025 0.7798 -0.75 -0.025 1.0014 -0.75 0.025 1.0014 -0.75 0.025 0.8491 -0.75 -0.025 0.8491 -0.7789 0.025 0.7797 -0.8484 0.025 0.7509 -0.8484 -0.025 0.7509 -0.7789 -0.025 0.7797 -0.9999 -0.025 0.751 -0.8484 -0.025 0.751 -0.8484 0.025 0.751 -0.9999 0.025 0.751 -0.75 -0.025 -1.0014 -0.75 -0.025 -0.8495 -0.75 0.025 -0.8495 -0.75 0.025 -1.0014 -0.7788 -0.025 -0.7796 -0.7788 0.025 -0.7796 -0.7498 0.025 -0.8495 -0.7498 -0.025 -0.8495 -0.7787 -0.025 -0.7798 -0.8484 -0.025 -0.7509 -0.8484 0.025 -0.7509 -0.7787 0.025 -0.7798 -0.9999 0.025 -0.7509 -0.8483 0.025 -0.7509 -0.8483 -0.025 -0.7509 -0.9999 -0.025 -0.7509</float_array>
+          <technique_common>
+            <accessor source="#Object_000_6-positions-array" count="32" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_000_6-uvs">
+          <float_array id="Object_000_6-uvs-array" count="56">6.0 0 6.0 1.0 6.4541 0 6.4541 1.0 6.456 0 6.456 1.0 11.276 0 11.276 1.0 11.4165 0 11.4165 1.0 11.4272 0 11.4272 1.0 11.5026 0 11.5026 1.0 11.5448 0 11.5448 1.0 11.5458 0 11.5458 1.0 11.5691 0 11.5691 1.0 11.6419 0 11.6419 1.0 11.6533 0 11.6533 1.0 11.7944 0 11.7944 1.0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_000_6-uvs-array" count="28" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_000_6-vertices">
+          <input semantic="POSITION" source="#Object_000_6-positions"/>
+        </vertices>
+        <triangles count="16" material="Material_Object_000_6">
+          <input offset="0" semantic="VERTEX" source="#Object_000_6-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_000_6-uvs"/>
+          <p>1 18  0 24  3 25  3 25  2 19  1 18  6 5  5 1  4 0  4 0  7 4  6 5  9 21  8 9  11 8  11 8  10 20  9 21  13 16  12 26  15 27  15 27  14 17  13 16  17 14  16 26  19 27  19 27  18 15  17 14  22 13  21 7  20 6  20 6  23 12  22 13  25 10  24 22  27 23  27 23  26 11  25 10  29 3  28 1  31 0  31 0  30 2  29 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001" name="Object_001">
+      <mesh>
+        <source id="Object_001-positions">
+          <float_array id="Object_001-positions-array" count="42">1.0 0.025 -0.801 1.0 0.025 -1.001 0.7997 0.025 -1.001 0.7997 0.025 -0.8594 0.8576 0.025 -0.801 0.817 0.025 -0.8178 0.8172 0.025 -0.818 0.8171 0.025 0.8179 0.7997 0.025 1.0009 0.7997 0.025 0.8597 1.0 0.025 1.0009 1.0 0.025 0.8009 0.8168 0.025 0.8176 0.857 0.025 0.8009</float_array>
+          <technique_common>
+            <accessor source="#Object_001-positions-array" count="14" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001-uvs">
+          <float_array id="Object_001-uvs-array" count="28">6.0 0 6.0 1.0 6.4282 0 6.5476 0.0852 6.5485 0.0838 6.5998 0.2942 6.5998 1.0 11.3999 0.2924 11.3999 1.0 11.4519 0.0845 11.4525 0.0855 11.5733 0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_001-uvs-array" count="14" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001-vertices">
+          <input semantic="POSITION" source="#Object_001-positions"/>
+        </vertices>
+        <triangles count="10" material="Material_Object_001">
+          <input offset="0" semantic="VERTEX" source="#Object_001-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001-uvs"/>
+          <p>4 11  0 12  1 13  2 8  4 11  1 13  3 7  4 11  2 8  6 10  4 11  3 7  6 10  5 9  4 11  7 3  11 0  12 4  7 3  9 5  8 6  10 1  7 3  8 6  11 0  7 3  10 1  11 0  13 2  12 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001_1" name="Object_001_1">
+      <mesh>
+        <source id="Object_001_1-positions">
+          <float_array id="Object_001_1-positions-array" count="30">0.6909 -0.0234 0.8375 0.6899 -0.0234 0.8373 0.6899 -0.0234 -0.8373 0.7336 -0.0234 0.7345 0.8363 -0.0234 0.6919 1.002 -0.0234 -0.692 0.8373 -0.0234 -0.692 1.002 -0.0234 0.6919 0.7331 -0.0234 -0.7351 0.6907 -0.0234 -0.8375</float_array>
+          <technique_common>
+            <accessor source="#Object_001_1-positions-array" count="10" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001_1-uvs">
+          <float_array id="Object_001_1-uvs-array" count="20">6.491 0.6468 6.4915 0.6434 6.7978 0.8311 6.927 1.2839 6.927 2.0 11.0728 1.2798 11.0728 2.0 11.2002 0.8331 11.508 0.6434 11.5086 0.6476</float_array>
+          <technique_common>
+            <accessor source="#Object_001_1-uvs-array" count="10" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001_1-vertices">
+          <input semantic="POSITION" source="#Object_001_1-positions"/>
+        </vertices>
+        <triangles count="8" material="Material_Object_001_1">
+          <input offset="0" semantic="VERTEX" source="#Object_001_1-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001_1-uvs"/>
+          <p>2 1  1 8  0 9  3 7  2 1  0 9  4 5  2 1  3 7  7 6  2 1  4 5  7 6  5 4  6 3  8 2  7 6  6 3  8 2  9 0  2 1  7 6  8 2  2 1</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001_2" name="Object_001_2">
+      <mesh>
+        <source id="Object_001_2-positions">
+          <float_array id="Object_001_2-positions-array" count="96">0.75 0.025 -1.0014 0.75 0.025 -0.8491 0.75 -0.025 -0.8491 0.75 -0.025 -1.0014 0.779 0.025 -0.7798 0.779 -0.025 -0.7798 0.7502 -0.025 -0.8492 0.7502 0.025 -0.8492 0.7789 0.025 -0.7797 0.8484 0.025 -0.7509 0.8484 -0.025 -0.7509 0.7789 -0.025 -0.7797 1.0 -0.025 -0.751 0.8484 -0.025 -0.751 0.8484 0.025 -0.751 1.0 0.025 -0.751 0.75 -0.025 1.0014 0.75 -0.025 0.8495 0.75 0.025 0.8495 0.75 0.025 1.0014 0.7788 0.025 0.7796 0.7499 0.025 0.8495 0.7499 -0.025 0.8495 0.7788 -0.025 0.7796 0.7787 -0.025 0.7798 0.8485 -0.025 0.7509 0.8485 0.025 0.7509 0.7787 0.025 0.7798 1.0 -0.025 0.7509 1.0 0.025 0.7509 0.8483 0.025 0.7509 0.8483 -0.025 0.7509</float_array>
+          <technique_common>
+            <accessor source="#Object_001_2-positions-array" count="32" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001_2-uvs">
+          <float_array id="Object_001_2-uvs-array" count="56">6.0 0 6.0 1.0 6.4541 0 6.4541 1.0 6.456 0 6.456 1.0 11.276 0 11.276 1.0 11.4165 0 11.4165 1.0 11.4272 0 11.4272 1.0 11.5026 0 11.5026 1.0 11.5448 0 11.5448 1.0 11.5458 0 11.5458 1.0 11.5691 0 11.5691 1.0 11.6419 0 11.6419 1.0 11.6533 0 11.6533 1.0 11.7944 0 11.7944 1.0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_001_2-uvs-array" count="28" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001_2-vertices">
+          <input semantic="POSITION" source="#Object_001_2-positions"/>
+        </vertices>
+        <triangles count="16" material="Material_Object_001_2">
+          <input offset="0" semantic="VERTEX" source="#Object_001_2-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001_2-uvs"/>
+          <p>1 5  0 1  3 0  3 0  2 4  1 5  6 18  5 24  4 25  4 25  7 19  6 18  9 21  8 9  11 8  11 8  10 20  9 21  13 16  12 26  15 27  15 27  14 17  13 16  17 14  16 26  19 27  19 27  18 15  17 14  21 13  20 7  23 6  23 6  22 12  21 13  25 10  24 22  27 23  27 23  26 11  25 10  30 3  29 1  28 0  28 0  31 2  30 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001_3" name="Object_001_3">
+      <mesh>
+        <source id="Object_001_3-positions">
+          <float_array id="Object_001_3-positions-array" count="93">0.8 0.025 -1.0014 0.8 0.025 -0.8593 0.75 0.025 -0.8491 0.75 0.025 -1.0014 0.779 0.025 -0.7798 0.7502 0.025 -0.8492 0.8001 0.025 -0.8594 0.8172 0.025 -0.818 0.8585 0.025 -0.8008 0.8484 0.025 -0.7509 0.7789 0.025 -0.7797 1.0 0.025 -0.801 1.0 0.025 -0.751 0.8484 0.025 -0.751 0.8585 0.025 -0.801 0.75 0.025 1.0014 0.75 0.025 0.8495 0.8 0.025 0.8596 0.8 0.025 1.0014 0.8171 0.025 0.8179 0.7998 0.025 0.8597 0.7499 0.025 0.8495 0.7788 0.025 0.7796 0.7787 0.025 0.7798 0.8485 0.025 0.7509 0.8586 0.025 0.8008 0.817 0.025 0.818 1.0 0.025 0.7509 1.0 0.025 0.8009 0.8584 0.025 0.8009 0.8483 0.025 0.7509</float_array>
+          <technique_common>
+            <accessor source="#Object_001_3-positions-array" count="31" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001_3-uvs">
+          <float_array id="Object_001_3-uvs-array" count="56">6.0 0 6.0 1.0 6.4238 1.0 6.4255 1.0 6.4541 0 6.456 0 11.276 0 11.338 1.0 11.4165 0 11.4272 0 11.4565 1.0 11.4735 1.0 11.4785 1.0 11.5026 0 11.5448 0 11.5458 0 11.5691 0 11.5752 1.0 11.5761 1.0 11.5914 1.0 11.5982 1.0 11.6126 1.0 11.6419 0 11.6533 0 11.7324 1.0 11.7944 0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_001_3-uvs-array" count="28" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001_3-vertices">
+          <input semantic="POSITION" source="#Object_001_3-positions"/>
+        </vertices>
+        <triangles count="16" material="Material_Object_001_3">
+          <input offset="0" semantic="VERTEX" source="#Object_001_3-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001_3-uvs"/>
+          <p>1 3  0 1  3 0  3 0  2 5  1 3  5 16  4 25  7 24  7 24  6 20  5 16  8 21  7 12  10 8  10 8  9 22  8 21  13 15  12 26  11 27  11 27  14 18  13 15  16 14  15 26  18 27  18 27  17 17  16 14  20 11  19 7  22 6  22 6  21 13  20 11  24 9  23 23  26 19  26 19  25 10  24 9  29 2  28 1  27 0  27 0  30 4  29 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001_4" name="Object_001_4">
+      <mesh>
+        <source id="Object_001_4-positions">
+          <float_array id="Object_001_4-positions-array" count="93">1.0 -0.0234 -0.751 1.0 -0.0234 -0.701 0.8484 -0.0234 -0.751 0.75 -0.0234 -1.0014 0.75 -0.0234 -0.8491 0.7 -0.0234 -0.8389 0.7 -0.0234 -1.0014 0.7789 -0.0234 -0.7797 0.8484 -0.0234 -0.7509 0.8383 -0.0234 -0.701 0.7407 -0.0234 -0.7414 0.7 -0.0234 1.0014 0.7 -0.0234 0.8393 0.75 -0.0234 0.8495 0.75 -0.0234 1.0014 0.7406 -0.0234 0.7413 0.7788 -0.0234 0.7796 0.7499 -0.0234 0.8495 0.7 -0.0234 0.8394 0.7405 -0.0234 0.7415 0.8384 -0.0234 0.7009 0.8485 -0.0234 0.7509 0.7787 -0.0234 0.7798 1.0 -0.0234 0.7009 1.0 -0.0234 0.7509 0.8483 -0.0234 0.7509 0.8382 -0.0234 0.7009 0.779 -0.0234 -0.7798 0.7407 -0.0234 -0.7415 0.7003 -0.0234 -0.8391 0.7502 -0.0234 -0.8492</float_array>
+          <technique_common>
+            <accessor source="#Object_001_4-positions-array" count="31" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001_4-uvs">
+          <float_array id="Object_001_4-uvs-array" count="56">6.0 0 6.0 1.0 6.4541 1.0 6.456 1.0 6.4844 0 6.4865 0 11.2139 0 11.276 1.0 11.3544 0 11.3979 0 11.4165 1.0 11.4272 1.0 11.5026 1.0 11.5143 0 11.5155 0 11.5318 0 11.5401 0 11.5448 1.0 11.5458 1.0 11.5691 1.0 11.6419 1.0 11.6533 1.0 11.6712 0 11.7155 0 11.7944 1.0 11.8565 0 12.0 0 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_001_4-uvs-array" count="28" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001_4-vertices">
+          <input semantic="POSITION" source="#Object_001_4-positions"/>
+        </vertices>
+        <triangles count="16" material="Material_Object_001_4">
+          <input offset="0" semantic="VERTEX" source="#Object_001_4-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001_4-uvs"/>
+          <p>9 14  1 26  0 27  0 27  2 18  9 14  4 3  3 1  6 0  6 0  5 5  4 3  8 20  7 10  10 8  10 8  9 22  8 20  12 13  11 26  14 27  14 27  13 17  12 13  17 12  16 7  15 6  15 6  18 15  17 12  20 9  19 23  22 21  22 21  21 11  20 9  25 2  24 1  23 0  23 0  26 4  25 2  29 16  28 25  27 24  27 24  30 19  29 16</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001_5" name="Object_001_5">
+      <mesh>
+        <source id="Object_001_5-positions">
+          <float_array id="Object_001_5-positions-array" count="72">0.7406 -0.0234 -0.7414 0.8383 -0.0234 -0.7009 0.8363 -0.0234 -0.6909 0.733 -0.0234 -0.7337 0.733 -0.0234 -0.7338 0.6902 -0.0234 -0.837 0.7002 -0.0234 -0.8391 0.7407 -0.0234 -0.7414 0.6899 -0.0234 -1.0014 0.6999 -0.0234 -1.0014 0.6999 -0.0234 -0.8389 0.6899 -0.0234 -0.8369 0.7404 -0.0234 0.7415 0.7328 -0.0234 0.7338 0.8363 -0.0234 0.6909 0.8384 -0.0234 0.7009 0.7405 -0.0234 0.7413 0.6999 -0.0234 0.8394 0.6899 -0.0234 0.8373 0.7329 -0.0234 0.7336 0.6999 -0.0234 1.0014 0.6899 -0.0234 1.0014 0.6899 -0.0234 0.8372 0.6999 -0.0234 0.8393</float_array>
+          <technique_common>
+            <accessor source="#Object_001_5-positions-array" count="24" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001_5-uvs">
+          <float_array id="Object_001_5-uvs-array" count="48">6.0 0.9573 6.0 1.0 6.4865 1.0 6.4926 0.9573 11.2014 0.9573 11.2138 1.0 11.342 0.9573 11.3544 1.0 11.392 0.9573 11.3979 1.0 11.5081 0.9573 11.5142 1.0 11.5318 1.0 11.5341 0.9573 11.5376 0.9573 11.5401 1.0 11.6713 1.0 11.6772 0.9573 11.7155 1.0 11.7278 0.9573 11.8566 1.0 11.869 0.9573 12.0 0.9573 12.0 1.0</float_array>
+          <technique_common>
+            <accessor source="#Object_001_5-uvs-array" count="24" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001_5-vertices">
+          <input semantic="POSITION" source="#Object_001_5-positions"/>
+        </vertices>
+        <triangles count="12" material="Material_Object_001_5">
+          <input offset="0" semantic="VERTEX" source="#Object_001_5-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001_5-uvs"/>
+          <p>1 16  0 7  3 6  3 6  2 17  1 16  5 13  4 21  7 20  7 20  6 15  5 13  10 2  9 1  8 0  8 0  11 3  10 2  14 8  13 19  12 18  12 18  15 9  14 8  17 12  16 5  19 4  19 4  18 14  17 12  22 10  21 22  20 23  20 23  23 11  22 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="Object_001_6" name="Object_001_6">
+      <mesh>
+        <source id="Object_001_6-positions">
+          <float_array id="Object_001_6-positions-array" count="24">1.0 -0.0234 -0.691 0.8363 -0.0234 -0.691 0.8383 -0.0234 -0.701 1.0 -0.0234 -0.701 1.0 -0.0234 0.6909 1.0 -0.0234 0.7009 0.8382 -0.0234 0.7009 0.8362 -0.0234 0.6909</float_array>
+          <technique_common>
+            <accessor source="#Object_001_6-positions-array" count="8" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object_001_6-uvs">
+          <float_array id="Object_001_6-uvs-array" count="16">6.0 0 6.0 0.043 6.4841 0 6.4902 0.043 11.5093 0.043 11.5153 0 12.0 0 12.0 0.043</float_array>
+          <technique_common>
+            <accessor source="#Object_001_6-uvs-array" count="8" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object_001_6-vertices">
+          <input semantic="POSITION" source="#Object_001_6-positions"/>
+        </vertices>
+        <triangles count="4" material="Material_Object_001_6">
+          <input offset="0" semantic="VERTEX" source="#Object_001_6-vertices"/>
+          <input offset="1" semantic="TEXCOORD" source="#Object_001_6-uvs"/>
+          <p>1 3  0 1  3 0  3 0  2 2  1 3  6 5  5 6  4 7  4 7  7 4  6 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="DefaultScene">
+      <node id="S_Object_000">
+        <instance_geometry url="#Object_000">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000" target="#Material_Object_000">
+                <bind_vertex_input semantic="Object_000-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_000_1">
+        <instance_geometry url="#Object_000_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000_1" target="#Material_Object_000_1">
+                <bind_vertex_input semantic="Object_000_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_000_2">
+        <instance_geometry url="#Object_000_2">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000_2" target="#Material_Object_000_2">
+                <bind_vertex_input semantic="Object_000_2-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_000_3">
+        <instance_geometry url="#Object_000_3">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000_3" target="#Material_Object_000_3">
+                <bind_vertex_input semantic="Object_000_3-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_000_4">
+        <instance_geometry url="#Object_000_4">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000_4" target="#Material_Object_000_4">
+                <bind_vertex_input semantic="Object_000_4-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_000_5">
+        <instance_geometry url="#Object_000_5">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000_5" target="#Material_Object_000_5">
+                <bind_vertex_input semantic="Object_000_5-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_000_6">
+        <instance_geometry url="#Object_000_6">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_000_6" target="#Material_Object_000_6">
+                <bind_vertex_input semantic="Object_000_6-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001">
+        <instance_geometry url="#Object_001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001" target="#Material_Object_001">
+                <bind_vertex_input semantic="Object_001-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001_1">
+        <instance_geometry url="#Object_001_1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001_1" target="#Material_Object_001_1">
+                <bind_vertex_input semantic="Object_001_1-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001_2">
+        <instance_geometry url="#Object_001_2">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001_2" target="#Material_Object_001_2">
+                <bind_vertex_input semantic="Object_001_2-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001_3">
+        <instance_geometry url="#Object_001_3">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001_3" target="#Material_Object_001_3">
+                <bind_vertex_input semantic="Object_001_3-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001_4">
+        <instance_geometry url="#Object_001_4">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001_4" target="#Material_Object_001_4">
+                <bind_vertex_input semantic="Object_001_4-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001_5">
+        <instance_geometry url="#Object_001_5">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001_5" target="#Material_Object_001_5">
+                <bind_vertex_input semantic="Object_001_5-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="S_Object_001_6">
+        <instance_geometry url="#Object_001_6">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_Object_001_6" target="#Material_Object_001_6">
+                <bind_vertex_input semantic="Object_001_6-TEX0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#DefaultScene"/>
+  </scene>
+</COLLADA>
