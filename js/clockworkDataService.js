@@ -76,8 +76,9 @@ angular.module('clockworkApp.clockworkDataService', [])
                     },
                     saveScene: function (threeScene) {
                         let json = threeScene.scene.toJSON();
-                        var templateArray = [];
-
+                        let children = json.object.children;
+                        let jsonStr = JSON.stringify(children)
+                        return;
 
                         /*
                          var children = threeScene.pickerObjects;

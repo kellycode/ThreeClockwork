@@ -68,37 +68,16 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                             actions.cloneObject = false;
                         }
                         if (actions.deleteObject) {
-                            // we explicitly set it to null when it is
+                            
+                            // we explicitly set it to null elsewhere when should be
                             if (currentSelected === null) {
                                 return;
                             }
                             else {
+                                // don't leave the wrapper hanging
                                 this._removeSelectionWrapper(currentSelected);
-
-                                // get the current number of children
-                                let sceneKids = this.scene.children.length;
-                                
-                                // attempt to remove the object - works if it's
-                                // a primitive while collada need to be found.
+                                // remove the object
                                 this.scene.remove(currentSelected);
-                                
-                                // Collada models are loaded and stuffed into an
-                                // Object3D and we get no feedback on it's identity.
-                                // The raycaster selects the Object3D and we need
-                                // to check if it's the one with out model because
-                                // the Object 3D tells us nothing about what's in it
-                                
-                                // if same number of children, it failed.
-                                if (this.scene.children.length === sceneKids) {
-                                    // fish for the Group holding the Collada
-                                    let parentID = currentSelected.parent.id;
-                                    let removable = this.scene.getObjectById(parentID);
-                                    this.scene.remove(removable);
-                                }
-
-//                                while (this.scene.children.length > 0) {
-//                                    this.scene.remove(scene.children[0]);
-//                                }
                             }
                             actions.deleteObject = false;
                         }
@@ -329,7 +308,9 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         };
 
                         loader.load(model.path, function (collada) {
-                            dae_model = collada.scene;
+                            // we only use models with one child
+                            // so child[0] is the mesh we want
+                            dae_model = collada.scene.children[0];
 
                             // build the template for clones
                             dae_model.userData.template = template;
@@ -493,9 +474,6 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         {
                             var selectedObject = intersects[ 0 ].object;
 
-                            if (selectedObject.userData.isCollada) {
-                                selectedObject = scene.getObjectById(selectedObject.userData.id, false);
-                            }
                             // is the selection is not our saved 
                             // (saved could be an object or null)
                             if (currentSelected !== selectedObject)
@@ -508,8 +486,10 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                     //and erase saved
                                     currentSelected = null;
                                 }
+                                
                                 // and then save our new selected object info
                                 currentSelected = selectedObject;
+                                
                                 // add the highlight
                                 this._addSelectionWrapper(currentSelected);
                             }
