@@ -109,7 +109,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             // cannon boxes for play
             //block cannon//cannonBoxes.initBoxes();
             // cannon bullets for play
-            //block cannon//cannonBullet.initBullets();
+            cannonBullet.initBullets();
 
             // the render and update section
             $scope.animate = function () {

@@ -75,22 +75,11 @@ angular.module('clockworkApp.clockworkDataService', [])
                         localStorage.setItem('scene_save', scene_json);
                     },
                     saveScene: function (threeScene) {
+                        // extract the objects only
                         let json = threeScene.scene.toJSON();
                         let children = json.object.children;
-                        let jsonStr = JSON.stringify(children)
-                        return;
-
-                        /*
-                         var children = threeScene.pickerObjects;
-                         for (var i = 0; i < children.length; i++) {
-                         //console.log(children[i].userData.template.type)
-                         templater.updateTemplateMovements(children[i]);
-                         templateArray.push(children[i].userData.template);
-                         }
-                         */
-                        
-                        
-                        this.saveSceneJSON(JSON.stringify(json));
+                        let jsonStr = JSON.stringify(children);
+                        this.saveSceneJSON(JSON.stringify(jsonStr));
                     },
                     jsonStringifyDebug: function (stringifiedObject) {
                         var cache = [];

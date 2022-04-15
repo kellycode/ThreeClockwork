@@ -28,8 +28,8 @@ angular.module('clockworkApp.clockworkThreeScene', [])
                         //var helper = new THREE.CameraHelper(this.camera);
                         //this.scene.add(helper);
 
+                        // 
                         this.light = new THREE.DirectionalLight('#ffffff', 1);
-
                         this.light.position.set(50, 50, -10);
 
                         // do we want shadows
