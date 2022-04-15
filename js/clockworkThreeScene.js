@@ -18,6 +18,8 @@ angular.module('clockworkApp.clockworkThreeScene', [])
 
                         this.scene = new THREE.Scene();
                         this.scene.fog = new THREE.Fog(0xc0c0c0, 0, 500);
+                        
+                        this.scene.userData.box;
 
                         this.ambient = new THREE.AmbientLight('#d8e7e8');
                         this.scene.add(this.ambient);

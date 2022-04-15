@@ -20,9 +20,6 @@ angular.module('clockworkApp.clockworkDataService', [])
                             });
                         }
                     },
-                    saveSceneJSON: function (scene_json) {
-                        localStorage.setItem('scene_save', scene_json);
-                    },
                     downloadScene: function (content, fileName, contentType) {
                         var a = document.createElement("a");
                         var file = new Blob([content], {type: contentType});
@@ -74,16 +71,25 @@ angular.module('clockworkApp.clockworkDataService', [])
                         }
                         return newArray;
                     },
+                    saveSceneJSON: function (scene_json) {
+                        localStorage.setItem('scene_save', scene_json);
+                    },
                     saveScene: function (threeScene) {
+                        let json = threeScene.scene.toJSON();
                         var templateArray = [];
-                        var children = threeScene.pickerObjects;
-                        for (var i = 0; i < children.length; i++) {
-                            templater.updateTemplateMovements(children[i]);
-                            if(children[i].userData.template) {
-                                templateArray.push(children[i].userData.template);
-                            }
-                        }
-                        this.saveSceneJSON(JSON.stringify(templateArray));
+
+
+                        /*
+                         var children = threeScene.pickerObjects;
+                         for (var i = 0; i < children.length; i++) {
+                         //console.log(children[i].userData.template.type)
+                         templater.updateTemplateMovements(children[i]);
+                         templateArray.push(children[i].userData.template);
+                         }
+                         */
+                        
+                        
+                        this.saveSceneJSON(JSON.stringify(json));
                     },
                     jsonStringifyDebug: function (stringifiedObject) {
                         var cache = [];

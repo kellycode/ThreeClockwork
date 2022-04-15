@@ -5,33 +5,19 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                 return {
                     objectSelect: function (event, threeScene) {
                         var camera = threeScene.camera;
-                        var pickerObjects = threeScene.pickerObjects;
                         var intersects = [];
-                        var mouse = {x: 0,y: 0};
+                        var mouse = {x: 0, y: 0};
 
                         mouse.x = ((event.clientX - threeScene.renderer.domElement.offsetLeft) / threeScene.renderer.domElement.width) * 2 - 1;
                         mouse.y = -((event.clientY - threeScene.renderer.domElement.offsetTop) / threeScene.renderer.domElement.height) * 2 + 1;
-                        
+
                         threeScene.pickerRaycaster.setFromCamera(mouse, camera);
-                        intersects = threeScene.pickerRaycaster.intersectObjects(pickerObjects, true);
+                        intersects = threeScene.pickerRaycaster.intersectObjects(threeScene.scene.children, true);
                         threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
                     },
                     update: function (threeScene, actions) {
                         var currentSelected = threeScene.selectedObject;
-                        var scene = threeScene.scene;
-                        var pickerObjects = threeScene.pickerObjects;
                         var self = this;
-
-                        var _removeObject = function () {
-                            // we explicitly set it to null when it is
-                            if (currentSelected === null) {
-                                return;
-                            }
-                            else {
-                                _removePickerObjects(pickerObjects);
-                                scene.remove(currentSelected);
-                            }
-                        };
 
                         var _cloneSelected = function () {
                             // we explicitly set it to null when it is
@@ -72,33 +58,48 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                     break;
                             }
                         };
-
-                        var _removePickerObjects = function (pickerObjects) {
-                            if (currentSelected.type === "Group") {
-                                var children = currentSelected.children;
-                                for (var i = 0; i < pickerObjects.length; i++) {
-                                    for (var j = 0; j < children.length; j++) {
-                                        if (pickerObjects[i] === children[j].children[0]) {
-                                            pickerObjects.splice(i, 1);
-                                        }
-                                    }
-                                }
-                            }
-                            else {
-                                for (var i = 0; i < pickerObjects.length; i++) {
-                                    if (pickerObjects[i] === currentSelected) {
-                                        pickerObjects.splice(i, 1);
-                                    }
-                                }
-                            }
-                        };
+                        
+                        if(this.scene.userData.box) {
+                            this.scene.userData.box.update();
+                        }
 
                         if (actions.cloneObject) {
                             _cloneSelected();
                             actions.cloneObject = false;
                         }
                         if (actions.deleteObject) {
-                            _removeObject();
+                            // we explicitly set it to null when it is
+                            if (currentSelected === null) {
+                                return;
+                            }
+                            else {
+                                this._removeSelectionWrapper(currentSelected);
+
+                                // get the current number of children
+                                let sceneKids = this.scene.children.length;
+                                
+                                // attempt to remove the object - works if it's
+                                // a primitive while collada need to be found.
+                                this.scene.remove(currentSelected);
+                                
+                                // Collada models are loaded and stuffed into an
+                                // Object3D and we get no feedback on it's identity.
+                                // The raycaster selects the Object3D and we need
+                                // to check if it's the one with out model because
+                                // the Object 3D tells us nothing about what's in it
+                                
+                                // if same number of children, it failed.
+                                if (this.scene.children.length === sceneKids) {
+                                    // fish for the Group holding the Collada
+                                    let parentID = currentSelected.parent.id;
+                                    let removable = this.scene.getObjectById(parentID);
+                                    this.scene.remove(removable);
+                                }
+
+//                                while (this.scene.children.length > 0) {
+//                                    this.scene.remove(scene.children[0]);
+//                                }
+                            }
                             actions.deleteObject = false;
                         }
                     },
@@ -122,14 +123,12 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                 sceneObject.userData.template.movements.degX,
                                 sceneObject.userData.template.movements.degY,
                                 sceneObject.userData.template.movements.degZ);
+
+
                         // add it to the scene
                         this.scene.add(sceneObject);
-                        // and add it to the collision list
-                        if (canSelect) {
-                            this.pickerObjects.push(sceneObject);
-                        }
-                        sceneObject.updateMatrixWorld();
 
+                        sceneObject.updateMatrixWorld();
                     },
                     // SELECTABLE OBJECTS
                     _loadMeshMaterial: function (material, textureParams) {
@@ -317,7 +316,6 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                     },
                     _loadCollada: function (model) {
                         var self = this;
-                        var parent = this.parent;
 
                         var dae_model;
                         var loader = new THREE.ColladaLoader();
@@ -329,29 +327,21 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                             //positions: model.positions,
                             movements: model.movements
                         };
+
                         loader.load(model.path, function (collada) {
                             dae_model = collada.scene;
 
                             // build the template for clones
                             dae_model.userData.template = template;
+                            dae_model.userData.isCollada = true;
                             dae_model.scale.x = dae_model.scale.y = dae_model.scale.z = model.scale;
 
                             self._applyMatrix(dae_model, model);
                             dae_model.updateMatrix();
 
-                            for (var i = 0; i < dae_model.children.length; i++) {
-                                // to catch when we have a group selected by a group mesh
-                                // save a reference to the group parent id
-                                dae_model.children[i].userData.isCollada = true;
-                                dae_model.children[i].material.transparent = true;
-                                dae_model.children[i].material.side = THREE.DoubleSide;
-                                dae_model.children[i].userData.id = dae_model.id;
-                                // and add this child to the picker, groups are selected by children
-                                //self.pickerObjects.push(dae_model.children[i]);
-                                self.pickerObjects.push(dae_model);
-                            }
                             // add as appropriate
                             self._addSceneObject(dae_model, true);
+                            dae_model.updateMatrix();
                         });
                     },
                     _loadShaderSkybox: function (template) {
@@ -477,12 +467,13 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                     loadScene: function (threeScene) {
                         this.sceneData = threeScene.sceneData;
                         this.scene = threeScene.scene;
-                        this.pickerObjects = threeScene.pickerObjects;
+
                         // loading static ground here atm
                         this._loadGround();
+                        
                         // basic items
                         for (var i = 0; i < this.sceneData.length; i++) {
-                            if(this.sceneData[i] === null) {
+                            if (this.sceneData[i] === null) {
                                 continue;
                             }
                             switch (this.sceneData[i].type) {
@@ -544,11 +535,11 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         return currentSelected;
                     },
                     _addSelectionWrapper: function (currentSelected) {
-                        const box = new THREE.BoxHelper( currentSelected, 0xffff00 );
-                        box.name = 'selectionWrapper';
-                        this.scene.add(box);
+                        this.scene.userData.box = new THREE.BoxHelper(currentSelected, 0xffff00);
+                        this.scene.userData.box.name = 'selectionWrapper';
+                        this.scene.add(this.scene.userData.box);
                     },
-                    _removeSelectionWrapper: function () {
+                    _removeSelectionWrapper: function (currentSelected) {
                         var wrapper = this.scene.getObjectByName('selectionWrapper')
                         this.scene.remove(wrapper);
                     },

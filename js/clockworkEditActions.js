@@ -23,15 +23,18 @@ angular.module('clockworkApp.clockworkEditActions', [])
                         };
 
                         var _posSelectedX = function (change) {
-                            currentSelected.position.x = _floatAdd(currentSelected.position.x, change);
+                            //currentSelected.position.x = _floatAdd(currentSelected.position.x, change);
+                            currentSelected.translateX(change);
                         };
 
                         var _posSelectedY = function (change) {
-                            currentSelected.position.y = _floatAdd(currentSelected.position.y, change);
+                            //currentSelected.position.y = _floatAdd(currentSelected.position.y, change);
+                            currentSelected.translateY(change);
                         };
 
                         var _posSelectedZ = function (change) {
-                            currentSelected.position.z = _floatAdd(currentSelected.position.z, change);
+                            //currentSelected.position.z = _floatAdd(currentSelected.position.z, change);
+                            currentSelected.translateZ(change);
                         };
 
                         var _rotSelectedX = function (change) {

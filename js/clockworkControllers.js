@@ -92,7 +92,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             // start the scene and load it
             threeScene.init($element);
 
-            let loadFromFile = false;
+            let loadFromFile = true;
 
             dataService.loadSceneJSON("json/scene1.json", loadFromFile).then(function (response) {
                 if (!response) {
@@ -107,9 +107,9 @@ angular.module('clockworkApp.clockworkControllers', [])
             });
 
             // cannon boxes for play
-            //blobk cannon//cannonBoxes.initBoxes();
+            //block cannon//cannonBoxes.initBoxes();
             // cannon bullets for play
-            //blobk cannon//cannonBullet.initBullets();
+            //block cannon//cannonBullet.initBullets();
 
             // the render and update section
             $scope.animate = function () {
@@ -456,27 +456,6 @@ angular.module('clockworkApp.clockworkControllers', [])
             $scope.setSpecular = function () {
                 $scope.material.specular.setStyle($scope.colors.emissive);
             };
-
-            // make some updates when the selected object changes
-            $scope.$watch(function () {
-                return threeScene.selectedObject;
-            },
-                function () {
-                    if (threeScene.selectedObject) {
-                        if (threeScene.selectedObject.type !== 'Group') {
-                            $scope.selected = threeScene.selectedObject;
-                            $scope.material = threeScene.selectedObject.material;
-                            //console.log($scope.material);
-                            $scope.getHexColors();
-                        }
-                    }
-                    else {
-                        $scope.selected = null;
-                        $scope.material = null;
-                        $scope.clearHexColors();
-                    }
-                }
-            );
         }])
     .controller('MeshEditTextureOffsetController', ['$scope', 'constants',
         function ($scope, constants) {
