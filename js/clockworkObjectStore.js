@@ -58,8 +58,8 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                     break;
                             }
                         };
-                        
-                        if(this.scene.userData.box) {
+
+                        if (this.scene.userData.box) {
                             this.scene.userData.box.update();
                         }
 
@@ -68,7 +68,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                             actions.cloneObject = false;
                         }
                         if (actions.deleteObject) {
-                            
+
                             // we explicitly set it to null elsewhere when should be
                             if (currentSelected === null) {
                                 return;
@@ -327,19 +327,20 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                     },
                     _loadShaderSkybox: function (template) {
                         // experiment
-                        // img order fr bk up dn lf rt
-                        this.scene.background = new THREE.Color(0xc0c0ff);
-                        this.scene.fog = new THREE.Fog(this.scene.background, 1, 250);
 
-//                        this.scene.background = new THREE.CubeTextureLoader()
-//                                .setPath('assets/skybox/meadow/')
-//                                .load(['meadow_ft.jpg', 'meadow_bk.jpg', 'meadow_up.jpg', 'meadow_dn.jpg', 'meadow_rt.jpg', 'meadow_lf.jpg']);
+                        // fog color
+                        this.scene.background = new THREE.Color(0x1b280b);
+                        
+                        // add the fog
+                        this.scene.fog = new THREE.Fog(this.scene.background, 1, 250);
+                        
+                        // img order fr bk up dn lf rt
+                        this.scene.background = new THREE.CubeTextureLoader()
+                                .setPath('assets/skybox/meadow/')
+                                .load(['meadow_ft.jpg', 'meadow_bk.jpg', 'meadow_up.jpg', 'meadow_dn.jpg', 'meadow_rt.jpg', 'meadow_lf.jpg']);
+                        // others
                         //.load(['dark-s_px.jpg', 'dark-s_nx.jpg', 'dark-s_py.jpg', 'dark-s_ny.jpg', 'dark-s_pz.jpg', 'dark-s_nz.jpg']);
                         //.load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
-
-                        this.scene.userData.template = template;
-                        this.scene.userData.template.type = 'ShaderSkybox';
-                        this.scene.userData.background = template;
                     },
                     // CALLED AS DEFAULT, WILL LIKELY BUILD A GROUND FACTORY
                     _loadGround: function () {
@@ -357,7 +358,6 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                 "opacity": 1,
                                 "reflectivity": 1,
                                 "refractionRatio": 0.98,
-                                "flatShading": false,
                                 "side": 0,
                                 "transparent": false,
                                 "type": "MeshLambertMaterial",
@@ -385,14 +385,17 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                 "scaZ": 1
                             }
                         };
+
                         var groundGeometry = new THREE.PlaneBufferGeometry(template.geometry.width, template.geometry.height);
                         var ground = new THREE.Mesh(groundGeometry, this._loadMeshMaterial(template.material, template.texture));
+
                         ground.position.y = 0;
                         ground.castShadow = false;
                         ground.receiveShadow = true;
                         ground.rotation.x = -Math.PI / 2;
                         ground.userData.clockworkType = 'ClockworkGround';
                         ground.userData.template = template;
+
                         this._addSceneObject(ground, false);
                     },
                     _loadThreeType: function (mesh) {
@@ -451,7 +454,9 @@ angular.module('clockworkApp.clockworkObjectStore', [])
 
                         // loading static ground here atm
                         this._loadGround();
-                        
+
+                        this._loadShaderSkybox();
+
                         // basic items
                         for (var i = 0; i < this.sceneData.length; i++) {
                             if (this.sceneData[i] === null) {
@@ -486,10 +491,10 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                     //and erase saved
                                     currentSelected = null;
                                 }
-                                
+
                                 // and then save our new selected object info
                                 currentSelected = selectedObject;
-                                
+
                                 // add the highlight
                                 this._addSelectionWrapper(currentSelected);
                             }

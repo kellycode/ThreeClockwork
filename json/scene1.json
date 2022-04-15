@@ -1,80 +1,5 @@
-[{
-        "color": "#d8e7e8",
-        "type": "AmbientLight",
-        "movements": {
-            "posX": 0,
-            "posY": 0,
-            "posZ": 0,
-            "degX": 0,
-            "degY": 0,
-            "degZ": 0,
-            "scaX": 1,
-            "scaY": 1,
-            "scaZ": 1
-        },
-        "frustumCulled": true,
-        "name": "",
-        "visible": true
-    }, {
-        "aspect": 2.0104712041884816,
-        "far": 2000,
-        "fov": 45,
-        "near": 0.2,
-        "type": "PerspectiveCamera",
-        "movements": {
-            "posX": -5.1607414556444935,
-            "posY": 0.5399999999999999,
-            "posZ": 9.960748791988374,
-            "degX": 0,
-            "degY": 1418.0705429488007,
-            "degZ": 0,
-            "scaX": 1,
-            "scaY": 1,
-            "scaZ": 1
-        },
-        "castShadow": false,
-        "frustumCulled": true,
-        "name": "",
-        "zoom": 1,
-        "visible": true
-    }, {
-        "color": 16772829,
-        "intensity": 1,
-        "posX": 5,
-        "posY": 1,
-        "posZ": 5,
-        "type": "DirectionalLight",
-        "movements": {
-            "posX": 5,
-            "posY": 1,
-            "posZ": 5,
-            "degX": 0,
-            "degY": 0,
-            "degZ": 0,
-            "scaX": 1,
-            "scaY": 1,
-            "scaZ": 1
-        }
-    }, {
-        "images": ["./assets/skybox/sea_fr.jpg", "./assets/skybox/sea_bk.jpg", "./assets/skybox/sea_up.jpg", "./assets/skybox/sea_dn.jpg", "./assets/skybox/sea_lf.jpg", "./assets/skybox/sea_rt.jpg"],
-        "type": "ShaderSkybox",
-        "movements": {
-            "posX": 0,
-            "posY": 0,
-            "posZ": 0,
-            "degX": 0,
-            "degY": 0,
-            "degZ": 0,
-            "scaX": 1,
-            "scaY": 1,
-            "scaZ": 1
-        },
-        "geometry": {
-            "width": 100,
-            "height": 100,
-            "depth": 100
-        }
-    }, {
+[
+    {
         "geometry": {
             "width": 100,
             "height": 100,
@@ -91,7 +16,7 @@
             "flatShading": false,
             "side": 0,
             "transparent": false,
-            "type": "MeshLambertMaterial",
+            "type": "MeshPhongMaterial",
             "vertexColors": 0,
             "visible": true
         },
@@ -115,4 +40,319 @@
             "scaY": 1,
             "scaZ": 1
         }
-    }]
+    },
+    {
+        "geometry": {
+            "width": 2,
+            "height": 2,
+            "depth": 2,
+            "type": "BoxGeometry"
+        },
+        "material": {
+            "color": "#c7adad",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 1,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#000000",
+            "transparent": false,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": 2.5,
+            "posY": 1.1,
+            "posZ": -6,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        },
+        "texture": {
+            "anisotropy": 1,
+            "path": "./textures/metal9.jpg",
+            "repeat": {
+                "height": 3,
+                "width": 3
+            }
+        }
+    }, {
+        "geometry": {
+            "radius": 1,
+            "widthSegments": 8,
+            "heightSegments": 6,
+            "type": "SphereGeometry"
+        },
+        "material": {
+            "color": "#ffffff",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 1,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#000000",
+            "transparent": false,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": 0,
+            "posY": 0,
+            "posZ": 0,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        },
+        "texture": {
+            "anisotropy": 1,
+            "path": "./textures/metal9.jpg",
+            "repeat": {
+                "height": 3,
+                "width": 3
+            }
+        }
+    }, {
+        "geometry": {
+            "width": 2,
+            "height": 2,
+            "depth": 2,
+            "type": "BoxGeometry"
+        },
+        "material": {
+            "color": "#3040cf",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 0.71,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#000000",
+            "transparent": true,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": 4.5,
+            "posY": 4.6,
+            "posZ": -4,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        }
+    }, {
+        "geometry": {
+            "width": 2,
+            "height": 2,
+            "depth": 2,
+            "type": "BoxGeometry"
+        },
+        "material": {
+            "color": "#8b8b83",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 1,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#000000",
+            "transparent": false,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "texture": {
+            "anisotropy": 1,
+            "path": "./textures/building01.jpg",
+            "repeat": {
+                "height": 1,
+                "width": 1
+            }
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": -6,
+            "posY": 1.1,
+            "posZ": -5,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        }
+    }, {
+        "geometry": {
+            "width": 2,
+            "height": 2,
+            "depth": 2,
+            "type": "BoxGeometry"
+        },
+        "material": {
+            "color": "#919191",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 0.5,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#263066",
+            "transparent": false,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": 7.5,
+            "posY": 1.1,
+            "posZ": -1.5,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        },
+        "texture": {
+            "anisotropy": 1,
+            "path": "./textures/building01.jpg",
+            "repeat": {
+                "height": 3,
+                "width": 3
+            }
+        }
+    }, {
+        "geometry": {
+            "width": 2,
+            "height": 2,
+            "depth": 2,
+            "type": "BoxGeometry"
+        },
+        "material": {
+            "color": "#3b5d82",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 1,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#000000",
+            "transparent": false,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": -2.5,
+            "posY": 1.1,
+            "posZ": -7,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        }
+    }, {
+        "geometry": {
+            "width": 2,
+            "height": 2,
+            "depth": 2,
+            "type": "BoxGeometry"
+        },
+        "material": {
+            "color": "#11421e",
+            "emissive": "#000000",
+            "fog": true,
+            "name": "",
+            "opacity": 1,
+            "flatShading": 2,
+            "shininess": 5,
+            "side": 2,
+            "specular": "#000000",
+            "transparent": false,
+            "type": "MeshPhongMaterial",
+            "vertexColors": 0,
+            "visible": true
+        },
+        "type": "ThreeMesh",
+        "movements": {
+            "posX": 0,
+            "posY": 1.1,
+            "posZ": -6.5,
+            "degX": 0,
+            "degY": 0,
+            "degZ": 0,
+            "scaX": 1,
+            "scaY": 1,
+            "scaZ": 1
+        }
+    },
+    {
+        "type": "Collada",
+        "path": "./models/camping/na-cabin.dae",
+        "movements": {
+            "posX": 9.93,
+            "posY": 0.68,
+            "posZ": 5.5,
+            "degX": 0,
+            "degY": -90,
+            "degZ": 0,
+            "scaX": 3,
+            "scaY": 3,
+            "scaZ": 3
+        }
+    }, {
+        "type": "Collada",
+        "path": "./models/camping/na-cabin.dae",
+        "movements": {
+            "posX": 9.43,
+            "posY": 0.68,
+            "posZ": 9.5,
+            "degX": 0,
+            "degY": -90,
+            "degZ": 0,
+            "scaX": 3,
+            "scaY": 3,
+            "scaZ": 3
+        }
+    }, {
+        "type": "Collada",
+        "path": "./models/space/xaw13.dae",
+        "movements": {
+            "posX": 9.3,
+            "posY": 2.05,
+            "posZ": -9.65,
+            "degX": 0,
+            "degY": -30,
+            "degZ": 0,
+            "scaX": 1.5,
+            "scaY": 1.5,
+            "scaZ": 1.5
+        }
+    }
+]
