@@ -4,9 +4,9 @@ angular.module('clockworkApp.clockworkObjectStore', [])
         .factory('objectStore', ['objectUtils', function (objectUtils) {
                 return {
                     objectSelect: function (event, threeScene) {
-                        var camera = threeScene.camera;
-                        var intersects = [];
-                        var mouse = {x: 0, y: 0};
+                        let camera = threeScene.camera;
+                        let intersects = [];
+                        let mouse = {x: 0, y: 0};
 
                         mouse.x = ((event.clientX - threeScene.renderer.domElement.offsetLeft) / threeScene.renderer.domElement.width) * 2 - 1;
                         mouse.y = -((event.clientY - threeScene.renderer.domElement.offsetTop) / threeScene.renderer.domElement.height) * 2 + 1;
@@ -16,10 +16,10 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         threeScene.selectedObject = this.select(intersects, threeScene.selectedObject, threeScene.scene);
                     },
                     update: function (threeScene, actions) {
-                        var currentSelected = threeScene.selectedObject;
-                        var self = this;
+                        let currentSelected = threeScene.selectedObject;
+                        let self = this;
 
-                        var _cloneSelected = function () {
+                        let _cloneSelected = function () {
                             // we explicitly set it to null when it is
                             if (currentSelected === null) {
                                 return;
@@ -59,8 +59,8 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                             }
                         };
 
-                        if (this.scene.userData.box) {
-                            this.scene.userData.box.update();
+                        if (this.scene.userData.highlightHelperBox) {
+                            this.scene.userData.highlightHelperBox.update();
                         }
 
                         if (actions.cloneObject) {
@@ -69,7 +69,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         }
                         if (actions.deleteObject) {
 
-                            // we explicitly set it to null elsewhere when should be
+                            // we explicitly set it to null elsewhere when it should be
                             if (currentSelected === null) {
                                 return;
                             }
@@ -147,6 +147,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -170,6 +171,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -186,6 +188,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -202,6 +205,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -220,6 +224,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -240,6 +245,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -250,6 +256,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         /// add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -260,6 +267,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         /// add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -270,6 +278,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -280,6 +289,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -290,6 +300,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._applyMatrix(sceneObject, template);
                         // store the builder objects
                         sceneObject.userData.template = template;
+                        sceneObject.userData.isGround = false;
                         // add as appropriate
                         this._addSceneObject(sceneObject, true);
                     },
@@ -303,6 +314,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                             type: 'Collada',
                             path: model.path,
                             scale: model.scale,
+                            name: model.name,
                             //positions: model.positions,
                             movements: model.movements
                         };
@@ -313,15 +325,22 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                             dae_model = collada.scene.children[0];
 
                             // build the template for clones
+                            dae_model.userData.type = 'Collada';
                             dae_model.userData.template = template;
+                            dae_model.userData.path = model.path;
                             dae_model.userData.isCollada = true;
-                            dae_model.scale.x = dae_model.scale.y = dae_model.scale.z = model.scale;
+                            dae_model.userData.name = model.name;
+                            dae_model.userData.isGround = false;
 
+                            dae_model.name = model.name;
+                            // remove
                             self._applyMatrix(dae_model, model);
+                            // remove
                             dae_model.updateMatrix();
 
-                            // add as appropriate
+                            // remove anything template related
                             self._addSceneObject(dae_model, true);
+                            // remove
                             dae_model.updateMatrix();
                         });
                     },
@@ -395,6 +414,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         ground.rotation.x = -Math.PI / 2;
                         ground.userData.clockworkType = 'ClockworkGround';
                         ground.userData.template = template;
+                        ground.userData.isGround = true;
 
                         this._addSceneObject(ground, false);
                     },
@@ -449,7 +469,7 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         }
                     },
                     loadScene: function (threeScene) {
-                        this.sceneData = threeScene.sceneData;
+                        let sceneData = threeScene.sceneData;
                         this.scene = threeScene.scene;
 
                         // loading static ground here atm
@@ -458,26 +478,48 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         this._loadShaderSkybox();
 
                         // basic items
-                        for (var i = 0; i < this.sceneData.length; i++) {
-                            if (this.sceneData[i] === null) {
+                        for (var i = 0; i < sceneData.length; i++) {
+                            if (sceneData[i] === null) {
                                 continue;
                             }
-                            switch (this.sceneData[i].type) {
+                            switch (sceneData[i].type) {
                                 case 'ThreeMesh':
-                                    this._loadThreeType(this.sceneData[i]);
+                                    this._loadThreeType(sceneData[i]);
                                     break;
                                 case 'Collada':
-                                    this._loadCollada(this.sceneData[i]);
+                                    this._loadCollada(sceneData[i]);
                                     break;
                                 default:
-                                    console.log("No handler for: " + this.sceneData[i].type);
+                                    console.log("No handler for: " + sceneData[i].type);
                             }
                         }
                     },
+                    _sortSelectionIntersects: function(intersects) {
+                        let sortedInterects = [];
+                        
+                        for(let i = 0; i < intersects.length; i++) {
+                            
+                            if(intersects[i].object.type === "BoxHelper") {
+                                continue;
+                            }
+                            else if(intersects[i].object.userData.isGround) {
+                                continue;
+                            }
+                            else {
+                                sortedInterects.push(intersects[i]);
+                            }
+                        }
+                        
+                        return sortedInterects;
+                        
+                    },
                     select: function (intersects, currentSelected, scene) {
-                        if (intersects.length > 0)
+                        
+                        let sortedInterects = this._sortSelectionIntersects(intersects);
+                        
+                        if (sortedInterects.length > 0)
                         {
-                            var selectedObject = intersects[ 0 ].object;
+                            let selectedObject = sortedInterects[0].object;
 
                             // is the selection is not our saved 
                             // (saved could be an object or null)
@@ -520,57 +562,26 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                         return currentSelected;
                     },
                     _addSelectionWrapper: function (currentSelected) {
-                        this.scene.userData.box = new THREE.BoxHelper(currentSelected, 0xffff00);
-                        this.scene.userData.box.name = 'selectionWrapper';
-                        this.scene.add(this.scene.userData.box);
+                        this.scene.userData.highlightHelperBox = new THREE.BoxHelper(currentSelected, 0xffff00);
+                        this.scene.userData.highlightHelperBox.name = 'selectionWrapper';
+                        this.scene.add(this.scene.userData.highlightHelperBox);
                     },
                     _removeSelectionWrapper: function (currentSelected) {
                         var wrapper = this.scene.getObjectByName('selectionWrapper')
                         this.scene.remove(wrapper);
                     },
-                    _addSelectionHighlight: function (currentSelected) {
-                        if (currentSelected.type === "Group") {
-                            var children = currentSelected.children;
-                            $.each(children, function (index, value) {
-                                value.children[0].userData.emissive = value.children[0].material.emissive;
-                                value.children[0].material.emissive = new THREE.Color(0x40ff40);
-                            });
-
-                        }
-                        else {
-                            // save the current emissive property
-                            currentSelected.userData.emissive = currentSelected.material.emissive;
-                            // set the highlight emissive property
-                            currentSelected.material.emissive = new THREE.Color(0x40ff40);
-                        }
-                    },
-                    _remSelectionHighlight: function (currentSelected) {
-                        if (currentSelected.type === "Group") {
-                            var children = currentSelected.children;
-                            $.each(children, function (index, value) {
-                                if (typeof value.children[0] !== 'undefined') {
-                                    value.children[0].material.emissive = value.children[0].userData.emissive;
-                                }
-                            });
-                        }
-                        else {
-                            currentSelected.material.emissive = currentSelected.userData.emissive;
-                        }
-                    },
-                    _unselectObject: function (selected, currentSelected) {
-                        // remove highlight
-                        this._removeSelectionWrapper(selected);
-                        //and erase saved
-                        currentSelected = null;
-                    },
+                    // only used when a clone is created in _selectClone
                     _selectObject: function (newSelection, currentSelected) {
                         // first deselect the existing selection
                         // and reset the emissive light
+                        
                         if (currentSelected) {
                             this._removeSelectionWrapper(currentSelected);
                             currentSelected = null;
                         }
+                        
                         currentSelected = newSelection;
+                        
                         // add the highlight
                         this._addSelectionWrapper();
 

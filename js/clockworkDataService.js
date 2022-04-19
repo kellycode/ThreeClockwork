@@ -74,6 +74,9 @@ angular.module('clockworkApp.clockworkDataService', [])
                     saveSceneJSON: function (scene_json) {
                         localStorage.setItem('scene_save', scene_json);
                     },
+                    sortSceneForSave: function() {
+                        
+                    },
                     saveScene: function (threeScene) {
                         // extract the objects only
                         let json = threeScene.scene.toJSON();
