@@ -48,4 +48,4 @@ Model movement context is relative to the current camera direction when appropri
  - There's no collision detection or ability to change the camera
  
 ### ngClockwork?
- - Cause it's made with AngularJS and has a lot of moving parts
+ - 'ng' cause it's made with AngularJS and 'Clockwork' cause it has a lot of small moving parts
