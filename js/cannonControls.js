@@ -3,7 +3,7 @@
 angular.module('clockworkApp.cannonControls', [])
         .factory('cannonControls', [function () {
                 return {
-                    velocityFactor: 0.9,
+                    velocityFactor: 5,
                     jumpVelocity: 20,
                     
                     moveForward: false,

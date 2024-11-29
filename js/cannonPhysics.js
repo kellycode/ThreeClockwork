@@ -47,11 +47,12 @@ angular.module('clockworkApp.cannonPhysics', [])
                         this.world.addContactMaterial(physicsContactMaterial);
 
                         // Create a sphere
-                        var mass = 100, radius = 1.8;
+                        var mass = 1000, radius = 1.8;
 
                         // this will be the body that encloses the camera
                         this.sphereShape = new CANNON.Sphere(radius);
                         this.playerSphereBody = new CANNON.Body({mass: mass});
+                        this.playerSphereBody.angularDamping = 1.0;
                         this.playerSphereBody.addShape(this.sphereShape);
                         this.playerSphereBody.position.set(0, 5, 20);
                         this.playerSphereBody.linearDamping = 0.9;

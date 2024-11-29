@@ -30,8 +30,8 @@ angular.module('clockworkApp.cannonBullets', [])
                         var y = position.y;
                         var z = position.z;
 
-                        var ballBody = new CANNON.Body({mass: 2});
-                        ballBody.addShape(this.ballShape);
+                        var ballBody = new CANNON.Body({mass: 4, linearDamping: 0.5});
+                        ballBody.addShape(this.ballShape)
 
                         var ballMesh = new THREE.Mesh(this.ballGeometry, threeScene.genericMaterial);
 
