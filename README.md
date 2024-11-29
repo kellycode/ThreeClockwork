@@ -5,19 +5,15 @@ $${\color{green}20241129:}$$ Fixed save to local storage and file download but p
 
 $${\color{green}20241129:}$$ Fixed position change updates and turned off file download for now, need to ability to name the save.
 
-Building a world editor, slow but sure
+A THREE JS scene editor that I can make, save and load scene layout. I just want to add models and move them around and then save the layout and import it into a THREE project.  Current plan is to simplify it and update to the latest THREE.
 
-Built because it makes editing scenes extremely easy and it's fun to play with.
-
-An Angular(1) and [Three.JS](https://github.com/mrdoob/three.js) based  scene editor built for my own amusement back in 2015 and no longer developed as **it uses a custom save file format and it would be more useful to use the format that Three.JS uses and simply move the features I like over to the [ThreeJS Editor](https://threejs.org/editor/) or to use [PlayCanvas](https://github.com/playcanvas/engine) or [nunuStudio](https://github.com/tentone/nunuStudio)
-
-ngClockwork uses keyboard commands and clicks to add, remove and edit world model position, scale and material, textures and attributes.  It's otherwise tedious building scenes with code and the ThreeJS editor at the time didn't save texture data.  Other than updating it to the latest ThreeJS revision 98, I no longer work on this but it does have some useful ideas in it so keep it around and I may build a deployment alternative into the config file.
+ngClockwork uses keyboard commands and clicks to add, remove and edit world model position, scale and material, textures and attributes.
 
 Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not selected.
 
 Textures and DAE models to be used are loaded based on what's in the directories so they can be simply added as needed.
 
-Model movement context is relative to the current camera direction when appropriate ( such as: Forward arrow always moves the model away from you )
+Model movement context is relative to the current camera direction (broken atm) when appropriate ( such as: Forward arrow always moves the model away from you )
 
 ### Requires
  - It sn't necessary to run but "npm install" will add grunt dependencies for minimized build if you plan to do a deployable version.
@@ -52,4 +48,4 @@ Model movement context is relative to the current camera direction when appropri
  - There's no collision detection or ability to change the camera
  
 ### ngClockwork?
- - 'ng' cause it's made with AngularJS and 'Clockwork' cause it has a lot of small moving parts
+ - 'ng' cause it's made with Angular and 'Clockwork' cause it's got a lot of small moving parts
