@@ -62,7 +62,7 @@ angular.module('clockworkApp.clockworkThreeScene', [])
                         
                         // this is the mesh containing the camera moved by controls
                         this.cannon_camera = this.controls.getObject();
-                        this.cannon_camera.name = "CannonControledCamera";
+                        this.cannon_camera.name = "CannonControlledCamera";
                         this.scene.add(this.controls.getObject());
 
 

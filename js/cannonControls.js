@@ -35,6 +35,7 @@ angular.module('clockworkApp.cannonControls', [])
                         this.yawObject = new THREE.Object3D();
                         this.yawObject.add(this.pitchObject);
                         this.pitchObject.add(camera);
+                        camera.userData.vehicle = this.pitchObject;
 
                         // start a little above ground
                         this.yawObject.position.y = 3;

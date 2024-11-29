@@ -3,7 +3,9 @@
 
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
-$${\color{green}20241129:}$$ Fixed position change updates and turned off file download for now, need to ability to name the save.
+$${\color{green}20241129:}$$ Fixed position change updates and turned off file download for now, need to ability to name the save.  
+
+$${\color{green}20241129:}$$ Objects now move on a grid and relative to camera direction.
 
 A THREE JS scene editor that I can make, save and load scene layout. I just want to add models and move them around and then save the layout and import it into a THREE project.  Current plan is to simplify it and update to the latest THREE.
 
