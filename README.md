@@ -1,5 +1,5 @@
 
-# ngClockwork 
+# ThreeClockwork 
 
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
@@ -9,7 +9,7 @@ $${\color{green}20241129:}$$ Objects now move on a grid and relative to camera d
 
 A THREE JS scene editor that I can make, save and load scene layout. I just want to add models and move them around and then save the layout and import it into a THREE project.  Current plan is to simplify it and update to the latest THREE.
 
-ngClockwork uses keyboard commands and clicks to add, remove and edit world model position, scale and material, textures and attributes.
+ThreeClockwork uses keyboard commands and clicks to add, remove and edit world model position, scale and material, textures and attributes.
 
 Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not selected.
 
@@ -49,5 +49,3 @@ Model movement context is relative to the current camera direction (broken atm) 
  - It switches between degrees and radians simply because degrees are easier to visualize.
  - There's no collision detection or ability to change the camera
  
-### ngClockwork?
- - 'ng' cause it's made with Angular and 'Clockwork' cause it's got a lot of small moving parts
