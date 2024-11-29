@@ -16,7 +16,7 @@ angular.module('clockworkApp.clockworkDataService', [])
                         }
                         else {
                             return Promise.resolve().then(function () {
-                                return JSON.parse(localStorage.getItem('scene_save'));
+                                return JSON.parse(localStorage.getItem('save_scene_x1'));
                             });
                         }
                     },
@@ -72,17 +72,17 @@ angular.module('clockworkApp.clockworkDataService', [])
                         return newArray;
                     },
                     saveSceneJSON: function (scene_json) {
-                        localStorage.setItem('scene_save', scene_json);
+                        localStorage.setItem('save_scene_x1', scene_json);
                     },
                     sortSceneForSave: function() {
                         
                     },
+                    // currently save scene to localStorage and a json file download
                     saveScene: function (threeScene) {
-                        // extract the objects only
-                        let json = threeScene.scene.toJSON();
-                        let children = json.object.children;
-                        let jsonStr = JSON.stringify(children);
-                        this.saveSceneJSON(JSON.stringify(jsonStr));
+                        let saveData = threeScene.sceneData;
+                        let canSaveThis = JSON.stringify(saveData);
+                        this.downloadScene(canSaveThis, "scene12.json", 'application/json');
+                        this.saveSceneJSON(canSaveThis);
                     },
                     jsonStringifyDebug: function (stringifiedObject) {
                         var cache = [];

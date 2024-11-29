@@ -489,6 +489,9 @@ angular.module('clockworkApp.clockworkObjectStore', [])
                                 case 'Collada':
                                     this._loadCollada(sceneData[i]);
                                     break;
+                                case 'undefined':
+                                        this._loadCollada(sceneData[i]);
+                                    break;
                                 default:
                                     console.log("No handler for: " + sceneData[i].type);
                             }

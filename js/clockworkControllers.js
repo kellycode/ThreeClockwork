@@ -29,11 +29,18 @@ angular.module('clockworkApp.clockworkControllers', [])
             
             $scope.toggleCannon = function (evnt) {
                 $scope.cannonActive = !$scope.cannonActive;
+                // editor can't be running while cannon is active
+                if($scope.cannonActive && $scope.editorVisible) {
+                    $scope.toggleEditingInterface();
+                }
             }
 
             // just opens/closes the editing tabs
             $scope.toggleEditingInterface = function (event) {
                 $scope.editorVisible = !$scope.editorVisible;
+                if($scope.editorVisible) {
+                    $scope.cannonActive = false;
+                }
             };
 
             $scope.handleWindowResize = function () {
@@ -92,7 +99,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             // start the scene and load it
             threeScene.init($element);
 
-            let loadFromFile = true;
+            let loadFromFile = false;
 
             dataService.loadSceneJSON("json/scene1.json", loadFromFile).then(function (response) {
                 if (!response) {
