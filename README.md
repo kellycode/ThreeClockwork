@@ -1,5 +1,7 @@
 
-# ngClockwork
+# ngClockwork  
+
+Building a world editor, slow but sure
 
 Built because it makes editing scenes extremely easy and it's fun to play with.
 
