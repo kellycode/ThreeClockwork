@@ -1,5 +1,7 @@
 
-# ngClockwork  
+# ngClockwork 
+
+20241129: Fixed world save to local storage and file download but mesh change data isn't getting updated in the editor
 
 Building a world editor, slow but sure
 
