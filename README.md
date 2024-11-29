@@ -1,8 +1,8 @@
 
 # ngClockwork 
 
-20241129: Fixed world save to local storage and file download but mesh change data isn't getting updated in the editor  
-20241129: Fixed object moved updates and turned off file download for now, need to ability to name the save.
+$${\color{green}20241129:}$$ Fixed world save to local storage and file download but mesh change data isn't getting updated in the editor  
+$${\color{green}20241129:}$$ Fixed object moved updates and turned off file download for now, need to ability to name the save.
 
 Building a world editor, slow but sure
 
