@@ -81,7 +81,7 @@ angular.module('clockworkApp.clockworkDataService', [])
                     saveScene: function (threeScene) {
                         let saveData = threeScene.sceneData;
                         let canSaveThis = JSON.stringify(saveData);
-                        this.downloadScene(canSaveThis, "scene12.json", 'application/json');
+                        //this.downloadScene(canSaveThis, "scene12.json", 'application/json');
                         this.saveSceneJSON(canSaveThis);
                     },
                     jsonStringifyDebug: function (stringifiedObject) {

@@ -8,11 +8,26 @@ angular.module('clockworkApp.clockworkEditActions', [])
                         var currentSelected = threeScene.selectedObject;
                         var constants = this.constants;
 
+                        var syncObjectTemplate = function () {
+                            currentSelected.userData.template.movements.degX = currentSelected.rotation.x * (180 / Math.PI);
+                            currentSelected.userData.template.movements.degY = currentSelected.rotation.y * (180 / Math.PI);
+                            currentSelected.userData.template.movements.degZ = currentSelected.rotation.z * (180 / Math.PI);
+
+                            currentSelected.userData.template.movements.posX = currentSelected.position.x;
+                            currentSelected.userData.template.movements.posY = currentSelected.position.y;
+                            currentSelected.userData.template.movements.posZ = currentSelected.position.z;
+
+                            currentSelected.userData.template.movements.scaX = currentSelected.scale.x;
+                            currentSelected.userData.template.movements.scaY = currentSelected.scale.y;
+                            currentSelected.userData.template.movements.scaZ = currentSelected.scale.z;
+                        };
+
                         var _resetObjectRotations = function () {
                             currentSelected.degrees.x = 0;
                             currentSelected.degrees.y = 0;
                             currentSelected.degrees.z = 0;
                             degreeSync.updateRotation(currentSelected);
+                            syncObjectTemplate();
                         };
 
                         // POSITIONS
@@ -25,26 +40,31 @@ angular.module('clockworkApp.clockworkEditActions', [])
                         var _posSelectedX = function (change) {
                             //currentSelected.position.x = _floatAdd(currentSelected.position.x, change);
                             currentSelected.translateX(change);
+                            syncObjectTemplate();
                         };
 
                         var _posSelectedY = function (change) {
                             //currentSelected.position.y = _floatAdd(currentSelected.position.y, change);
                             currentSelected.translateY(change);
+                            syncObjectTemplate();
                         };
 
                         var _posSelectedZ = function (change) {
                             //currentSelected.position.z = _floatAdd(currentSelected.position.z, change);
                             currentSelected.translateZ(change);
+                            syncObjectTemplate();
                         };
 
                         var _rotSelectedX = function (change) {
                             currentSelected.degrees.x = degreeSync.safeChange(currentSelected.degrees.x, change);
                             degreeSync.updateRotation(currentSelected);
+                            syncObjectTemplate();
                         };
 
                         var _rotSelectedY = function (change) {
                             currentSelected.degrees.y = degreeSync.safeChange(currentSelected.degrees.y, change);
                             degreeSync.updateRotation(currentSelected);
+                            syncObjectTemplate();
                         };
 
                         var _rotSelectedZ = function (change) {
