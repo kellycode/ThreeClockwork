@@ -1,7 +1,10 @@
 
-# ThreeClockwork 
+ 
+ # ThreeClockwork 
 
 ![ThreeClockwork view](https://kellycode.github.io/ThreeClockwork/readme_img.jpg)
+
+The concept is to make scene building more visual and intuitive and do the basic scene layout here, save it and load that into a Three project to do the details.
 
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
@@ -20,6 +23,7 @@ Model movement context is relative to the current camera direction when appropri
 Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not selected
 
 ### Requires Nothing
+
  - It's all basic javascript. There are a few GULP commands for creating lists and minification but "npm install" isn't required.
  - It's designed to be used in a development environment along with THREE projects and not an online tool.
 
@@ -51,4 +55,6 @@ Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not select
  - It switches between degrees and radians simply because degrees are easier to visualize.
  - There's no collision detection or ability to change the camera
  - I added cannon.js in a moment of sure, why not and it's not used much
- 
+
+### Clockwork?
+- Because it has a lot of small parts.
