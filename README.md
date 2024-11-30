@@ -1,7 +1,7 @@
 
 # ThreeClockwork 
 
-![enter image description here](https://github.com/kellycode/ThreeClockwork/raw/main/public_img.jpg)
+![ThreeClockwork view](https://kellycode.github.io/ThreeClockwork/readme_img.jpg)
 
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
