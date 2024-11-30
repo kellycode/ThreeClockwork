@@ -587,6 +587,10 @@ angular.module('clockworkApp.clockworkControllers', [])
     .controller('StatsController', ['$scope', '$element',
         function ($scope, $element) {
             $scope.stats = new Stats();
+            // Change the position of the Stats panel
+            $scope.stats.domElement.style.position = 'absolute';
+            $scope.stats.domElement.style.top = '32px'; 
+            $scope.stats.domElement.style.left = '0px';
             $element.append($scope.stats.domElement);
         }])
     .controller('EditPanelAccordionController', ['$scope',
