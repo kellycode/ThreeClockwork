@@ -6,6 +6,8 @@
 
 The concept is to make scene building more visual and intuitive and do the basic scene layout here, save it and load that into a Three project to do the details.
 
+$${\color{green}UpNext:}$$ Currently the scene data is stored in browser local storage but if it's a new user there is no local storage so it has to be loaded from a json file.  need to add the ability to load the json file after checking local storage, let the user select a json file and/or choose where it's save and loaded in options and store that in a cookie
+
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
 $${\color{green}20241129:}$$ Fixed position change updates and turned off file download for now, need to ability to name the save.  
