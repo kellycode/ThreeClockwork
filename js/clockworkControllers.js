@@ -99,7 +99,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             // start the scene and load it
             threeScene.init($element);
 
-            let loadFromFile = false;
+            let loadFromFile = true;
 
             dataService.loadSceneJSON("json/scene1.json", loadFromFile).then(function (response) {
                 if (!response) {
