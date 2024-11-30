@@ -70,7 +70,7 @@ angular.module('clockworkApp.clockworkDirectives', [])
                 return {
                     restrict: 'AE',
                     replace: 'true',
-                    template: '<span id="devInfo">' + 'ngClockwork: ' + clockworkConfig.name + ' version: ' + clockworkConfig.version + '</span>'
+                    template: '<span id="devInfo">' + 'ThreeClockwork: ' + clockworkConfig.name + ' version: ' + clockworkConfig.version + '</span>'
                 };
             }])
         .directive('resize', ['$window', function ($window) {

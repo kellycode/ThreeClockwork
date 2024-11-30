@@ -5,7 +5,7 @@ angular.module('clockworkApp.clockworkControllers', [])
     .controller('ClockworkController', ['$scope', '$rootScope', 'threeScene', 'editEvents',
         function ($scope, $rootScope, threeScene, editEvents) {
             // shows up in the browser tab
-            $rootScope.pageTitle = "ngClockwork";
+            $rootScope.pageTitle = "ThreeClockwork";
             $scope.selectedObject = null;
             $scope.speedStatus = '';
             $scope.editorVisible = true;

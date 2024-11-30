@@ -1,5 +1,5 @@
 {
-  "name": "ngclockwork",
+  "name": "ThreeClockwork",
   "version": "0.2.0",
   "description": "angular clockwork",
   "main": "index.html",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kellycode/ngClockwork.git"
+    "url": "git+https://github.com/kellycode/ThreeClockwork.git"
   },
   "keywords": [
     "none"
@@ -26,7 +26,7 @@
   "author": "none",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kellycode/ngClockwork/issues"
+    "url": "https://github.com/kellycode/ThreeClockwork/issues"
   },
-  "homepage": "https://github.com/kellycode/ngClockwork#readme"
+  "homepage": "https://github.com/kellycode/ThreeClockwork#readme"
 }
