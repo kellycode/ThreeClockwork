@@ -60,3 +60,6 @@ Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not select
 
 ### Clockwork?
 - Because it has a lot of small parts.
+
+### On The Other Hand
+- After working with this for a while it occurs to me that it would likely be more efficient to add something like Java Introspection/Reflection as an addon for Three that would enable point and click object placement/rotation/options as copy/paste code after manipulation.
