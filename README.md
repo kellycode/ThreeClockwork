@@ -6,7 +6,9 @@
 
 The concept is to make scene building more visual and intuitive and do the basic scene layout here, save it and load that into a Three project to do the details.
 
-$${\color{green}UpNext:}$$ Currently the scene data is stored in browser local storage but if it's a new user there is no local storage so it has to be loaded from a json file.  need to add the ability to load the json file after checking local storage, let the user select a json file and/or choose where it's save and loaded in options and store that in a cookie
+$${\color{green}UpNext:}$$ Need to add the ability to download the scene json file.  Redo lighting manipulation
+
+$${\color{green}20241130:}$$ Now loads localStorage by default and a defualt file if not found
 
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
