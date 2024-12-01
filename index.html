@@ -40,9 +40,7 @@
         <script src="js/clockworkThreeScene.js" type="text/javascript"></script>
         <script src="js/cannonPhysics.js" type="text/javascript"></script>
         <script src="js/cannonControls.js" type="text/javascript"></script>
-        <script src="js/cannonBoxes.js" type="text/javascript"></script>
-        <script src="js/cannonBullets.js" type="text/javascript"></script>
-        <script src="js/cannonShapes.js" type="text/javascript"></script>
+
 
         <script type="module">
             // not using this atm
@@ -62,7 +60,6 @@
         <div id="clockworkTools">
             <span class="title">ThreeClockwork</span>
             <div id="toolIcons" class="ng-scope">
-                <span class="menuButton" ng-class="cannonActive? 'active' : 'disabled' " id="cannonClicker" ng-click="toggleCannon($event);">Cannon</span>
                 <span class="menuButton active" id="editButton" ng-click="toggleEditingInterface($event);">Edit</span>
                 <span class="menuButton active" id="saveButton" ng-click="saveScene();">Save</span>
             </div>

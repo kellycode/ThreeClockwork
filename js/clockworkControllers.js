@@ -9,7 +9,6 @@ angular.module('clockworkApp.clockworkControllers', [])
             $scope.selectedObject = null;
             $scope.speedStatus = '';
             $scope.editorVisible = true;
-            $scope.cannonActive = false;
 
             //                $scope.handleKeydown = function (event) {
             //                    editEvents.keyDown(event, editEvents.actions);
@@ -26,21 +25,11 @@ angular.module('clockworkApp.clockworkControllers', [])
             $scope.toggleGrid = function () {
                 console.log('toggleGrid');
             };
-            
-            $scope.toggleCannon = function (evnt) {
-                $scope.cannonActive = !$scope.cannonActive;
-                // editor can't be running while cannon is active
-                if($scope.cannonActive && $scope.editorVisible) {
-                    $scope.toggleEditingInterface();
-                }
-            }
+        
 
             // just opens/closes the editing tabs
             $scope.toggleEditingInterface = function (event) {
                 $scope.editorVisible = !$scope.editorVisible;
-                if($scope.editorVisible) {
-                    $scope.cannonActive = false;
-                }
             };
 
             $scope.handleWindowResize = function () {
@@ -51,8 +40,8 @@ angular.module('clockworkApp.clockworkControllers', [])
                 }
             };
         }])
-    .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'editActions', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls', 'cannonBoxes', 'cannonBullet', 'cannonShapes',
-        function ($scope, dataService, $element, editEvents, editActions, objectStore, threeScene, cannonPhysics, cannonControls, cannonBoxes, cannonBullet, cannonShapes) {
+    .controller('SceneController', ['$scope', 'dataService', '$element', 'editEvents', 'editActions', 'objectStore', 'threeScene', 'cannonPhysics', 'cannonControls',
+        function ($scope, dataService, $element, editEvents, editActions, objectStore, threeScene, cannonPhysics, cannonControls) {
 
             let time = Date.now();
             let dt = 1 / 60;
@@ -63,10 +52,6 @@ angular.module('clockworkApp.clockworkControllers', [])
                 } else {
                     // turn event over to cannon
                     cannonControls.onMouseButtonDown(event);
-                    // shoot a bullet
-                    if (event.which === 1 && $scope.cannonActive) {
-                        cannonBullet.addBullet(cannonPhysics.playerSphereBody.position);
-                    }
                 }
             };
 
@@ -113,11 +98,6 @@ angular.module('clockworkApp.clockworkControllers', [])
                 }
             });
 
-            // cannon boxes for play
-            //block cannon//cannonBoxes.initBoxes();
-            // cannon bullets for play
-            cannonBullet.initBullets();
-
             // the render and update sections
             $scope.animate = function () {
 
@@ -125,10 +105,6 @@ angular.module('clockworkApp.clockworkControllers', [])
 
                 editActions.update(threeScene, editEvents.actions);
                 objectStore.update(threeScene, editEvents.actions);
-
-                cannonBoxes.update();
-
-                cannonBullet.update();
 
                 cannonPhysics.world.step(dt);
 

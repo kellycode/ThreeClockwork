@@ -17,8 +17,5 @@ angular.module('clockworkApp',
             'clockworkApp.clockworkTemplater',
             'clockworkApp.cannonPhysics',
             'clockworkApp.cannonControls',
-            'clockworkApp.cannonBoxes',
-            'clockworkApp.cannonBullets',
-            'clockworkApp.cannonShapes',
             'ui.bootstrap'
         ]);
