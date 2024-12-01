@@ -1,256 +1,261 @@
-'use strict';
+/**
+ * @author mrdoob / http://mrdoob.com/
+ * @author schteppe / https://github.com/schteppe
+ */
+let CannonControls = function (camera, sphereCannonBody) {
 
-angular.module('clockworkApp.cannonControls', [])
-        .factory('cannonControls', [function () {
-                return {
-                    velocityFactor: 0.9,
-                    jumpVelocity: 20,
-                    
-                    moveForward: false,
-                    moveBackward: false,
-                    moveLeft: false,
-                    moveRight: false,
-                    turnLeft: false,
-                    turnRight: false,
-                    lookDown: false,
-                    lookUp: false,
-                    shiftDown: false,
+    let velocityFactor = 0.2;
+    let jumpVelocity = 20;
 
-                    followMouse: false,
+    let pitchObject = new THREE.Object3D();
+    pitchObject.add(camera);
 
-                    canJump: false,
+    let yawObject = new THREE.Object3D();
+    yawObject.add(pitchObject);
 
-                    isScrolling: false,
+    yawObject.position.y = 1;
 
-                    PI_2: Math.PI / 2,
+    let quat = new THREE.Quaternion();
 
-                    contactNormal: null,
-                    upAxis: null,
+    let moveForward = false;
+    let moveBackward = false;
+    let moveLeft = false;
+    let moveRight = false;
+    let turnLeft = false;
+    let turnRight = false;
+    let lookDown = false;
+    let lookUp = false;
+    let shiftDown = false;
+    let followMouse = false;
 
-                    initControls: function (camera, playerSphereBody) {
+    let canJump = false;
+    let isScrolling = false;
 
-                        // camera containers, these have no physical or visual
-                        // presence, they're just here to manage the camera view
-                        this.pitchObject = new THREE.Object3D();
-                        this.yawObject = new THREE.Object3D();
-                        this.yawObject.add(this.pitchObject);
-                        this.pitchObject.add(camera);
+    // Normal in the contact, pointing *out* of whatever the player touched
+    let contactNormal = new CANNON.Vec3();
+    let upAxis = new CANNON.Vec3(0, 1, 0);
 
-                        // start a little above ground
-                        this.yawObject.position.y = 3;
+    sphereCannonBody.addEventListener("collide", function (e) {
+        let contact = e.contact;
 
-                        this.quat = new THREE.Quaternion();
+        // contact.bi and contact.bj are the colliding bodies, and contact.ni is the collision normal.
+        // We do not yet know which one is which! Let's check.
+        if (contact.bi.id === sphereCannonBody.id)  // bi is the player body, flip the contact normal
+            contact.ni.negate(contactNormal);
+        else
+            contactNormal.copy(contact.ni); // bi is something else. Keep the normal as it is
 
-                        // Normal in the contact, pointing *out* of whatever the player touched
-                        this.contactNormal = new CANNON.Vec3();
-                        this.upAxis = new CANNON.Vec3(0, 1, 0);
+        // If contactNormal.dot(upAxis) is between 0 and 1, we know that the contact normal is somewhat in the up direction.
+        if (contactNormal.dot(upAxis) > 0.5) // Use a "good" threshold value between 0 and 1 here!
+            canJump = true;
+    });
 
-                        let _this = this;
+    let velocity = sphereCannonBody.velocity;
 
-                        this.handleSphereCollide = function (e) {
-                            let contact = e.contact;
-                            // contact.bi and contact.bj are the colliding bodies,
-                            // and contact.ni is the collision normal.
-                            // We do not yet know which one is which! Let's check.
-                            // bi is the player body, flip the contact normal
-                            if (contact.bi.id === playerSphereBody.id) {
-                                contact.ni.negate(_this.contactNormal);
-                            }
-                            // bi is something else. Keep the normal as it is
-                            else {
-                                _this.contactNormal.copy(contact.ni);
-                            }
-                            // If contactNormal.dot(upAxis) is between 0 and 1,
-                            // we know that the contact normal is somewhat in
-                            // the up direction.
-                            // Use a "good" threshold value between 0 and 1 here!
-                            if (_this.contactNormal.dot(_this.upAxis) > 0.5) {
-                                _this.canJump = true;
-                            }
-                        };
+    let PI_2 = Math.PI / 2;
 
-                        playerSphereBody.addEventListener("collide", this.handleSphereCollide);
-                        this.velocity = playerSphereBody.velocity;
+    let watchScrolling = function (event) {
+        // Clear our timeout throughout the scroll
+        window.clearTimeout(isScrolling);
+        // Set a timeout to run after scrolling ends
+        isScrolling = setTimeout(function () {
+            // turn it off
+            lookUp = lookDown = false;
+        }, 66);
+    };
 
-                        // makes scrolling work like key up/down
-                        let watchScrolling = function (event) {
-                            // Clear our timeout throughout the scroll
-                            window.clearTimeout(_this.isScrolling);
-                            // Set a timeout to run after scrolling ends
-                            _this.isScrolling = setTimeout(function () {
-                                // turn it off
-                                _this.lookUp = _this.lookDown = false;
-                            }, 66);
-                        };
+    let onMouseWheel = function (event) {
+        watchScrolling();
+        if (event.deltaY < 0)
+        {
+            // looking and scrolling down
+            lookDown = true;
+        }
+        else if (event.deltaY > 0)
+        {
+            // looking and scrolling up
+            lookUp = true;
+        }
+    };
 
-                        this.onMouseWheel = function (event) {
-                            watchScrolling();
-                            if (event.deltaY < 0)
-                            {// looking and scrolling down
-                                _this.lookDown = true;
-                            }
-                            else if (event.deltaY > 0)
-                            {// looking and scrolling up
-                                _this.lookUp = true;
-                            }
-                        };
+    let onKeyDown = function (event) {
+        shiftDown = event.shiftKey;
+        switch (event.keyCode) {
+            case 38: // up
+            case 87: // w
+                moveForward = true;
+                break;
 
-                        this.onKeyDown = function (event) {
-                            _this.shiftDown = event.shiftKey;
-                            switch (event.keyCode) {
-                                case 87: // w
-                                    _this.moveForward = true;
-                                    break;
-                                case 81: // left q
-                                    _this.moveLeft = true;
-                                    break;
-                                case 83: // s
-                                    _this.moveBackward = true;
-                                    break;
-                                case 69: // right e
-                                    _this.moveRight = true;
-                                    break;
-                                case 65: // A
-                                    _this.turnLeft = true;
-                                    break;
-                                case 68: // D
-                                    _this.turnRight = true;
-                                    break;
-                                case 32: // space
-                                    if (_this.canJump === true) {
-                                        _this.velocity.y = _this.jumpVelocity;
-                                    }
-                                    _this.canJump = false;
-                                    break;
-                            }
-                        };
+            case 37: // left
+                moveLeft = true;
+                break;
 
-                        this.onKeyUp = function (event) {
-                            _this.shiftDown = event.shiftKey;
-                            switch (event.keyCode) {
-                                case 87: // w
-                                    _this.moveForward = false;
-                                    break;
-                                case 81: // left q
-                                    _this.moveLeft = false;
-                                    break;
-                                case 83: // a
-                                    _this.moveBackward = false;
-                                    break;
-                                case 69: // right e
-                                    _this.moveRight = false;
-                                    break;
-                                case 65: // A
-                                    _this.turnLeft = false;
-                                    break;
-                                case 68: // D
-                                    _this.turnRight = false;
-                                    break;
-                            }
-                        };
+            case 40: // down
+            case 83: // s
+                moveBackward = true;
+                break;
 
-                        this.onMouseMove = function (event) {
-                            let movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-                            let movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+            case 39: // right
+                moveRight = true;
+                break;
 
-                            _this.yawObject.rotation.y -= movementX * 0.002;
-                            _this.pitchObject.rotation.x -= movementY * 0.002;
+            case 65: // A
+                turnLeft = true;
+                break;
 
-                            _this.pitchObject.rotation.x = Math.max(-_this.PI_2, Math.min(_this.PI_2, _this.pitchObject.rotation.x));
-                        };
+            case 68: // D
+                turnRight = true;
+                break;
 
-                        this.onMouseButtonDown = function (event) {
-                            // on scroll click, look center
-                            if (event.button === 1) {
-                                _this.pitchObject.rotation.x = 0.0;
-                            }
-                            else if (event.button === 2) {
-                                window.addEventListener('mousemove', _this.onMouseMove);
-                            }
-                        };
+            case 32: // space
+                if (canJump === true) {
+                    velocity.y = jumpVelocity;
+                }
+                canJump = false;
+                break;
+        }
+    };
 
-                        this.onMouseButtonUp = function (event) {
-                            if (event.button === 2) {
-                                window.removeEventListener('mousemove', _this.onMouseMove);
-                            }
-                        };
+    let onKeyUp = function (event) {
+        shiftDown = event.shiftKey;
+        switch (event.keyCode) {
+            case 38: // up
+            case 87: // w
+                moveForward = false;
+                break;
 
-                        document.addEventListener('mouseup', this.onMouseButtonUp, false);
-                        // may use the wheel for something else
-                        document.addEventListener('wheel', this.onMouseWheel, false);
+            case 37: // left
+                moveLeft = false;
+                break;
 
-                        this.getObject = function () {
-                            return _this.yawObject;
-                        };
+            case 40: // down
+            case 83: // a
+                moveBackward = false;
+                break;
 
-                        let inputVelocity = new THREE.Vector3();
-                        let euler = new THREE.Euler();
-                        let shiftDiff = 1;
+            case 39: // right
+                moveRight = false;
+                break;
 
-                        this.update = function (delta) {
+            case 65: // A
+                turnLeft = false;
+                break;
 
-                            delta = 1;//*= 0.1;
-                            inputVelocity.set(0, 0, 0);
+            case 68: // D
+                turnRight = false;
+                break;
+        }
+    };
 
-                            if (this.shiftDown) {
-                                shiftDiff = 5;
-                            }
-                            else {
-                                shiftDiff = 1;
-                            }
+    var onMouseMove = function (event) {
 
-                            if (this.moveForward) {
-                                inputVelocity.z = -this.velocityFactor * shiftDiff * delta;
-                            }
-                            if (this.moveBackward) {
-                                inputVelocity.z = this.velocityFactor * delta;
-                            }
+        var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+        var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
-                            if (this.moveLeft) {
-                                inputVelocity.x = -this.velocityFactor * delta;
-                            }
-                            if (this.moveRight) {
-                                inputVelocity.x = this.velocityFactor * delta;
-                            }
+        yawObject.rotation.y -= movementX * 0.002;
+        pitchObject.rotation.x -= movementY * 0.002;
 
-                            if (this.turnRight) {
-                                this.yawObject.rotation.y -= 0.05;
-                            }
-                            if (this.turnLeft) {
-                                this.yawObject.rotation.y += 0.05;
-                            }
+        pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
+    };
 
-                            if (this.lookUp) {
-                                if (this.pitchObject.rotation.x < 0.4) {
-                                    this.pitchObject.rotation.x += 0.05;
-                                }
-                            }
-                            if (this.lookDown) {
-                                if (this.pitchObject.rotation.x > -0.4) {
-                                    this.pitchObject.rotation.x -= 0.05;
-                                }
-                            }
 
-                            this.getDirection = function (targetVec) {
-                                targetVec.set(0, 0, -1);
-                                _this.quat.multiplyVector3(targetVec);
-                            };
+    let onMouseButtonDown = function (event) {
+        // on scroll click, look center
+        if (event.button === 1) {
+            pitchObject.rotation.x = 0.0;
+        }
+        else if (event.button === 2) {
+            window.addEventListener('mousemove', onMouseMove);
+        }
+    };
 
-                            // Convert velocity to world coordinates
-                            euler.x = this.pitchObject.rotation.x;
-                            euler.y = this.yawObject.rotation.y;
-                            euler.order = "XYZ";
-                            this.quat.setFromEuler(euler);
-                            inputVelocity.applyQuaternion(this.quat);
+    let onMouseButtonUp = function (event) {
+        if (event.button === 2) {
+            window.removeEventListener('mousemove', onMouseMove);
+        }
+    };
 
-                            // Add to the object
-                            this.velocity.x += inputVelocity.x;
-                            this.velocity.z += inputVelocity.z;
+    //document.addEventListener('mousemove', onMouseMove, false);
+    document.addEventListener('mouseup', onMouseButtonUp, false);
+    document.addEventListener('mousedown', onMouseButtonDown, false);
+    document.addEventListener('wheel', onMouseWheel, false);
+    document.addEventListener('keydown', onKeyDown, false);
+    document.addEventListener('keyup', onKeyUp, false);
 
-                            this.yawObject.position.copy(playerSphereBody.position);
-                        };
+    this.enabled = true;
 
-                        return this;
-                    }
-                };
-            }]);
+    this.getObject = function () {
+        return yawObject;
+    };
+
+    this.getDirection = function (targetVec) {
+        targetVec.set(0, 0, -1);
+        quat.multiplyVector3(targetVec);
+    };
+
+    // Moves the camera to the Cannon.js object position and adds velocity to the object if the run key is down
+    let inputVelocity = new THREE.Vector3();
+    let euler = new THREE.Euler();
+
+    this.update = function (delta) {
+
+        delta *= 0.1;
+
+        let shiftDiff = 1;
+
+        inputVelocity.set(0, 0, 0);
+
+        if (shiftDown) {
+            shiftDiff = 5;
+        }
+        else {
+            shiftDiff = 1;
+        }
+
+        if (moveForward) {
+            inputVelocity.z = -velocityFactor * shiftDiff * delta;
+        }
+        if (moveBackward) {
+            inputVelocity.z = velocityFactor * delta;
+        }
+
+        if (moveLeft) {
+            inputVelocity.x = -velocityFactor * delta;
+        }
+        if (moveRight) {
+            inputVelocity.x = velocityFactor * delta;
+        }
+
+        if (turnRight) {
+            yawObject.rotation.y -= 0.05;
+        }
+        if (turnLeft) {
+            yawObject.rotation.y += 0.05;
+        }
+
+        if (lookUp) {
+            if (pitchObject.rotation.x < 0.4) {
+                pitchObject.rotation.x += 0.05;
+            }
+        }
+        if (lookDown) {
+            if (pitchObject.rotation.x > -0.4) {
+                pitchObject.rotation.x -= 0.05;
+            }
+        }
+
+        // Convert velocity to world coordinates
+        euler.x = pitchObject.rotation.x;
+        euler.y = yawObject.rotation.y;
+        euler.order = "XYZ";
+        quat.setFromEuler(euler);
+        inputVelocity.applyQuaternion(quat);
+        //quat.multiplyVector3(inputVelocity);
+
+        // Add to the object
+        velocity.x += inputVelocity.x;
+        velocity.z += inputVelocity.z;
+
+        yawObject.position.copy(sphereCannonBody.position);
+    };
+};

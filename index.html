@@ -1,44 +1,31 @@
 <!DOCTYPE html>
-<html ng-app="clockworkApp">
+<html ng-app="ngClockworkApp" ng-controller="ngClockworkController">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title ng-bind="pageTitle"></title>
+        <title>{{pageTitle}}</title>
         <link rel="icon" href="./favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="./favicon.ico" />
         
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
+        <link href="css/bootstrap-4.5.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <!-- Clockwork CSS -->
-        <link rel="stylesheet" href="css/clockwork.css" >
-        
+        <link rel="stylesheet" href="css/ngClockwork.css" >
     </head>
-    <body resize
-          ng-controller="ClockworkController">
-<!--          ng-keydown="handleKeydown($event);" ng-keyup="handleKeyup($event);">-->
-
+    <body>
+        
         <div id="clockworkTools" data-clockwork-tools></div>
-
-        <div data-three-stats></div>
-
-        <div id="clockwork"
-             tabindex="0"
-             ng-controller="SceneController"
-             ng-keydown="handleKeydown($event);"
-             ng-keyup="handleKeyup($event);"
-             ng-mousedown="handleMousedown($event);"></div>
-
-        <div data-object-edit-panel id="objectEditPanel" ng-show="editorVisible"></div>
+        
+        <div id="clockwork" ng-controller="SceneController"></div>
 
         <span data-app-version></span>
+        
 
         <!-- Core ThreeJS, Angular and Bootstrap Libs -->
-        <!--        <script src="libs/three_107/three.min.js" type="text/javascript"></script>-->
         <script src="libs/three_117/three.min.js" type="text/javascript"></script>
         <script src="libs/three_117/stats.min.js" type="text/javascript"></script>
         <script src="libs/three_117/loaders/ColladaLoader.js" type="text/javascript"></script>
@@ -48,32 +35,33 @@
         <script src="libs/angular_1.8/angular-cookies.min.js" type="text/javascript"></script>
         <script src="libs/angular_1.8/angular-resource.min.js" type="text/javascript"></script>
 
-        <script src="libs/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+        <script src="libs/ui-bootstrap-2.5.0/ui-bootstrap-tpls-2.5.0.min.js" type="text/javascript"></script>
         
-<!--        <script src="libs/cannon.js-0.6.2/cannon.min.js" type="text/javascript"></script>-->
-        <script src="libs/cannon.js-0.6.2/cannon.js" type="text/javascript"></script>
+        <script src="libs/cannon.js-0.6.2/cannon.min.js" type="text/javascript"></script>
+        <script src="js/CannonControls.js" type="text/javascript"></script>
 
         <!-- Minified-->
         <!--        <script src="build/clockwork.min.js"></script>-->
 
         <!-- Modules-->
-        <script src="js/clockworkControllers.js" type="text/javascript"></script>
-        <script src="js/clockworkConfig.js" type="text/javascript"></script>
-        <script src="js/clockworkDirectives.js" type="text/javascript"></script>
-        <script src="js/clockworkFilters.js" type="text/javascript"></script>
-        <script src="js/clockworkDataService.js" type="text/javascript"></script>
-        <script src="js/clockworkObjectStore.js" type="text/javascript"></script>
-        <script src="js/clockworkEditEvents.js" type="text/javascript"></script>
-        <script src="js/clockworkEditActions.js" type="text/javascript"></script>
-        <script src="js/clockworkUtilities.js" type="text/javascript"></script>
-        <script src="js/clockworkTemplater.js" type="text/javascript"></script>
-        <script src="js/clockworkThreeScene.js" type="text/javascript"></script>
-        <script src="js/cannonPhysics.js" type="text/javascript"></script>
-        <script src="js/cannonControls.js" type="text/javascript"></script>
-        <script src="js/cannonBoxes.js" type="text/javascript"></script>
-        <script src="js/cannonBullets.js" type="text/javascript"></script>
-        
+        <script src="js/controllers.js" type="text/javascript"></script>
+        <script src="js/config.js" type="text/javascript"></script>
+        <script src="js/directives.js" type="text/javascript"></script>
+        <script src="js/filters.js" type="text/javascript"></script>
+        <script src="js/services.js" type="text/javascript"></script>
+        <script src="js/objectLoader.js" type="text/javascript"></script>
+        <script src="js/editEvents.js" type="text/javascript"></script>
+        <script src="js/editActions.js" type="text/javascript"></script>
+        <script src="js/sceneFactory.js" type="text/javascript"></script>
+        <script src="js/physicsFactory.js" type="text/javascript"></script>
+        <script src="js/boxFactory.js" type="text/javascript"></script>
+        <script src="js/bulletFactory.js" type="text/javascript"></script>
+        <script src="js/utilFactory.js" type="text/javascript"></script>
+        <script src="js/templateFactory.js" type="text/javascript"></script>
+
         <!-- Main -->
-        <script src="js/clockworkApp.js"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+        
+<!--        <script src="js/CannonFPS.js" type="text/javascript"></script>-->
     </body>
 </html>
