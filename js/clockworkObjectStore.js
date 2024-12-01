@@ -157,7 +157,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -183,7 +183,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -202,7 +202,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -221,7 +221,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -242,7 +242,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -265,7 +265,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -276,7 +276,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 /// add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -287,7 +287,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 /// add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -298,7 +298,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -309,7 +309,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -320,7 +320,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 this._applyMatrix(sceneObject, template);
                 // store the builder objects
                 sceneObject.userData.template = template;
-                sceneObject.userData.isGround = false;
+                
                 // add as appropriate
                 this._addSceneObject(sceneObject, true);
             },
@@ -350,7 +350,6 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                     dae_model.userData.path = model.path;
                     dae_model.userData.isCollada = true;
                     dae_model.userData.name = model.name;
-                    dae_model.userData.isGround = false;
 
                     dae_model.name = model.name;
                     // remove
@@ -438,6 +437,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                     this._loadMeshMaterial(template.material, template.texture)
                 );
 
+                ground.name = "ClockworkGround";
                 ground.position.y = 0;
                 ground.castShadow = false;
                 ground.receiveShadow = true;
@@ -604,7 +604,7 @@ angular.module("clockworkApp.clockworkObjectStore", []).factory("objectStore", [
                 for (let i = 0; i < intersects.length; i++) {
                     if (intersects[i].object.type === "BoxHelper") {
                         continue;
-                    } else if (intersects[i].object.userData.isGround) {
+                    } else if (intersects[i].object.name === "ClockworkGround") {
                         continue;
                     } else {
                         sortedInterects.push(intersects[i]);
