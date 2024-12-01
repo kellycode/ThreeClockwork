@@ -101,12 +101,12 @@ angular.module('clockworkApp.clockworkControllers', [])
 
             let loadFromFile = true;
 
-            dataService.loadSceneJSON("json/scene1.json", loadFromFile).then(function (response) {
+            dataService.loadSceneJSON("json/scene2.json", loadFromFile).then(function (response) {
                 if (!response) {
                     console.error('File load error 1.  File could not be found. Error: ' + response.status);
                 }
                 else {
-                    threeScene.sceneData = loadFromFile ? response.data : response;
+                    threeScene.sceneData = response;
                     objectStore.loadScene(threeScene);
                     threeScene.ready = true;
                     $scope.animate();
@@ -118,7 +118,7 @@ angular.module('clockworkApp.clockworkControllers', [])
             // cannon bullets for play
             cannonBullet.initBullets();
 
-            // the render and update section
+            // the render and update sections
             $scope.animate = function () {
 
                 $scope.stats.update();
