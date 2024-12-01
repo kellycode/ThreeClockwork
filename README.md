@@ -8,7 +8,7 @@ The concept is to make scene building more visual and intuitive and do the basic
 
 $${\color{green}UpNext:}$$ Need to add the ability to download the scene json file.  Redo lighting manipulation
 
-$${\color{green}20241130:}$$ Now loads localStorage by default and a defualt file if not found
+$${\color{green}20241130:}$$ Now loads localStorage by default and a default file if not found
 
 $${\color{green}20241129:}$$ Fixed save to local storage and file download but position change data isn't getting updated in the editor  
 
