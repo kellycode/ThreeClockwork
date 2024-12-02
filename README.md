@@ -65,3 +65,6 @@ Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not select
 
 ### On The Other Hand
 - After working with this for a while it occurs to me that it would likely be more efficient to add something like Java Introspection/Reflection as an addon for Three that would enable point and click object placement/rotation/options and provide usable code after manipulation.
+
+### On The Other Hand 2
+- My existing project with AngularJS and an old Three is clunky and too big and I may just redo the whole thing with the latest Three and without Angular
