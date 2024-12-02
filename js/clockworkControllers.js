@@ -10,14 +10,6 @@ angular.module('clockworkApp.clockworkControllers', [])
             $scope.speedStatus = '';
             $scope.editorVisible = true;
 
-            //                $scope.handleKeydown = function (event) {
-            //                    editEvents.keyDown(event, editEvents.actions);
-            //                };
-
-            //                $scope.handleKeyup = function (event) {
-            //                    editEvents.keyUp(event, editEvents.actions);
-            //                };
-
             $scope.saveScene = function () {
                 $scope.$broadcast('saveScene');
             };

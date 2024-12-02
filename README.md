@@ -58,7 +58,7 @@ Camera movement uses W,A,S,D,Q, E and number pad +, - when a model is not select
 
  - It switches between degrees and radians simply because degrees are easier to visualize.
  - There's no collision detection or ability to change the camera
- - I added cannon.js in a moment of sure, why not and it's not used much
+ - I added cannon.js in a moment of sure, why not and it's only used for camera movement and certainly overkill for that
 
 ### Clockwork?
 - Because it has a lot of small parts.
